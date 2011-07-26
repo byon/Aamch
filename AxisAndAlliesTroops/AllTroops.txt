@@ -1,0 +1,288 @@
+"Red Devil" Captain	7	1	4	4	8	6	0	2	0	0	Soldier		US	1942	Close Assault 7	2	Pinpointer	 U 	25/48	 Base Set
+"Red Devil" Captain	7	1	4	4	8	6	0	2	0	0	Soldier		US	1942	Close Assault 7	2	Pinpointer	 U 	37/60	 1939-1945
+17-Pounder ATG	16	0	3	3	3	3	3	15	13	11	Soldier	Artillery	UK	1944	Relocate 2; Extended Range 10; Armor-Piercing Rounds			 U 	13/45	 Contested Skies
+20mm Flak 38	7	0	3	3	9	8	7	4	4	3	Soldier	Artillery	GE	1939	Antiair; Relocate 2			 U 	26/45	 Contested Skies
+3" Gun M5	12	0	3	3	3	3	3	14	12	10	Soldier	Artillery	US	1942	Relocate 2			 C 	19/45	 Set II
+37mm Light ATG	5	0	3	3	3	3	3	9	7	5	Soldier	Artillery	HU	1941	Relocate 2; Light Artillery			 C 	34/45	 Reserves
+40mm Bofors L60	9	0	3	3	11	10	9	6	6	5	Soldier	Artillery	UK	1939	Antiair; Relocate 2; Enhanced Range 10			 U 	14/45	 Contested Skies
+47mm Type I ATG	7	0	3	3	3	3	3	9	8	6	Soldier	Artillery	JP	1942	Relocate 2			 C 	43/48	 Base Set
+6-Pounder ATG	9	0	3	3	3	3	3	11	9	8	Soldier	Artillery	UK	1942	Relocate 2			 C 	 7/48	 Base Set
+7TPdw	8	3	2	2	8	7	6	2	2	2	Vehicle	Tank	PO	1939	All Guns Blazing			 R 	 5/45	 Set II
+82mm PM-37 Mortar	11	0	3	3	3	8	8	0	6	5	Soldier	Artillery	SU	1939	Indirect Fire; Enhanced Range 16; Inaccurate 1; Shrapnel 2; Relocate 2			 C 	 5/45	 Contested Skies
+82mm PM-37 Mortar	11	0	3	3	3	8	8	0	6	5	Soldier	Artillery	SU	1939	Indirect Fire; Enhanced Range 16; Inaccurate 1; Shrapnel 2; Relocate 2			 C 	16/60	 1939-1945
+88mm Flak 36	19	0	3	3	7	7	6	18	15	13	Soldier	Artillery	GE	1939	Heavy Gun; Antiair; Extended Range 20; Large Silhouette			 R 	26/45	 D-Day
+8mm Huzagol 35M	3	1	4	4	8	5	0	2	0	0	Soldier		HU	1941	Close Assault 6			 C 	35/45	 Reserves
+Ammo Dump	10	0	3	3	5	0	0	2	0	0	Soldier	Support	Any	1939	Dug In; Plentiful Ammo; Flammable			 U 	43/45	 Reserves
+Amtrack	11	3	2	2	8	8	6	3	3	2	Vehicle		US	1944	Amphibious; Transport			 R 	17/45	 D-Day
+Antitank Grenadier	5	1	4	4	7	5	0	2	0	0	Soldier		RO	1939	Close Assault 9			 C 	44/45	 Set II
+Archer	21	2	3	3	5	5	4	15	13	11	Vehicle	Tank Destroyer	UK	1943	Fixed Rear Gun, Extended Range 10, Strike and Fade 1			 U 	15/45	 Set II
+Arisaka Rifle	3	1	4	4	8	5	0	2	0	0	Soldier		JP	1939	Close Assault 6, Hand to Hand 12			 C 	44/48	 Base Set
+Arisaka Rifle	3	1	4	4	8	5	0	2	0	0	Soldier		JP	1939	Close Assault 6, Hand to Hand 12			 C 	54/60	 1939-1945
+Azad Hind Fauj Infantrymen	3	1	4	4	8	5	0	2	0	0	Soldier		JP	1943	Close Assault 6			 C 	39/45	 Reserves
+BA-10M	12	4	2	2	7	6	4	9	7	6	Vehicle	Armored Car	SU	1939	High Gear 2; Aggression 1			 U 	 7/45	 Reserves
+BAR Gunner	4	1	4	4	8	6	0	2	2	0	Soldier		US	1942	Covering Fire			 C 	20/45	 Set II
+Barbed Wire	0.5				0	0	0	0	0	0	Obstacle	Fortification	Any	1939	Fortification; Barbed Wire			 C 	42/45	 D-Day
+Bazooka	4	1	4	4	4	0	0	9	4	0	Soldier		US	1942	Close Assault 10			 C 	16/48	 Base Set
+Bazooka	4	1	4	4	4	0	0	9	4	0	Soldier		US	1942	Close Assault 10			 C 	27/60	 1939-1945
+Blackshirts	4	1	4	4	8	6	0	2	0	0	Soldier		IT	1939	Ruthless; Close Assault 6			 C 	36/45	 Set II
+BM-13 Katyusha Rocket Launcher	12	4	1	1	0	13	11	0	6	6	Vehicle	Artillery	SU	1941	Inaccurate 1; Bombardment; Blast; Rocket Salvo			 R 	 6/45	 Contested Skies
+BMW R75	5	5	3	3	8	6	0	0	0	0	Soldier	Motorcycle	GE	1939	High Gear 2; Thin Wheels; Close Assault 6			 U 	27/45	 Contested Skies
+Bohler 47mm ATG	7	0	3	3	3	3	3	9	8	6	Soldier	Artillery	RO	1939	Relocate 2; Camouflaged			 C 	44/45	 Contested Skies
+Bold Captain	7	1	4	4	6	0	0	2	0	0	Soldier	Commander	FR	1939		2	Elan	 U 	 2/45	 Contested Skies
+Bren Machine Gunner	5	1	4	4	8	7	0	2	2	0	Soldier		UK	1939	Covering Fire			 C 	 8/45	 D-Day
+Brixia M35 45mm Mortar	4	1	3	3	3	5	0	0	4	0	Soldier	Artillery	IT	1939	Inaccurate 1; Shrapnel 2; Rapid Fire			 C 	38/45	 Contested Skies
+BT-7	13	5	3	2	7	7	6	10	8	7	Vehicle	Tank	SU	1939	High Gear 1; Excellent Suspension			 R 	 8/45	 Reserves
+Buffalo Soldiers	4	1	4	4	8	7	0	2	0	0	Soldier		US	1944	Close Assault 7; Tough			 C 	18/45	 D-Day
+Canadian Infantrymen	3	1	4	4	8	6	0	2	0	0	Soldier		CA	1940	Close Assault 6			 C 	 1/45	 D-Day
+Canadian Infantrymen	3	1	4	4	8	6	0	2	0	0	Soldier		CA	1940	Close Assault 6			 C 	 8/60	 1939-1945
+Carro Armato M13/40	12	3	4	3	8	8	6	10	8	6	Vehicle	Tank	IT	1940	Overlapping Fire, Highly Flammable			 R 	41/48	 Base Set
+Carro Armato M13/40	12	3	4	3	8	8	6	10	8	6	Vehicle	Tank	IT	1940	Overlapping Fire, Highly Flammable			 U 	51/60	 1939-1945
+Cavalrymen	4	4	3	3	7	5	0	2	0	0	Soldier	Cavalry	PO	1941	Determined Charge, Hand to Hand 9			 U 	 6/45	 Set II
+Centurion A41	50	3	7	4	8	7	6	16	14	11	Vehicle	Tank	UK	1945	Robust; Superior Armor 2; Extended Range 12; Armor-Piercing Rounds			 R 	14/45	 Reserves
+Char B1-BIS	21	3	5	5	7	7	6	9	8	7	Vehicle	Tank	FR	1939	Complexity; Extra Hull-Mounted Cannon			 R 	 3/45	 Contested Skies
+Char B1-BIS	21	3	5	5	7	7	6	9	8	7	Vehicle	Tank	FR	1939	Complexity; Extra Hull-Mounted Cannon			 R 	11/60	 1939-1945
+Churchill AVRE	25	2	7	6	12	6	4	10	0	0	Vehicle	Tank	UK	1944	AVRE; Blast; Bombardment			 R 	 9/45	 D-Day
+Churchill Crocodile	35	2	7	6	10	5	4	13	11	9	Vehicle	Tank	UK	1944	Flamethrower, Superior Armor 2			 R 	 8/48	 Base Set
+Comet A-34	40	4	6	3	7	7	6	15	13	11	Vehicle	Tank	UK	1945	High Gear 1; Battlefield Awareness; Superior Armor 2			 U 	15/45	 Contested Skies
+Commissar	5	1	4	4	5	0	0	2	0	0	Soldier	Commander	SU	1939	Close Assault 6	1	Bravery Enforcement	 U 	 3/48	 Base Set
+Commissar	5	1	4	4	5	0	0	2	0	0	Soldier	Commander	SU	1939	Close Assault 6	1	Bravery Enforcement	 U 	17/60	 1939-1945
+Communist Partisans	3	1	4	4	7	5	0	2	0	0	Soldier	Partisan	SU	1940	Partisan; Close Assault 5; Urban Combat			 C 	 7/45	 Contested Skies
+Concealed Forward Observer	9	2	3	3	6	0	0	2	0	0	Soldier	Spotter	UK	1939	Spotter; Chatting On the Radio; Camouflaged			 C 	10/45	 D-Day
+Cossack Captain	9	1	4	4	8	5	0	2	0	0	Soldier	Commander	SU	1941	Limited Range 2	2	Intimidation	 U 	 7/45	 Set II
+Cossack Cavalrymen	4	3	3	3	7	5	0	2	0	0	Soldier	Cavalry	SU	1939	Hand to Hand 9; Elusive			 U 	 8/45	 Contested Skies
+Cromwell IV	22	4	5	4	7	7	6	14	11	9	Vehicle	Tank	UK	1944	Vanguard			 R 	16/45	 Set II
+Cromwell IV	22	4	5	4	7	7	6	14	11	9	Vehicle	Tank	UK	1944	Vanguard			 R 	 1/60	 1939-1945
+Crusader II	11	4	4	3	5	5	4	9	8	6	Vehicle	Tank	UK	1941	Vanguard, Prone to Breakdown			 R 	 9/48	 Base Set
+Defiant Paratroopers	8	1	5	5	9	7	0	2	0	0	Soldier	Paratrooper	UK	1941	Paratrooper; Close Assault 8			 U 	11/45	 D-Day
+Degtyarev DP-27	4	1	4	4	9	5	0	2	2	0	Soldier		SU	1939	Command Dependent; Covering Fire			 C 	 9/45	 Reserves
+Determined Infantrymen	4	1	4	4	9	6	0	2	0	0	Soldier		PO	1939	Close Assault 6; Steely Resolve 2			 C 	 5/45	 Reserves
+Disciplined Spotter	9	2	3	3	7	5	0	2	0	0	Soldier	Spotter	GE	1939	Spotter; Chatting On the Radio			 U 	27/45	 D-Day
+Dornier Do 335	15	A	4	4	8	6	0	4	3	0	Aircraft		GE	1945	Aircraft; Antiair; Speed Boost			 R 	23/45	 Reserves
+Eagle-Eyed NCO	7	1	4	4	8	6	0	2	0	0	Soldier	Commander	CA	1940	Close Assault 7	2	Improved Accuracy	 U 	 2/45	 D-Day
+Eagle-Eyed NCO	7	1	4	4	8	6	0	2	0	0	Soldier	Commander	CA	1940	Close Assault 7	2	Improved Accuracy	 U 	 9/60	 1939-1945
+Elefant	58	2	8	6	5	5	0	18	15	13	Vehicle	Tank Destroyer	GE	1943	No Turret; Extended Range 16; Tall Silhouette; Superior Armor 2			 R 	24/45	 Reserves
+Elite Panzer IV Ausf. D	18	3	3	3	7	7	6	10	9	8	Vehicle	Tank	GE	1939	Crack Shot			 U 	28/45	 Contested Skies
+Entrenched ATG	7	0	3	3	3	3	3	11	9	8	Soldier	Artillery	CA	1942	Relocate 2; Entrenched			 C 	 1/45	 Reserves
+F4U Corsair	20	A	4	4	9	7	0	3	2	0	Aircraft		US	1943	Aircraft; Antiair; Superior Armor 2; Bombs			 R 	17/45	 Reserves
+Fallschirmjäger	8	1	5	5	9	7	0	2	0	0	Soldier	Paratrooper	GE	1939	Paratrooper; Close Assault 7			 C 	25/45	 Reserves
+Fanatical Sniper	8	1	3	3	5	5	5	1	1	1	Soldier	Sniper	SU	1944	Crack Shot, SS Hunter, Superior Camouflage			 C 	 8/45	 Set II
+Flakpanzer IV Wirbelwind	19	3	3	3	11	10	8	6	6	5	Vehicle	Tank	GE	1944	Antiair; Tall Silhouette			 R 	29/45	 Contested Skies
+FO Jeep	11	5	1	1	5	0	0	0	0	0	Vehicle	Spotter	US	1942	Spotter; Chatting on the Radio			 U 	18/45	 Contested Skies
+Focke-Wulf Fw 190A	14	A	4	4	9	6	0	4	3	0	Aircraft		GE	1941	Aircraft; Antiair			 R 	28/45	 D-Day
+Fortress Defender	2	1	3	3	7	5	0	2	0	0	Soldier		GE	1942	Entrenchment; Close Assault 5			 C 	29/45	 D-Day
+Free French Infantrymen	3	1	4	4	8	6	0	2	0	0	Soldier		FR	1940	Close Assault 6			 C 	 4/45	 D-Day
+French Resistance Fighters	4	1	4	4	8	6	0	2	0	0	Soldier		FR	1940	Partisan; Close Assault 5			 C 	 3/45	 Reserves
+Fucile Modello 1891	3	1	4	4	7	5	0	1	0	0	Soldier		IT	1939	Bravado 2, Close Assault 5			 C 	42/48	 Base Set
+Fucile Modello 1891	3	1	4	4	7	5	0	1	0	0	Soldier		IT	1939	Bravado 2, Close Assault 5			 C 	52/60	 1939-1945
+Fuel Depot	6	0	3	3	5	0	0	2	0	0	Soldier	Support	Any	1939	Dug In; Extra Fuel; Flammable			 U 	44/45	 Reserves
+Gloster Meteor	17	A	4	4	9	6	0	4	3	0	Aircraft	Jet	UK	1944	Jet; Aircraft; Antiair			 R 	15/45	 Reserves
+Grizzled Veteran	8	1	5	5	9	6	3	2	0	0	Soldier	Hero	GE	1940	German Hero; Close Assault 8; Vast Experience			 U 	30/45	 D-Day
+Guards T-34/85	33	4	6	5	7	7	6	14	12	10	Vehicle	Tank	SU	1944	Guard Crew, Superior Armor 2			 R 	 9/45	 Set II
+Gurkha Riflemen	4	1	4	4	8	6	0	2	0	0	Soldier		UK	1940	Hand to Hand 10; Close Assault 7			 C 	16/45	 Contested Skies
+Hawker Typhoon	21	A	4	4	8	6	0	7	5	0	Aircraft		UK	1942	Aircraft; Antiair; Rockets 8			 R 	12/45	 D-Day
+Headquarters	7	0	3	3	6	0	0	2	0	0	Soldier	Support	Any	1939	Dug In; Organization			 U 	45/45	 Reserves
+Hero of the Soviet Union	8	1	5	5	9	7	0	2	0	0	Soldier	Hero	SU	1941	Soviet Hero; Hand to Hand 10; Close Assault 8; Endurance			 U 	 6/45	 D-Day
+Higgins Boat	7	2	3	3	6	6	4	2	2	2	Vehicle	Boat	US	1942	Water Craft; Heavy Transport			 R 	19/45	 D-Day
+Honor-Bound Hero	7	1	5	5	8	6	0	2	0	0	Soldier	Hero	JP	1942	Japanese Hero; Hand to Hand 10; Close Assault 8; Superior Camouflage			 U 	41/45	 D-Day
+Humber Scout Car	8	5	3	2	9	8	7	2	2	2	Vehicle	Armored Car	UK	1941	High Gear 2, Strike and Fade 2			 U 	10/48	 Base Set
+Humber Scout Car	8	5	3	2	9	8	7	2	2	2	Vehicle	Armored Car	UK	1941	High Gear 2, Strike and Fade 2			 U 	 2/60	 1939-1945
+Hunting Sniper	9	1	3	3	5	5	5	1	1	1	Soldier	Sniper	US	1942	Crack Shot; Gun Crew Hunter; Superior Camouflage			 U 	19/45	 Contested Skies
+IL-10 Sturmovik	21	A	4	4	8	6	0	7	5	0	Aircraft		SU	1945	Aircraft; Superior Armor 2			 R 	 9/45	 Contested Skies
+IL-10 Sturmovik	21	A	4	4	8	6	0	7	5	0	Aircraft		SU	1945	Aircraft; Superior Armor 2			 R 	18/60	 1939-1945
+Imperial Sergeant	9	1	4	4	6	0	0	2	0	0	Soldier	Commander	JP	1939	Hand to Hand 10	2	Banzai Charge	 U 	45/48	 Base Set
+Imperial Sniper	8	1	3	3	5	5	5	1	1	1	Soldier	Sniper	JP	1939	Crack Shot; Commander Hunter; Superior Camouflage			 C 	37/45	 Set II
+Inspiring Hero	9	1	5	5	9	7	0	2	0	0	Soldier	Commander Hero	UK	1940	UK Hero; Close Assault 7	1	Tally Ho!	 U 	13/45	 D-Day
+Inspiring Lieutenant	10	1	4	4	8	6	0	2	0	0	Soldier	Commander	UK	1940	Close Assault 7	2	Tally-Ho!	 U 	11/48	 Base Set
+Inspiring Lieutenant	10	1	4	4	8	6	0	2	0	0	Soldier	Commander	UK	1940	Close Assault 7	2	Tally-Ho!	 U 	 3/60	 1939-1945
+Intrepid Hero	8	1	5	5	8	6	0	2	0	0	Soldier	Hero	CA	1942	Canadian Hero; Hand to Hand 9; Close Assault 8; Firepower			 U 	 2/45	 Reserves
+IS-2 Model 1944	68	3	7	7	8	8	7	18	15	12	Vehicle	Tank	SU	1944	Superior Armor 2			 R 	10/45	 Set II
+IS-2 Model 1944	61	3	7	7	8	8	7	18	15	12	Vehicle	Tank	SU	1944	Superior Armor 2			 R 	19/60	 1939-1945
+IS-3	76	3	7	7	9	9	7	18	15	12	Vehicle	Tank	SU	1945	HE Round; Superior Armor 3			 R 	10/45	 Reserves
+Jagdpanther	57	4	6	4	6	6	4	18	15	13	Vehicle	Tank Destroyer	GE	1944	No Turret, Extended Range 12, Superior Armor 2			 R 	26/48	 Base Set
+Jagdpanther	39	4	6	4	6	6	4	18	15	13	Vehicle	Tank Destroyer	GE	1944	No Turret, Extended Range 12, Superior Armor 2			 R 	38/60	 1939-1945
+Jagdpanzer 38(t) Hetzer	20	4	4	3	6	6	4	15	13	11	Vehicle	Tank Destroyer	GE	1944	No Turret; Hard to Spot			 U 	31/45	 D-Day
+Jagdpanzer IV/48	29	3	5	3	5	5	4	15	13	11	Vehicle	Tank Destroyer	GE	1944	No Turret; Superior Frontal Armor 2; Hard to Spot			 R 	30/45	 Contested Skies
+Jagdtiger	60	2	8	6	7	7	6	20	17	15	Vehicle	Tank Destroyer	GE	1944	No Turret; Extended Range 16; Superior Armor 2; Prone to Breakdown			 R 	32/45	 D-Day
+Jeep	4	5	1	1	0	0	0	0	0	0	Vehicle	Car	US	1942	High Gear 2, Transport			 U 	17/48	 Base Set
+Junkers JU 87G Stuka	21	A	4	4	5	3	0	10	8	0	Aircraft		GE	1943	Aircraft; Slow			 R 	31/45	 Contested Skies
+Junkers JU 87G Stuka	21	A	4	4	5	3	0	10	8	0	Aircraft		GE	1943	Aircraft; Slow			 R 	39/60	 1939-1945
+Kawanishi NIK-J "Shiden-Kai"	16	A	4	4	9	6	0	4	3	0	Aircraft		JP	1944	Aircraft; Antiair; Agility			 R 	40/45	 Reserves
+King Tiger	71	3	8	6	7	7	6	18	15	13	Vehicle	Tank	GE	1944	Extended Range 12; Superior Armor 2			 R 	26/45	 Set II
+King Tiger	62	3	8	6	7	7	6	18	15	13	Vehicle	Tank	GE	1944	Extended Range 12; Superior Armor 2			 R 	40/60	 1939-1945
+Kuomintang Machine Gun Team	6	1	4	4	8	7	6	2	2	2	Soldier		CH	1939	Double Shot, Overheat			 U 	 1/45	 Set II
+Kuomintang Officer	5	1	4	4	6	0	0	2	0	0	Soldier	Commander	CH	1939		1		 U 	 2/45	 Set II
+Kuomintang Rifleman	2	1	4	4	7	5	0	2	0	0	Soldier		CH	1939	Lack of Determination			 C 	 3/45	 Set II
+KV-1	32	3	6	6	9	9	7	13	11	10	Vehicle	Tank	SU	1942	Transport, Hulking Mass			 R 	 4/48	 Base Set
+KV-1	32	3	6	6	9	9	7	13	11	10	Vehicle	Tank	SU	1942	Transport, Hulking Mass			 R 	20/60	 1939-1945
+L3/35	9	4	2	2	6	5	4	2	2	2	Vehicle	Tank	IT	1939	Excellent Suspension; Double Shot			 U 	40/45	 D-Day
+Lebel 86M93 Grenadier	3	1	4	4	8	6	0	4	4	0	Soldier		FR	1939	Restricted Range 2; Inaccurate 1			 C 	 4/45	 Contested Skies
+Light Mortar	4	1	3	3	3	6	0	0	4	0	Soldier		GE	1939	Inaccurate 1, Shrapnel 2			 C 	27/48	 Base Set
+Lockheed P-38G Lightning	17	A	4	4	9	6	0	3	2	0	Aircraft		US	1942	Aircraft; Antiair; Strafe			 R 	20/45	 D-Day
+Luftwaffe Infantrymen	3	1	4	4	7	4	0	2	0	0	Soldier		GE	1940	Antiair; Close Assault 5			 C 	32/45	 Contested Skies
+M1 81mm Mortar	12	0	3	3	3	8	8	0	6	5	Soldier	Artillery	US	1942	Improved Indirect Fire; Enhanced Range 16; Inaccurate 1; Shrapnel 2; Relocate 2			 C 	21/45	 D-Day
+M1 Garand Rifle	4	1	4	4	8	7	0	2	0	0	Soldier		US	1942	Close Assault 7, Stars and Stripes			 C 	18/48	 Base Set
+M1 Garand Rifle	4	1	4	4	8	7	0	2	0	0	Soldier		US	1942	Close Assault 7, Stars and Stripes			 C 	28/60	 1939-1945
+M16 Half-Track	15	4	2	2	9	8	6	3	3	3	Vehicle	Half-Track	US	1943	High Gear 2; Antiair; Double Shot			 U 	22/45	 D-Day
+M18 GMC	24	5	3	2	6	6	4	14	12	10	Vehicle	Tank Destroyer	US	1944	High Gear 2, Strike and Fade 1			 R 	29/60	 1939-1945
+M18 Hellcat	20	5	3	2	6	6	4	14	12	10	Vehicle	Tank Destroyer	US	1944	High Gear 2, Flanking Attack			 R 	19/48	 Base Set
+M20 75mm Recoilless Rifle	10	0	3	3	8	7	5	10	9	7	Soldier	Artillery	US	1945	Relocate 2; Backblast; Light Artillery			 C 	18/45	 Reserves
+M22 "Locust"	13	4	3	2	6	6	4	9	7	6	Vehicle	Tank	UK	1945	High Gear 1; Gliderborne			 U 	16/45	 Reserves
+M24 Chaffee	22	5	4	3	7	7	6	13	11	10	Vehicle	Tank	US	1945	Superior Armor 2			 R 	21/45	 Set II
+M26 Pershing	65	3	7	6	9	9	7	17	14	12	Vehicle	Tank	US	1945	Extended Range 12; Superior Armor 2			 R 	20/45	 Contested Skies
+M26 Pershing	60	3	7	6	9	9	7	17	14	12	Vehicle	Tank	US	1945	Extended Range 12; Superior Armor 2			 R 	30/60	 1939-1945
+M3 Half-Track	9	4	2	2	8	7	6	3	3	3	Vehicle	Half-Track	US	1942	Gun Transport; High Gear 2			 U 	23/45	 D-Day
+M3 Lee	37	3	5	4	9	9	7	9	7	5	Vehicle	Tank	US	1942	Strike and Fade 1, Additional Hull-Mounted Cannon, Tall Silhouette			 R 	20/48	 Base Set
+M3 Light Tank	15	5	4	3	8	8	6	9	7	5	Vehicle	Tank	US	1941	All Guns Blazing			 R 	31/60	 1939-1945
+M3 Stuart	15	5	4	3	8	8	6	9	7	5	Vehicle	Tank	UK	1941	All Guns Blazing			 U 	12/48	 Base Set
+M36 MGC	36	4	5	3	6	6	4	17	14	12	Vehicle	Tank Destroyer	US	1944	Extended Range 12; Flanking Attack			 R 	21/45	 Contested Skies
+M4 Sherman T-34 Calliope	29	3	5	4	10	10	9	13	11	9	Vehicle	Tank	US	1944	Top-Mounted Rockets			 R 	19/45	 Reserves
+M4A1 Sherman	21	4	5	4	9	9	7	13	11	9	Vehicle	Tank	US	1942				 U 	21/48	 Base Set
+M4A1 Sherman	21	4	5	4	9	9	7	13	11	9	Vehicle	Tank	US	1942				 U 	32/60	 1939-1945
+M4A3 (105) Sherman	24	4	5	4	11	11	9	10	8	7	Vehicle	Tank	US	1944	Bombardment			 R 	22/45	 Contested Skies
+M4A3 (105) Sherman	24	4	5	4	11	11	9	10	8	7	Vehicle	Tank	US	1944	Bombardment			 R 	33/60	 1939-1945
+M4A3E8 Sherman "Easy Eight"	54	4	7	6	7	7	6	14	12	10	Vehicle	Tank	US	1944	Transport, Excellent Suspension, Armor-Piercing Rounds, Superior Armor 2			 R 	22/48	 Base Set
+M5 Half-Track	14	4	2	2	8	7	6	3	3	3	Vehicle	Half-Track	US	1942	Transport, High Gear 2, Fighting Platform			 U 	22/45	 Set II
+M5 Half-Track	7	4	2	2	8	7	6	3	3	3	Vehicle	Half-Track	US	1942	Transport, High Gear 2, Fighting Platform			 U 	34/60	 1939-1945
+M7 105mm Priest	27	3	3	3	11	10	9	10	8	7	Vehicle	Tank	US	1942	Indirect Fire; Enhanced Range 16; Bombardment; Fixed Howitzer; Open Back			 R 	24/45	 D-Day
+M8 "Greyhound"	16	4	2	2	9	8	7	9	7	5	Vehicle	Armored Car	US	1943	High Gear 2; Strike and Fade 2; Experienced Recon			 U 	20/45	 Reserves
+Marder II	17	4	3	2	6	5	4	15	13	11	Vehicle	Tank Destroyer	GE	1942	No Turret; Open Back			 U 	33/45	 D-Day
+Marine Riflemen	4	1	4	4	8	7	2	2	0	0	Soldier		US	1942	Gung Ho; Close Assault 7			 C 	23/45	 Contested Skies
+Marines M2-2 Flamethrower	5	1	4	4	10	0	0	7	0	0	Soldier		US	1944	Flamethrower			 C 	23/48	 Base Set
+MAS 7.5mm Rifle	3	1	4	4	8	6	0	2	0	0	Soldier		FR	1939	Close Assault 6, Urban Combat			 C 	 1/48	 Base Set
+MAS 7.5mm Rifle	3	1	4	4	8	6	0	2	0	0	Soldier		FR	1939	Close Assault 6, Urban Combat			 C 	12/60	 1939-1945
+Mauser Kar 98K	3	1	4	4	8	6	0	2	0	0	Soldier		GE	1939	Close Assault 6			 C 	28/48	 Base Set
+Mauser Kar 98K	3	1	4	4	8	6	0	2	0	0	Soldier		GE	1939	Close Assault 6			 C 	41/60	 1939-1945
+Messerschmitt Bf109E	14	A	4	4	8	6	0	4	3	0	Aircraft		GE	1939	Aircraft; Antiair			 R 	33/45	 Contested Skies
+Messerschmitt ME 110	17	A	4	4	9	7	0	5	4	0	Aircraft		GE	1939	Aircraft			 R 	34/45	 D-Day
+Messerschmitt Me 262	19	A	5	5	10	7	0	5	4	0	Aircraft	Jet	GE	1943	Jet; Aircraft; Antiair			 R 	26/45	 Reserves
+MG 42 Machine Gun Team	10	1	4	4	10	8	7	3	3	2	Soldier		GE	1942	Double Shot, Suppressive Fire			 U 	29/48	 Base Set
+MG 42 Machine Gun Team	10	1	4	4	10	8	7	3	3	2	Soldier		GE	1942	Double Shot, Suppressive Fire			 U 	42/60	 1939-1945
+Minefield	2				0	0	0	0	0	0	Obstacle	Trap	Any	1939	Trap; Minefield			 C 	43/45	 D-Day
+Mitsubishi A6M Zero	12	A	3	3	8	6	0	4	3	0	Aircraft		JP	1939	Aircraft; Antiair			 R 	40/45	 Contested Skies
+Mitsubishi A6M Zero	12	A	3	3	8	6	0	4	3	0	Aircraft		JP	1939	Aircraft; Antiair			 R 	55/60	 1939-1945
+Mk. VII Tetrarch	12	4	2	2	6	6	4	9	8	6	Vehicle	Tank	UK	1944	Gliderborne			 U 	14/45	 D-Day
+Mortar M2	6	1	3	3	3	6	6	0	4	4	Soldier		US	1942	Inaccurate 1, Shrapnel 2			 C 	24/48	 Base Set
+Mosin-Nagant 1891/30	3	1	4	4	8	6	0	2	0	0	Soldier		SU	1939	Command Dependent, Close Assault 8			 C 	 5/48	 Base Set
+Mosin-Nagant 1891/30	3	1	4	4	8	6	0	2	0	0	Soldier		SU	1939	Command Dependent, Close Assault 8			 C 	21/60	 1939-1945
+Nashorn	45	4	3	2	5	5	0	18	16	14	Vehicle	Tank Destroyer	GE	1942	Superior Optics; No Turret; Extended Range 20; Tall Silhouette			 R 	27/45	 Set II
+Nebelwerfer	11	0	3	3	7	13	10	7	7	7	Soldier	Artillery	GE	1939	Relocate 2; Inaccurate 1; Bombardment; Blast; Rocket Salvo			 U 	27/45	 Reserves
+P-51D Mustang	17	A	4	4	9	7	0	3	2	0	Aircraft		US	1944	Aircraft; Antiair; Rockets 8			 R 	24/45	 Contested Skies
+P-51D Mustang	17	A	4	4	9	7	0	3	2	0	Aircraft		US	1944	Aircraft; Antiair; Rockets 8			 R 	35/60	 1939-1945
+PAK 38 ATG	10	0	3	3	3	3	3	11	9	7	Soldier	Artillery	GE	1940	Relocate 2, Seasoned Crew			 C 	30/48	 Base Set
+PAK 40 ATG	14	0	3	3	3	3	3	15	13	12	Soldier	Artillery	GE	1943	Relocate 2; Extended Range 10			 C 	28/45	 Set II
+Panhard ET Levassor P 178	10	4	2	2	9	8	7	6	5	4	Vehicle	Armored Car	FR	1939	High Gear 2; Stirke and Fade 2			 U 	 4/45	 Reserves
+Panhard ET Levassor P 178	10	4	2	2	9	8	7	6	5	4	Vehicle	Armored Car	FR	1939	High Gear 2; Stirke and Fade 2			 U 	13/60	 1939-1945
+Panther Ausf. D	35	4	6	4	7	7	6	15	13	11	Vehicle	Tank	GE	1943	Extended Range 12; Superior Armor 2			 R 	28/45	 Reserves
+Panzer II (F) "Flamingo"	17	4	3	2	8	5	4	11	2	2	Vehicle	Tank	GE	1940	Flamethrower			 R 	29/45	 Set II
+Panzer II Ausf. C	9	3	2	2	6	6	4	4	3	2	Vehicle	Tank	GE	1939	Excellent Suspension, Double Shot			 R 	31/48	 Base Set
+Panzer III Ausf. F	13	3	3	3	7	7	6	10	8	6	Vehicle	Tank	GE	1940	Smoke Screen			 U 	30/45	 Set II
+Panzer III Ausf. F	13	3	3	3	7	7	6	10	8	6	Vehicle	Tank	GE	1940	Smoke Screen			 R 	43/60	 1939-1945
+Panzer IV Ausf. F2	22	3	5	3	7	7	6	15	13	11	Vehicle	Tank	GE	1942	Extended Range 10			 U 	46/60	 1939-1945
+Panzer IV Ausf. G	30	3	5	3	7	7	6	15	13	11	Vehicle	Tank	GE	1942	Extended Range 10			 U 	32/48	 Base Set
+Panzerfaust 30	5	1	4	4	4	0	0	10	6	0	Soldier		GE	1943	Close Assault 11			 C 	33/48	 Base Set
+Panzerfaust 30	5	1	4	4	4	0	0	10	6	0	Soldier		GE	1943	Close Assault 11			 C 	44/60	 1939-1945
+Panzergrenadier	5	1	4	4	7	5	0	2	0	0	Soldier		GE	1939	Mechanized Tactics; Close Assault 8			 C 	31/45	 Set II
+Panzerjager Bren 731(E)	15	4	2	2	6	4	0	12	5	0	Vehicle		GE	1944	Dismounted Attack			 U 	29/45	 Reserves
+Panzerschreck	7	1	4	4	5	0	0	12	5	0	Soldier		GE	1943	Close Assault 11			 C 	34/45	 Contested Skies
+Piat Gunner	7	1	4	4	4	0	0	9	0	0	Soldier		UK	1943	Close Assault 10, Hard to Spot			 C 	17/45	 Set II
+Pillbox	2				0	0	0	0	0	0	Obstacle	Fortification	Any	1939	Fortification; Pillbox			 C 	44/45	 D-Day
+Polish Mauser Kar 98	3	1	4	4	8	6	0	2	0	0	Soldier		PO	1939	Close Assault 6			 C 	 6/45	 Reserves
+PPSh-41 SMG	3	1	4	4	10	5	0	2	0	0	Soldier		SU	1941	Limited Range 2			 C 	11/45	 Set II
+PTRD-41 Antitank Rifle	4	1	4	4	5	5	4	5	4	2	Soldier		SU	1941				 C 	12/45	 Set II
+PzKpfw 38(t)	10	4	3	2	7	7	6	8	7	5	Vehicle	Tank	GE	1939	Robust			 U 	30/45	 Reserves
+Quad 50	10	0	4	4	9	8	6	3	3	3	Soldier	Artillery	US	1943	Antiair; Double Shot; Relocate 2			 C 	25/45	 Contested Skies
+Quad 50	10	0	4	4	9	8	6	3	3	3	Soldier	Artillery	US	1943	Antiair; Double Shot; Relocate 2			 U 	36/60	 1939-1945
+R-2 LT-35	9	3	3	2	7	7	6	7	6	5	Vehicle	Tank	RO	1941				 R 	45/45	 Set II
+Rangers	7	1	5	5	9	7	0	2	0	0	Soldier	Spotter	US	1942	Lead the Way; Close Assault 7			 C 	21/45	 Reserves
+Red Army Forward Observer	8	2	3	3	6	2	0	2	0	0	Soldier	Spotter	SU	1939	Spotter; Chatting on the Radio			 C 	10/45	 Contested Skies
+Renault R-35	9	2	4	4	6	6	4	8	7	5	Vehicle	Tank	FR	1939	Trench Crossing			 R 	 2/48	 Base Set
+Renault R-35	9	2	4	4	6	6	4	8	7	5	Vehicle	Tank	FR	1939	Trench Crossing			 U 	14/60	 1939-1945
+Resourceful Hero	8	1	5	5	10	7	0	2	0	0	Soldier	Hero	US	1942	US Hero; Close Assault 8; Improvisation			 U 	25/45	 D-Day
+Royal Engineers	10	1	4	4	6	4	0	2	0	0	Soldier		UK	1939	Close Assault 16, Bridge Demolition			 C 	13/48	 Base Set
+Sandbagged Machine Gun Team	10	0	5	5	10	8	7	3	3	2	Soldier		GE	1939	Dug In; Double Shot; Suppressive Fire			 C 	35/45	 D-Day
+Screaming Eagle Captain	11	1	4	4	9	7	0	2	0	0	Soldier	Paratrooper Commander	US	1944	Paratrooper	3	Paratrooper Commander	 U 	23/45	 Set II
+Screaming Eagle Paratroopers	9	1	5	5	9	7	0	2	0	0	Soldier	Paratrooper	US	1944	Paratrooper, Close Assault 9, Hard Charger			 U 	24/45	 Set II
+Sd Kfz 222	8	5	2	2	7	6	4	4	3	2	Vehicle	Armored Car	GE	1939	High Gear 2, Strike and Fade 2			 U 	34/48	 Base Set
+Sd Kfz 251	14	4	2	2	8	7	6	2	2	2	Vehicle	Half-Track	GE	1939	Transport, High Gear 2, Fighting Platform			 U 	35/48	 Base Set
+Sd Kfz 251	6	4	2	2	8	7	6	2	2	2	Vehicle	Half-Track	GE	1939	Transport, High Gear 2, Fighting Platform			 U 	45/60	 1939-1945
+SdKfz 234/2 "Puma"	23	5	3	2	7	7	6	12	10	8	Vehicle	Armored Car	GE	1943	High Gear 2; Strike and Fade 1			 U 	35/45	 Contested Skies
+SdKfz 250	8	4	2	2	6	5	4	2	2	2	Vehicle	Half-Track	GE	1941	Gun Transport; High Gear 2			 U 	36/45	 D-Day
+SdKfz 303 "Goliath"	7	1	3	3	5	0	0	2	0	0	Soldier	Artillery	GE	1942	Remote Control			 U 	31/45	 Reserves
+sGrW 34 81mm Mortar	11	0	3	3	3	8	8	0	6	5	Soldier	Artillery	GE	1939	Indirect Fire; Enhanced Range 16; Inaccurate 1; Shrapnel 2; Relocate 2			 C 	37/45	 D-Day
+Sherman DD	24	4	4	4	9	9	7	13	11	9	Vehicle	Tank	CA	1944	Amphibious; Collapsible Screen			 R 	 3/45	 D-Day
+Sherman VC 17-Pounder	27	4	5	4	7	7	6	15	13	11	Vehicle	Tank	CA	1944	Armor-Piercing rounds			 R 	10/60	 1939-1945
+Sherman VC Firefly	29	4	5	4	7	7	6	15	13	11	Vehicle	Tank	UK	1944				 R 	15/45	 D-Day
+sIG 33	15	3	2	2	9	9	7	8	6	4	Vehicle	Assault Gun	GE	1940	Fixed Howitzer, Blast, Bombardment			 R 	36/48	 Base Set
+SMLE No. 4 Rifle	3	1	4	4	8	6	0	2	0	0	Soldier		UK	1941	Close Assault 6			 C 	14/48	 Base Set
+SMLE No. 4 Rifle	3	1	4	4	8	6	0	2	0	0	Soldier		UK	1941	Close Assault 6			 C 	 4/60	 1939-1945
+SNLF Captain	6	1	4	4	7	4	0	2	0	0	Soldier	Commander	JP	1939		2	Pinpointer	 U 	38/45	 Set II
+SNLF Captain	6	1	4	4	7	4	0	2	0	0	Soldier	Commander	JP	1939		2	Pinpointer	 U 	56/60	 1939-1945
+SNLF Fanatics	7	1	5	5	9	6	0	2	0	0	Soldier		JP	1939	Hard Charger; Hand to Hand 12; Close Assault 6			 C 	41/45	 Contested Skies
+SNLF Paratrooper	5	1	4	4	8	5	0	2	0	0	Soldier	Paratrooper	JP	1939	Paratrooper; Close Assault 6			 C 	39/45	 Set II
+Somua S-35	14	4	4	4	6	6	4	10	8	7	Vehicle	Tank	FR	1939	Undermanned			 R 	 5/45	 D-Day
+Somua S-35	14	4	4	4	6	6	4	10	8	7	Vehicle	Tank	FR	1939	Undermanned			 R 	15/60	 1939-1945
+Soviet Grenadiers	4	1	4	4	8	6	0	2	0	0	Soldier		SU	1939	Limited Range 2; Hand to Hand 9; Close Assault 7			 C 	11/45	 Contested Skies
+Soviet M3 Lee	30	3	5	4	9	9	7	9	7	5	Vehicle	Tank	SU	1942	Transport; Additional Hull-Mounted Cannon; Tall Silhouette			 R 	11/45	 Reserves
+SS Haupsturmführer	7	1	4	4	6	0	0	2	0	0	Soldier	Commander	GE	1939	Fanatic	3	Exert Will	 U 	37/48	 Base Set
+SS Haupsturmführer	7	1	4	4	6	0	0	2	0	0	Soldier	Commander	GE	1942	Fanatic	3	Exert Will	 U 	47/60	 1939-1945
+SS Panther Ausf. G	49	4	6	4	7	7	6	16	14	11	Vehicle	Tank	GE	1942	SS Determination, Extended Range 12, Superior Armor 2			 R 	38/48	 Base Set
+SS Panzer IV Ausf. F2	32	3	5	3	7	7	6	15	13	11	Vehicle	Tank	GE	1942	SS Determination; Extended Range 10; Battlefield Awareness			 R 	32/45	 Set II
+SS Panzergrenadier	7	1	4	4	10	8	0	2	0	0	Soldier		GE	1940	Ruthless, Close Assault 7			 C 	39/48	 Base Set
+SS Stormtroopers	7	1	5	5	11	6	0	2	0	0	Soldier		GE	1939	Limited Range 2; Close Assault 8; Ruthless			 C 	36/45	 Contested Skies
+Stalwart Hero	7	1	5	5	8	7	0	2	0	0	Soldier	Hero	IT	1939	Italian Hero; Close Assault 7; Covering Fire			 U 	38/45	 Reserves
+Stalwart Lieutenant	6	1	4	4	5	0	0	0	0	0	Soldier	Commander	IT	1939		1	Stalwart	 U 	39/45	 Contested Skies
+Stalwart Lieutenant	6	1	4	4	5	0	0	0	0	0	Soldier	Commander	IT	1939		1	Stalwart	 U 	53/60	 1939-1945
+StuG III Ausf. D	15	3	4	3	8	8	7	10	9	8	Vehicle	Assault Gun	GE	1941	Fixed Howitzer; Seasoned Crew			 U 	37/45	 Contested Skies
+StuG III Ausf. D	15	3	4	3	8	8	7	10	9	8	Vehicle	Assault Gun	GE	1941	Fixed Howitzer; Seasoned Crew			 U 	48/60	 1939-1945
+Sturmpanzer IV "Brummbär"	22	3	7	4	9	9	7	8	6	4	Vehicle	Assault Gun	GE	1943	Fixed Howitzer; Blast; Bombardment			 R 	33/45	 Set II
+Sturmpanzer IV "Brummbär"	22	3	7	4	9	9	7	8	6	4	Vehicle	Assault Gun	GE	1943	Fixed Howitzer; Blast; Bombardment			 R 	49/60	 1939-1945
+SU-152	51	3	6	6	11	11	9	15	13	10	Vehicle	Assault Gun	SU	1943	Fixed Howitzer; Bombardment; Limited Ammo; Hulking Mass			 R 	12/45	 Reserves
+SU-76M	18	4	4	4	7	7	6	13	11	10	Vehicle	Tank Destroyer	SU	1943	No Turret; Open Back			 U 	 7/45	 D-Day
+SU-85	26	4	5	5	4	0	0	14	12	10	Vehicle	Tank Destroyer	SU	1943	No Turret; Superior Armor 2			 R 	12/45	 Contested Skies
+SU-85	22	4	5	5	4	0	0	14	12	10	Vehicle	Tank Destroyer	SU	1943	No Turret; Superior Armor 2			 R 	22/60	 1939-1945
+Supermarine Spitfire Mk. I	15	A	4	4	8	6	0	4	3	0	Aircraft		UK	1939	Aircraft; Antiair; Agility			 R 	16/45	 D-Day
+Supermarine Spitfire Mk. I	15	A	4	4	8	6	0	4	3	0	Aircraft		UK	1939	Aircraft; Antiair; Agility			 R 	 5/60	 1939-1945
+T-26 Series 1933	11	3	2	2	7	7	6	9	8	6	Vehicle	Tank	CH	1939	Unreliable			 R 	 4/45	 Set II
+T-26B	11	3	2	2	7	7	6	9	8	6	Vehicle	Tank	SU	1939				 R 	23/60	 1939-1945
+T-34/76	28	4	5	5	7	7	6	13	11	10	Vehicle	Tank	SU	1941	Transport, Superior Armor 2			 R 	 6/48	 Base Set
+T-34/76	28	4	5	5	7	7	6	13	11	10	Vehicle	Tank	SU	1941	Transport, Superior Armor 2			 U 	24/60	 1939-1945
+T-35	18	2	4	2	10	10	8	10	9	7	Vehicle	Tank	SU	1939	Poor Suspension; Overlapping Fire; Multiturreted			 R 	13/45	 Reserves
+T-70 Model 1942	12	5	4	3	5	5	4	9	7	6	Vehicle	Tank	SU	1942	Undermanned			 U 	13/45	 Set II
+T-70 Model 1942	12	5	4	3	5	5	4	9	7	6	Vehicle	Tank	SU	1942	Undermanned			 U 	25/60	 1939-1945
+Tank Obstacle	1				0	0	0	0	0	0	Obstacle	Fortification	Any	1939	Fortification; Tank Obstacle			 C 	45/45	 D-Day
+Tenacious Officer	6	1	4	4	5	0	0	2	0	0	Soldier	Commander	HU	1941		1	Tenacity	 U 	36/45	 Reserves
+Thompson Gunner	4	1	4	4	10	8	0	2	0	0	Soldier		US	1942	Limited Range 2; Gung Ho; Close Assault 7			 C 	22/45	 Reserves
+Tiger I	63	3	7	6	7	7	6	17	15	12	Vehicle	Tank	GE	1942	Overrun, Extended Range 10, Superior Armor 2			 R 	40/48	 Base Set
+Tiger I	56	3	7	6	7	7	6	17	15	12	Vehicle	Tank	GE	1942	Overrun, Extended Range 10, Superior Armor 2			 R 	50/60	 1939-1945
+Turan I	11	4	4	2	7	6	5	8	7	6	Vehicle	Tank	HU	1943				 U 	37/45	 Reserves
+Type 1 Ho-Ni	12	3	3	2	0	0	0	13	11	9	Vehicle	Tank Destroyer	JP	1942	No Turret			 R 	40/45	 Set II
+Type 2 Ka-Mi Amphibious Tank	9	3	2	2	7	7	6	7	6	5	Vehicle	Tank	JP	1942	Amphibious			 U 	41/45	 Set II
+Type 3 Chi-Nu	18	4	5	3	6	6	5	13	11	9	Vehicle	Tank	JP	1944	Ferocity; Forest Camouflage			 R 	41/45	 Reserves
+Type 87 Armored Car	8	3	2	2	7	6	6	2	0	0	Vehicle	Armored Car	JP	1939	High Gear 2; Thin Wheels; Strike and Fade 1			 U 	42/45	 Contested Skies
+Type 89 Mortar	9	1	3	3	3	7	7	0	4	4	Soldier		JP	1939	Inaccurate 1, Shrapnel 2, Seasoned Crew			 C 	46/48	 Base Set
+Type 89 Mortar	9	1	3	3	3	7	7	0	4	4	Soldier		JP	1939	Inaccurate 1, Shrapnel 2, Seasoned Crew			 C 	57/60	 1939-1945
+Type 89A Chi-Ro	7	3	2	2	7	7	6	5	4	3	Vehicle	Tank	JP	1939	Trench Crossing; Weak Suspension			 R 	43/45	 Contested Skies
+Type 92 Machine Gun Team	7	1	4	4	8	7	6	3	3	2	Soldier		JP	1939	Double Shot			 U 	47/48	 Base Set
+Type 92 Machine Gun Team	7	1	4	4	8	7	6	3	3	2	Soldier		JP	1939	Double Shot			 U 	58/60	 1939-1945
+Type 95 Ha-Go	9	4	2	2	7	7	6	8	7	5	Vehicle	Tank	JP	1939	Forest Runner, Poor Suspension, Forest Camouflage			 R 	48/48	 Base Set
+Type 95 Ha-Go	9	4	2	2	7	7	6	8	7	5	Vehicle	Tank	JP	1939	Forest Runner, Poor Suspension, Forest Camouflage			 U 	59/60	 1939-1945
+Type 97 Anti-tank Rifle	4	0	4	4	5	5	4	6	5	3	Soldier		JP	1939	Heavy Rifle			 C 	42/45	 Reserves
+Type 97 Chi-Ha	12	3	3	3	6	6	5	10	8	7	Vehicle	Tank	JP	1942	Surprise Fire			 R 	42/45	 Set II
+Type 97 Chi-Ha	12	3	3	3	6	6	5	10	8	7	Vehicle	Tank	JP	1942	Surprise Fire			 R 	60/60	 1939-1945
+Type 97 Te-Ke Tankette	7	4	2	2	5	0	0	6	4	3	Vehicle	Tank	JP	1939				 U 	43/45	 Set II
+Universal Carrier	10	4	2	2	7	6	5	5	4	3	Vehicle		UK	1940	Gun Transport; High Gear 1			 U 	17/45	 Contested Skies
+Valentine I	17	3	5	5	5	5	4	9	8	6	Vehicle	Tank	UK	1940	Robust			 R 	 6/60	 1939-1945
+Valentine II	16	3	5	5	5	5	4	9	8	6	Vehicle	Tank	UK	1940				 R 	18/45	 Set II
+Veteran M4 Sherman "Rhino"	26	4	5	4	9	9	7	13	11	9	Vehicle	Tank	US	1944	Brushcutters, Veteran Crew			 R 	25/45	 Set II
+Veteran SMLE Riflemen	5	1	4	4	9	7	0	2	0	0	Soldier		AU	1940	Close Assault 7; Steely Resolve 2			 C 	 1/45	 Contested Skies
+Veteran Tiger	65	3	7	6	7	7	6	17	15	12	Vehicle	Tank	GE	1942	Extended Range 10; Superior Armor 2; Crack Shot			 R 	38/45	 D-Day
+Vickers MG Team	8	1	4	4	9	8	6	3	3	2	Soldier		UK	1940	Double Shot			 U 	15/48	 Base Set
+Vickers MG Team	8	1	4	4	9	8	6	3	3	2	Soldier		UK	1940	Double Shot			 U 	 7/60	 1939-1945
+Vigilant Lieutenant	8	1	4	4	7	5	0	2	0	0	Soldier	Commander	RO	1941	Limited Range 2	2	Defensive Preparation	 U 	45/45	 Contested Skies
+Volkssturm Infantrymen	2	1	3	3	7	5	0	1	0	0	Soldier		GE	1944	Close Assault 5			 C 	32/45	 Reserves
+Wehrmacht Expert Sniper	11	1	3	3	6	6	6	1	1	1	Soldier	Sniper	GE	1939	Crack Shot; Superior Camouflage; Headshot			 C 	34/45	 Set II
+Wehrmacht Oberleutnant	13	1	4	4	6	0	0	10	6	0	Soldier	Commander	GE	1942	Close Assault 11	2	Angriff	 U 	35/45	 Set II
+Wehrmacht Veteran Infantrymen	5	1	4	4	9	7	0	2	0	0	Soldier		GE	1940	Close Assault 7; Steely Resolve 2; Suppressive Fire			 C 	39/45	 D-Day
+Werwolf Partisans	4	1	4	4	9	5	0	2	0	0	Soldier		GE	1945	Partisan; Limited Range 2			 C 	33/45	 Reserves
+ZIS-2 57mm Model 1943	8	0	3	3	3	3	3	11	9	8	Soldier	Artillery	SU	1943	Relocate 2			 C 	14/45	 Set II
+ZIS-2 57mm Model 1943	8	0	3	3	3	3	3	11	9	8	Soldier	Artillery	SU	1943	Relocate 2			 U 	26/60	 1939-1945

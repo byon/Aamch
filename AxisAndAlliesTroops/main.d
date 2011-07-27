@@ -24,7 +24,7 @@ struct Troop
     string rarity;
     string id;
     string set;
-    
+
     string toString( )
     {
         return name ~ " " ~
@@ -52,7 +52,7 @@ struct Attack
     uint shortDistance;
     uint mediumDistance;
     uint longDistance;
-    
+
     string toString( )
     {
         return to!string(shortDistance) ~ " " ~ to!string(mediumDistance) ~ " " ~
@@ -69,7 +69,7 @@ T To(T)(string source)
             return T.init;
         }
     }
-    
+
     return to!T(source);
 }
 
@@ -89,20 +89,34 @@ void HandleLine(string line, ref Troop[] troops)
     HandleTokens(split(line, "\t"), troops);
 }
 
-int main(string[] arguments)
+class StartupException : Exception
 {
-    Troop[] troops;
-    foreach (string line; lines(File(arguments[1])))
+    this(string what)
     {
-        /// @todo What if two chars for end of line?
-        HandleLine(line[0..$-1], troops);
+        super(what);
     }
-    
-    foreach (Troop troop; troops)
+}
+
+class InsufficientArguments : StartupException
+{
+    this( )
     {
-        writeln(troop);
+        super("Insufficient amount of arguments");
+    }
+}
+
+string InputFileName(string[] arguments)
+{
+    if (arguments.length < 2)
+    {
+        throw new InsufficientArguments;
     }
 
+    return arguments[1];
+}
+
+void ExperimentWithMemberList(Troop[] troops)
+{
     auto types = __traits(allMembers, Troop);
     foreach (t; types)
     {
@@ -112,9 +126,43 @@ int main(string[] arguments)
         }
         writeln(typeid(t), " ", t);
     }
-    
-    char[] dummy;
-    readln(dummy);
-    
-    return 0;
+}
+
+void DoMain(string[] arguments)
+{
+    Troop[] troops;
+    auto file = File(InputFileName(arguments));
+    foreach (string line; lines(file))
+    {
+        /// @todo What if two chars for end of line?
+        HandleLine(line[0..$-1], troops);
+    }
+
+    foreach (Troop troop; troops)
+    {
+        writeln(troop);
+    }
+}
+
+void Usage( )
+{
+    writeln("Usage:");
+    writeln("AamTroops [path]");
+    writeln("  where [path] is a path to troop information file");
+}
+
+int main(string[] arguments)
+{
+    try
+    {
+        DoMain(arguments);
+        return 0;
+    }
+    catch (StartupException e)
+    {
+        writeln(e.msg);
+        Usage( );
+    }
+
+    return 1;
 }

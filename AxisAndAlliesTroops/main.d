@@ -160,7 +160,7 @@ int main(string[] arguments)
     }
     catch (StartupException e)
     {
-        writeln(e.msg);
+        stderr.writeln(e.msg);
         Usage( );
     }
 

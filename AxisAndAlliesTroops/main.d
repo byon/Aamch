@@ -140,15 +140,15 @@ void DoMain(string[] arguments)
 
     foreach (Troop troop; troops)
     {
-        writeln(troop);
+        stdout.writeln(troop);
     }
 }
 
 void Usage( )
 {
-    writeln("Usage:");
-    writeln("AamTroops [path]");
-    writeln("  where [path] is a path to troop information file");
+    stderr.writeln("Usage:");
+    stderr.writeln("AamTroops [path]");
+    stderr.writeln("  where [path] is a path to troop information file");
 }
 
 int main(string[] arguments)

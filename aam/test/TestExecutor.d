@@ -38,10 +38,24 @@ void TestExecutionFailure(string[] arguments, string expectedReason)
     Compare(ErrorOutput(expectedReason), error.lines_);
 }
 
+void TestExecutionSuccess(string[] arguments)
+{
+    auto output = new Output;
+    Compare(0, ExecuteAndCatchExceptions!Output(arguments, output));
+    Compare([], output.lines_);
+}
+
+struct Foo
+{
+    this(string bar) {}
+}
+
 unittest
 {
     TestExecutionFailure([], "Insufficient amount of arguments");
     TestExecutionFailure(["exe path"], "Insufficient amount of arguments");
-    //assert(1 == ExecuteAndCatchExceptions(["exe path"]));
-    //assert(0 == ExecuteAndCatchExceptions(["exe path", "1"]));
+
+    auto file = File("deleteme", "w");
+    scope(exit) std.file.remove("deleteme");
+    TestExecutionSuccess(["exe", "deleteme"]);
 }

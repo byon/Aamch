@@ -164,10 +164,3 @@ int ExecuteAndCatchExceptions(string[] arguments)
 
     return 1;
 }
-
-unittest
-{
-    assert(1 == ExecuteAndCatchExceptions([]));
-    //assert(1 == ExecuteAndCatchExceptions(["exe path"]));
-    //assert(0 == ExecuteAndCatchExceptions(["exe path", "1"]));
-}

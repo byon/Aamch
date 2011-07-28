@@ -57,4 +57,13 @@ unittest
     TestExecutionFailure([]);
     TestExecutionFailure(["exe path"]);
     TestExecutionSuccess(["exe", "deleteme"]);
+    try
+    {
+        Execute(["", "NoSuchFile"]);
+        assert(false);
+    }
+    catch (StartupException e)
+    {
+        Compare("Could not open file 'NoSuchFile'", e.msg);
+    }
 }

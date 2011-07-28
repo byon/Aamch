@@ -2,6 +2,7 @@ import std.array;
 import std.conv;
 import std.stdio;
 import std.traits;
+import std.exception;
 
 struct Troop
 {
@@ -103,6 +104,14 @@ class InsufficientArguments : StartupException
     }
 }
 
+class CannotOpenFile : StartupException
+{
+    this(string path)
+    {
+        super("Could not open file '" ~ path ~ "'");
+    }
+}
+
 string InputFileName(string[] arguments)
 {
     if (arguments.length < 2)
@@ -111,6 +120,19 @@ string InputFileName(string[] arguments)
     }
 
     return arguments[1];
+}
+
+File OpenFile(string path)
+{
+    try
+    {
+        return File(path);
+    }
+    catch (ErrnoException e)
+    {
+    }
+
+    throw new CannotOpenFile(path);
 }
 
 void ExperimentWithMemberList(Troop[] troops)
@@ -129,7 +151,7 @@ void ExperimentWithMemberList(Troop[] troops)
 void Execute(string[] arguments)
 {
     Troop[] troops;
-    auto file = File(InputFileName(arguments));
+    auto file = OpenFile(InputFileName(arguments));
     foreach (string line; lines(file))
     {
         /// @todo What if two chars for end of line?

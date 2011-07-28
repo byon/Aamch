@@ -142,11 +142,11 @@ void Execute(string[] arguments)
     }
 }
 
-void Usage( )
+void Usage(T)(T error)
 {
-    stderr.writeln("Usage:");
-    stderr.writeln("AamTroops [path]");
-    stderr.writeln("  where [path] is a path to troop information file");
+    error.writeln("Usage:");
+    error.writeln("AamTroops [path]");
+    error.writeln("  where [path] is a path to troop information file");
 }
 
 int ExecuteAndCatchExceptions(T)(string[] arguments, T error)
@@ -159,7 +159,7 @@ int ExecuteAndCatchExceptions(T)(string[] arguments, T error)
     catch (StartupException e)
     {
         error.writeln(e.msg);
-        Usage( );
+        Usage(error);
     }
 
     return 1;

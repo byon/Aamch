@@ -23,17 +23,25 @@ void Compare(T1, T2)(T1 left, T2 right)
     assert(COMPARISON);
 }
 
-void TestExecutionFailure(string[] arguments, string[] expectedOutput)
+string[] ErrorOutput(string reason)
+{
+    string[] usage = ["Usage:",
+                      "AamTroops [path]",
+                      "  where [path] is a path to troop information file"];
+    return [reason] ~ usage;
+}
+
+void TestExecutionFailure(string[] arguments, string expectedReason)
 {
     auto error = new Output;
     Compare(1, ExecuteAndCatchExceptions!Output(arguments, error));
-    Compare(expectedOutput, error.lines_);
+    Compare(ErrorOutput(expectedReason), error.lines_);
 }
 
 unittest
 {
-    TestExecutionFailure([], ["Insufficient amount of arguments"]);
-    TestExecutionFailure(["exe path"], ["Insufficient amount of arguments"]);
+    TestExecutionFailure([], "Insufficient amount of arguments");
+    TestExecutionFailure(["exe path"], "Insufficient amount of arguments");
     //assert(1 == ExecuteAndCatchExceptions(["exe path"]));
     //assert(0 == ExecuteAndCatchExceptions(["exe path", "1"]));
 }

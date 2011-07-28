@@ -149,7 +149,7 @@ void Usage( )
     stderr.writeln("  where [path] is a path to troop information file");
 }
 
-int ExecuteAndCatchExceptions(string[] arguments)
+int ExecuteAndCatchExceptions(T)(string[] arguments, T error)
 {
     try
     {
@@ -158,7 +158,7 @@ int ExecuteAndCatchExceptions(string[] arguments)
     }
     catch (StartupException e)
     {
-        stderr.writeln(e.msg);
+        error.writeln(e.msg);
         Usage( );
     }
 

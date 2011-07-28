@@ -1,15 +1,13 @@
 
 def options(opt):
-    opt.load('compiler_d waf_unit_test')
+    opt.load('compiler_d')
 
 def configure(cnf):
-    cnf.load('compiler_d waf_unit_test')
+    cnf.load('compiler_d')
 
 def build(bld):
-    defineBuildForD(bld, 'AxisAndAlliesTroops/main.d', 'AamTroops')
-    from waflib.Tools import waf_unit_test
-    bld.add_post_fun(waf_unit_test.summary)
+    defineBuildForD(bld, 'AxisAndAlliesTroops/main.d AxisAndAlliesTroops/Executor.d', 'AamTroops')
 
-def defineBuildForD(target, sourceNames, targetName):
-    target(features='d dprogram', source=sourceNames, target=targetName,
-           dflags='-I..')
+def defineBuildForD(build, sourceNames, targetName):
+    build(features='d dprogram', source=sourceNames, target=targetName,
+          dflags='-unittest -I..')

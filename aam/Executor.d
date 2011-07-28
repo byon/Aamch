@@ -149,7 +149,7 @@ void Usage(T)(T error)
     error.writeln("  where [path] is a path to troop information file");
 }
 
-int ExecuteAndCatchExceptions(T)(string[] arguments, T error)
+int ExecuteAndCatchExceptions(Error)(string[] arguments, Error error)
 {
     try
     {

@@ -34,14 +34,14 @@ string[] ErrorOutput(string reason)
 void TestExecutionFailure(string[] arguments, string expectedReason)
 {
     auto error = new Output;
-    Compare(1, ExecuteAndCatchExceptions!Output(arguments, error));
+    Compare(1, ExecuteAndCatchExceptions!(Output)(arguments, error));
     Compare(ErrorOutput(expectedReason), error.lines_);
 }
 
 void TestExecutionSuccess(string[] arguments)
 {
     auto output = new Output;
-    Compare(0, ExecuteAndCatchExceptions!Output(arguments, output));
+    Compare(0, ExecuteAndCatchExceptions!(Output)(arguments, output));
     Compare([], output.lines_);
 }
 

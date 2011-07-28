@@ -31,26 +31,30 @@ string[] ErrorOutput(string reason)
     return [reason] ~ usage;
 }
 
-void TestExecutionFailure(string[] arguments, string expectedReason)
+void TestExecutionFailure(string[] arguments)
 {
+    void Throw(string[] arguments)
+    {
+        throw new StartupException("Just for testing");
+    }
     auto error = new Output;
-    Compare(1, ExecuteAndCatchExceptions(arguments, error, &Execute));
-    Compare(ErrorOutput(expectedReason), error.lines_);
+    Compare(1, ExecuteAndCatchExceptions(arguments, error, &Throw));
+    Compare(ErrorOutput("Just for testing"), error.lines_);
 }
 
 void TestExecutionSuccess(string[] arguments)
 {
+    void NoOp(string[] arguments)
+    {
+    }
     auto output = new Output;
-    Compare(0, ExecuteAndCatchExceptions(arguments, output, &Execute));
+    Compare(0, ExecuteAndCatchExceptions(arguments, output, &NoOp));
     Compare([], output.lines_);
 }
 
 unittest
 {
-    TestExecutionFailure([], "Insufficient amount of arguments");
-    TestExecutionFailure(["exe path"], "Insufficient amount of arguments");
-
-    auto file = File("deleteme", "w");
-    scope(exit) std.file.remove("deleteme");
+    TestExecutionFailure([]);
+    TestExecutionFailure(["exe path"]);
     TestExecutionSuccess(["exe", "deleteme"]);
 }

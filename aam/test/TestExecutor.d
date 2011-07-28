@@ -34,20 +34,15 @@ string[] ErrorOutput(string reason)
 void TestExecutionFailure(string[] arguments, string expectedReason)
 {
     auto error = new Output;
-    Compare(1, ExecuteAndCatchExceptions!(Output)(arguments, error));
+    Compare(1, ExecuteAndCatchExceptions(arguments, error, &Execute));
     Compare(ErrorOutput(expectedReason), error.lines_);
 }
 
 void TestExecutionSuccess(string[] arguments)
 {
     auto output = new Output;
-    Compare(0, ExecuteAndCatchExceptions!(Output)(arguments, output));
+    Compare(0, ExecuteAndCatchExceptions(arguments, output, &Execute));
     Compare([], output.lines_);
-}
-
-struct Foo
-{
-    this(string bar) {}
 }
 
 unittest

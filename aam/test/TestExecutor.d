@@ -23,11 +23,16 @@ void Compare(T1, T2)(T1 left, T2 right)
     assert(COMPARISON);
 }
 
-unittest
+void TestExecutionFailure(string[] arguments, string[] expectedOutput)
 {
     auto error = new Output;
-    assert(1 == ExecuteAndCatchExceptions!Output([], error));
-    Compare(["Insufficient amount of arguments"], error.lines_);
+    Compare(1, ExecuteAndCatchExceptions!Output(arguments, error));
+    Compare(expectedOutput, error.lines_);
+}
+
+unittest
+{
+    TestExecutionFailure([], ["Insufficient amount of arguments"]);
     //assert(1 == ExecuteAndCatchExceptions(["exe path"]));
     //assert(0 == ExecuteAndCatchExceptions(["exe path", "1"]));
 }

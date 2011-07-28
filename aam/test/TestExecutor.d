@@ -33,6 +33,7 @@ void TestExecutionFailure(string[] arguments, string[] expectedOutput)
 unittest
 {
     TestExecutionFailure([], ["Insufficient amount of arguments"]);
+    TestExecutionFailure(["exe path"], ["Insufficient amount of arguments"]);
     //assert(1 == ExecuteAndCatchExceptions(["exe path"]));
     //assert(0 == ExecuteAndCatchExceptions(["exe path", "1"]));
 }

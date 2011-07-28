@@ -149,11 +149,6 @@ void Usage( )
     stderr.writeln("  where [path] is a path to troop information file");
 }
 
-unittest
-{
-    assert(true);
-}
-
 int ExecuteAndCatchExceptions(string[] arguments)
 {
     try
@@ -168,4 +163,11 @@ int ExecuteAndCatchExceptions(string[] arguments)
     }
 
     return 1;
+}
+
+unittest
+{
+    assert(1 == ExecuteAndCatchExceptions([]));
+    //assert(1 == ExecuteAndCatchExceptions(["exe path"]));
+    //assert(0 == ExecuteAndCatchExceptions(["exe path", "1"]));
 }

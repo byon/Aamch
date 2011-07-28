@@ -1,4 +1,4 @@
-import AxisAndAlliesTroops.Executor;
+import aam.Executor;
 
 int main(string[] arguments)
 {

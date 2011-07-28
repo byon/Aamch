@@ -6,8 +6,11 @@ def configure(cnf):
     cnf.load('compiler_d')
 
 def build(bld):
-    defineBuildForD(bld, 'AxisAndAlliesTroops/main.d AxisAndAlliesTroops/Executor.d', 'AamTroops')
-
-def defineBuildForD(build, sourceNames, targetName):
-    build(features='d dprogram', source=sourceNames, target=targetName,
-          dflags='-unittest -I..')
+    bld(features='d dstlib', source='aam/Executor.d', target='aam.test',
+        dflags='-unittest -I..')
+    bld(features='d dstlib', source='aam/Executor.d', target='aam',
+        dflags='-I..')
+    bld(features='d dprogram', source='aam/Test.d',
+        target='AxisAndAlliesTroops.test', dflags='-I..', use='aam.test')
+    bld(features='d dprogram', source='aam/main.d',
+        target='AxisAndAlliesTroops', dflags='-I..', use='aam')

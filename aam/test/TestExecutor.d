@@ -70,8 +70,8 @@ string CreateTroopString( )
 unittest
 {
     TestExecutionFailure([]);
-    TestExecutionFailure(["exe path"]);
-    TestExecutionSuccess(["exe", "deleteme"]);
+    TestExecutionFailure(["executable path"]);
+    TestExecutionSuccess(["executable path", "supposedly a path"]);
 
     Compare([], TroopsFromFile(new string[0]));
     //Compare([Troop("name", 1)], TroopsFromFile([CreateTroopString( )]));

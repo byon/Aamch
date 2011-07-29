@@ -50,11 +50,19 @@ void TestExecutionSuccess(string[] arguments)
     Compare([], output.lines_);
 }
 
+string CreateTroopString( )
+{
+    return "name\t" ~ "1";
+}
+
 unittest
 {
     TestExecutionFailure([]);
     TestExecutionFailure(["exe path"]);
     TestExecutionSuccess(["exe", "deleteme"]);
+
+    Compare([], TroopsFromFile(new string[0]));
+    //Compare([Troop("name", 1)], TroopsFromFile([CreateTroopString( )]));
 
     assertThrown!StartupException(Execute(["", "NosuchFile"]));
 }

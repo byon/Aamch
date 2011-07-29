@@ -149,6 +149,19 @@ void ExperimentWithMemberList(Troop[] troops)
     }
 }
 
+auto TroopsFromFile(Input)(Input input)
+{
+    Troop[] result;
+    if (input.length == 0)
+    {
+        return result;
+    }
+
+    HandleLine(input[0], result);
+
+    return result;
+}
+
 void Execute(string[] arguments)
 {
     Troop[] troops;

@@ -173,12 +173,10 @@ void ExperimentWithMemberList(Troop[] troops)
 auto TroopsFromFile(Input)(Input input)
 {
     Troop[] result;
-    if (input.length == 0)
+    foreach (string line; input)
     {
-        return result;
+        HandleLine(line, result);
     }
-
-    HandleLine(input[0], result);
 
     return result;
 }

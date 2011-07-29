@@ -104,6 +104,8 @@ unittest
 
     Compare([], TroopsFromFile(new string[0]));
     Compare([Troop("name", 1)], TroopsFromFile([CreateTroopString( )]));
+    Compare([Troop("name", 1), Troop("name", 1)],
+            TroopsFromFile([CreateTroopString( ), CreateTroopString( )]));
 
     assertThrown!StartupException(Execute(["", "NosuchFile"]));
 }

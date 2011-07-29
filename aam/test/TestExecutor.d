@@ -45,11 +45,8 @@ void TestExecutionFailure(string[] arguments)
 
 void TestExecutionSuccess(string[] arguments)
 {
-    void NoOp(string[] arguments)
-    {
-    }
     auto output = new Output;
-    Compare(0, ExecuteAndCatchExceptions(arguments, output, &NoOp));
+    Compare(0, ExecuteAndCatchExceptions(arguments, output, (string[]){}));
     Compare([], output.lines_);
 }
 

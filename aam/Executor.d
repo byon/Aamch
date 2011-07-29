@@ -54,7 +54,8 @@ struct Attack
 
     string toString( )
     {
-        return to!string(shortDistance) ~ " " ~ to!string(mediumDistance) ~ " " ~
+        return to!string(shortDistance) ~ " " ~
+               to!string(mediumDistance) ~ " " ~
                to!string(longDistance);
     }
 }

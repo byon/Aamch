@@ -73,11 +73,6 @@ unittest
     TestExecutionFailure(["exe path"]);
     TestExecutionSuccess(["exe", "deleteme"]);
 
-    CheckUnequal(Attack(1, 0, 0), Attack(1, 1, 1));
-    CheckUnequal(Attack(1, 1, 0), Attack(1, 1, 1));
-    CheckUnequal(Attack(0, 1, 1), Attack(1, 1, 1));
-    Compare(Attack(1, 1, 1), Attack(1, 1, 1));
-
     Compare([], TroopsFromFile(new string[0]));
     //Compare([Troop("name", 1)], TroopsFromFile([CreateTroopString( )]));
 

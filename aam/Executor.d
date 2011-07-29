@@ -44,6 +44,27 @@ struct Troop
                id ~ " " ~
                set;
     }
+
+    bool opEquals(ref const Troop other) const
+    {
+        return name == other.name &&
+               cost == other.cost &&
+               speed == other.speed &&
+               frontDefense == other.frontDefense &&
+               rearDefense == other.rearDefense &&
+               soldierAttack == other.soldierAttack &&
+               vehicleAttack == other.vehicleAttack &&
+               type == other.type &&
+               subType == other.subType &&
+               nation == other.nation &&
+               year == other.year &&
+               specialAbilities == other.specialAbilities &&
+               commandValue == other.commandValue &&
+               commandEffect == other.commandEffect &&
+               rarity == other.rarity &&
+               id == other.id &&
+               set == other.set;
+    }
 }
 
 struct Attack

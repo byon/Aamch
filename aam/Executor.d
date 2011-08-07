@@ -2,10 +2,7 @@ import aam.Troop;
 import aam.TroopsFromFile;
 import aam.StartupException;
 
-import std.array;
-import std.conv;
 import std.stdio;
-import std.exception;
 
 void Execute(string[] arguments)
 {

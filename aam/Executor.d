@@ -9,7 +9,7 @@ int ExecuteAndCatchExceptions(Error, Executor)(string[] arguments, Error error,
 {
     try
     {
-        executor(arguments);
+        executor(arguments, &OutputTroops);
         return 0;
     }
     catch (StartupException e)
@@ -21,7 +21,7 @@ int ExecuteAndCatchExceptions(Error, Executor)(string[] arguments, Error error,
     return 1;
 }
 
-void Execute(string[] arguments)
+void Execute(Sink)(string[] arguments, Sink sink)
 {
     Troop[] troops;
     auto file = OpenFile(InputFileName(arguments));
@@ -31,6 +31,14 @@ void Execute(string[] arguments)
         HandleLine(line[0..$-1], troops);
     }
 
+    foreach (Troop troop; troops)
+    {
+        stdout.writeln(troop);
+    }
+}
+
+void OutputTroops(Troop[] troops)
+{
     foreach (Troop troop; troops)
     {
         stdout.writeln(troop);

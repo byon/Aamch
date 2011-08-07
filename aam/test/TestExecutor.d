@@ -24,7 +24,7 @@ string[] ErrorOutput(string reason)
 
 void TestExecutionFailure(string[] arguments)
 {
-    void Throw(string[] arguments)
+    void Throw(string[], void function(Troop[]))
     {
         throw new StartupException("Just for testing");
     }
@@ -35,8 +35,9 @@ void TestExecutionFailure(string[] arguments)
 
 void TestExecutionSuccess(string[] arguments)
 {
+    void DoNothing(string[], void function(Troop[])) {}
     auto output = new Output;
-    Compare(0, ExecuteAndCatchExceptions(arguments, output, (string[]){}));
+    Compare(0, ExecuteAndCatchExceptions(arguments, output, &DoNothing));
     Compare([], output.lines_);
 }
 
@@ -51,5 +52,8 @@ unittest
     TestExecutionFailure(["executable path"]);
     TestExecutionSuccess(["executable path", "supposedly a path"]);
 
-    assertThrown!StartupException(Execute(["", "NosuchFile"]));
+    void Sink(Troop[] troops) {}
+
+    assertThrown!StartupException(Execute(["", "NosuchFile"], &Sink));
 }
+

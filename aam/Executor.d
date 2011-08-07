@@ -4,6 +4,23 @@ import aam.StartupException;
 
 import std.stdio;
 
+int ExecuteAndCatchExceptions(Error, Executor)(string[] arguments, Error error,
+                                               Executor executor)
+{
+    try
+    {
+        executor(arguments);
+        return 0;
+    }
+    catch (StartupException e)
+    {
+        error.writeln(e.msg);
+        Usage(error);
+    }
+
+    return 1;
+}
+
 void Execute(string[] arguments)
 {
     Troop[] troops;
@@ -25,21 +42,4 @@ void Usage(T)(T error)
     error.writeln("Usage:");
     error.writeln("AamTroops [path]");
     error.writeln("  where [path] is a path to troop information file");
-}
-
-int ExecuteAndCatchExceptions(Error, Executor)(string[] arguments, Error error,
-                                               Executor executor)
-{
-    try
-    {
-        executor(arguments);
-        return 0;
-    }
-    catch (StartupException e)
-    {
-        error.writeln(e.msg);
-        Usage(error);
-    }
-
-    return 1;
 }

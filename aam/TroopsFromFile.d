@@ -6,15 +6,15 @@ import std.conv;
 import std.stdio;
 import std.exception;
 
-Troop CreateTroop(string[] tokens)
+auto TroopsFromFile(Input)(Input input)
 {
-    assert (tokens.length > 0);
-    return Troop(tokens[0], to!double(tokens[1]));
-}
+    Troop[] result;
+    foreach (string line; input)
+    {
+        HandleLine(line, result);
+    }
 
-void HandleTokens(string[] tokens, ref Troop[] troops)
-{
-    troops ~= CreateTroop(tokens);
+    return result;
 }
 
 void HandleLine(string line, ref Troop[] troops)
@@ -22,20 +22,15 @@ void HandleLine(string line, ref Troop[] troops)
     HandleTokens(split(line, "\t"), troops);
 }
 
-class InsufficientArguments : StartupException
+void HandleTokens(string[] tokens, ref Troop[] troops)
 {
-    this( )
-    {
-        super("Insufficient amount of arguments");
-    }
+    troops ~= CreateTroop(tokens);
 }
 
-class CannotOpenFile : StartupException
+Troop CreateTroop(string[] tokens)
 {
-    this(string path)
-    {
-        super("Could not open file '" ~ path ~ "'");
-    }
+    assert (tokens.length > 0);
+    return Troop(tokens[0], to!double(tokens[1]));
 }
 
 string InputFileName(string[] arguments)
@@ -61,13 +56,18 @@ File OpenFile(string path)
     throw new CannotOpenFile(path);
 }
 
-auto TroopsFromFile(Input)(Input input)
+class InsufficientArguments : StartupException
 {
-    Troop[] result;
-    foreach (string line; input)
+    this( )
     {
-        HandleLine(line, result);
+        super("Insufficient amount of arguments");
     }
+}
 
-    return result;
+class CannotOpenFile : StartupException
+{
+    this(string path)
+    {
+        super("Could not open file '" ~ path ~ "'");
+    }
 }

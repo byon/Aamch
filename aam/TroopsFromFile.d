@@ -6,7 +6,7 @@ import std.conv;
 import std.stdio;
 import std.exception;
 
-auto TroopsFromFile(Input)(Input input)
+auto TroopsFromInput(Input)(Input input)
 {
     Troop[] result;
     foreach (string line; input)

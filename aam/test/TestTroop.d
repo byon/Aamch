@@ -1,29 +1,6 @@
 import aam.Troop;
+import aam.test.UnitTest;
 import std.stdio;
-
-void Compare(T1, T2)(T1 left, T2 right)
-{
-    const bool COMPARISON = left == right;
-    if (COMPARISON)
-    {
-        return;
-    }
-
-    stderr.writeln("Comparison failed '", left, "' != '", right, "'");
-    assert(COMPARISON);
-}
-
-void CheckUnequal(T1, T2)(T1 left, T2 right)
-{
-    const bool COMPARISON = left == right;
-    if (!COMPARISON)
-    {
-        return;
-    }
-
-    stderr.writeln("Comparison succeeded '", left, "' == '", right, "'");
-    assert(COMPARISON);
-}
 
 string UnequalityTest(string member, string value)
 {

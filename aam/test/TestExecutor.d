@@ -1,5 +1,6 @@
 import aam.Executor;
 import aam.Troop;
+import aam.test.UnitTest;
 import std.stdio;
 import std.exception;
 

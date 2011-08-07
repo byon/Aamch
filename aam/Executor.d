@@ -3,26 +3,12 @@ import aam.Troop;
 import std.array;
 import std.conv;
 import std.stdio;
-import std.traits;
 import std.exception;
-
-T To(T)(string source)
-{
-    static if (__traits(isArithmetic, T))
-    {
-        if (source.length == 0)
-        {
-            return T.init;
-        }
-    }
-
-    return to!T(source);
-}
 
 Troop CreateTroop(string[] tokens)
 {
     assert (tokens.length > 0);
-    return Troop(tokens[0], To!double(tokens[1]));
+    return Troop(tokens[0], to!double(tokens[1]));
 }
 
 void HandleTokens(string[] tokens, ref Troop[] troops)
@@ -80,19 +66,6 @@ File OpenFile(string path)
     }
 
     throw new CannotOpenFile(path);
-}
-
-void ExperimentWithMemberList(Troop[] troops)
-{
-    auto types = __traits(allMembers, Troop);
-    foreach (t; types)
-    {
-        if (isSomeFunction!(t))
-        {
-            writeln("Skipping method ", t);
-        }
-        writeln(typeid(t), " ", t);
-    }
 }
 
 auto TroopsFromFile(Input)(Input input)

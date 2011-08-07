@@ -1,4 +1,5 @@
 import aam.Troop;
+import aam.StartupException;
 
 import std.array;
 import std.conv;
@@ -19,14 +20,6 @@ void HandleTokens(string[] tokens, ref Troop[] troops)
 void HandleLine(string line, ref Troop[] troops)
 {
     HandleTokens(split(line, "\t"), troops);
-}
-
-class StartupException : Exception
-{
-    this(string what)
-    {
-        super(what);
-    }
 }
 
 class InsufficientArguments : StartupException

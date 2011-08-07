@@ -20,7 +20,10 @@ def aamTestSources( ):
     return ['aam/test/' + s for s in aamTestFiles( )]
 
 def aamTestFiles( ):
-    return ['Test' + s for s in aamFiles( )] + ['Test.d', 'UnitTest.d']
+    return ['Test' + s for s in testedAamFiles( )] + ['Test.d', 'UnitTest.d']
 
 def aamFiles( ):
+    return testedAamFiles( ) + ['StartupException.d']
+
+def testedAamFiles( ):
     return ['Executor.d', 'Troop.d', 'TroopsFromFile.d']

@@ -1,5 +1,5 @@
 import aam.Executor;
-import aam.TroopsFromFile;
+import aam.StartupException;
 import aam.Troop;
 import aam.test.UnitTest;
 import std.exception;

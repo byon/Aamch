@@ -37,9 +37,27 @@ void Execute(string[] arguments)
     }
 }
 
+string InputFileName(string[] arguments)
+{
+    if (arguments.length < 2)
+    {
+        throw new InsufficientArguments;
+    }
+
+    return arguments[1];
+}
+
 void Usage(T)(T error)
 {
     error.writeln("Usage:");
     error.writeln("AamTroops [path]");
     error.writeln("  where [path] is a path to troop information file");
+}
+
+class InsufficientArguments : StartupException
+{
+    this( )
+    {
+        super("Insufficient amount of arguments");
+    }
 }

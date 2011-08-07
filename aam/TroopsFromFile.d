@@ -33,16 +33,6 @@ Troop CreateTroop(string[] tokens)
     return Troop(tokens[0], to!double(tokens[1]));
 }
 
-string InputFileName(string[] arguments)
-{
-    if (arguments.length < 2)
-    {
-        throw new InsufficientArguments;
-    }
-
-    return arguments[1];
-}
-
 File OpenFile(string path)
 {
     try
@@ -54,14 +44,6 @@ File OpenFile(string path)
     }
 
     throw new CannotOpenFile(path);
-}
-
-class InsufficientArguments : StartupException
-{
-    this( )
-    {
-        super("Insufficient amount of arguments");
-    }
 }
 
 class CannotOpenFile : StartupException

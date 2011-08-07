@@ -1,4 +1,5 @@
 import std.conv;
+import std.math;
 
 struct Troop
 {
@@ -44,7 +45,7 @@ struct Troop
     bool opEquals(ref const Troop other) const
     {
         return name == other.name &&
-               cost == other.cost &&
+               CompareCost(other) &&
                speed == other.speed &&
                frontDefense == other.frontDefense &&
                rearDefense == other.rearDefense &&
@@ -60,6 +61,18 @@ struct Troop
                rarity == other.rarity &&
                id == other.id &&
                set == other.set;
+    }
+
+private:
+
+    bool CompareCost(ref const Troop other) const
+    {
+        if (cost == other.cost)
+        {
+            return true;
+        }
+
+        return isNaN(cost) && isNaN(other.cost);
     }
 }
 

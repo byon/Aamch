@@ -23,4 +23,4 @@ def aamTestFiles( ):
     return ['Test' + s for s in aamFiles( )] + ['Test.d', 'UnitTest.d']
 
 def aamFiles( ):
-    return ['Executor.d', 'Troop.d']
+    return ['Executor.d', 'Troop.d', 'TroopsFromFile.d']

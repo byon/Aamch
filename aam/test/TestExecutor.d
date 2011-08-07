@@ -1,7 +1,7 @@
 import aam.Executor;
+import aam.TroopsFromFile;
 import aam.Troop;
 import aam.test.UnitTest;
-import std.stdio;
 import std.exception;
 
 class Output
@@ -12,18 +12,6 @@ class Output
     {
         lines_ ~= line;
     }
-}
-
-void Compare(T1, T2)(T1 left, T2 right)
-{
-    const bool COMPARISON = left == right;
-    if (COMPARISON)
-    {
-        return;
-    }
-
-    stderr.writeln("Comparison failed '", left, "' != '", right, "'");
-    assert(COMPARISON);
 }
 
 string[] ErrorOutput(string reason)
@@ -62,11 +50,6 @@ unittest
     TestExecutionFailure([]);
     TestExecutionFailure(["executable path"]);
     TestExecutionSuccess(["executable path", "supposedly a path"]);
-
-    Compare([], TroopsFromFile(new string[0]));
-    Compare([Troop("name", 1)], TroopsFromFile([CreateTroopString( )]));
-    Compare([Troop("name", 1), Troop("name", 1)],
-            TroopsFromFile([CreateTroopString( ), CreateTroopString( )]));
 
     assertThrown!StartupException(Execute(["", "NosuchFile"]));
 }

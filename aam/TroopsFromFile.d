@@ -47,32 +47,37 @@ private Troop CreateTroop(string[] tokens)
     Troop result;
     uint i = 0;
 
-    Convert(tokens[i++], result.name);
-    Convert(tokens[i++], result.cost);
-    Convert(tokens[i++], result.speed);
-    Convert(tokens[i++], result.frontDefense);
-    Convert(tokens[i++], result.rearDefense);
-    Convert(tokens[i++], result.soldierAttack.shortDistance);
-    Convert(tokens[i++], result.soldierAttack.mediumDistance);
-    Convert(tokens[i++], result.soldierAttack.longDistance);
-    Convert(tokens[i++], result.vehicleAttack.shortDistance);
-    Convert(tokens[i++], result.vehicleAttack.mediumDistance);
-    Convert(tokens[i++], result.vehicleAttack.longDistance);
-    Convert(tokens[i++], result.type);
-    Convert(tokens[i++], result.subType);
-    Convert(tokens[i++], result.nation);
-    Convert(tokens[i++], result.year);
-    Convert(tokens[i++], result.specialAbilities);
-    Convert(tokens[i++], result.commandValue);
-    Convert(tokens[i++], result.commandEffect);
-    Convert(tokens[i++], result.rarity);
-    Convert(tokens[i++], result.id);
-    Convert(tokens[i++], result.set);
+    mixin(Conversion("name"));
+    mixin(Conversion("cost"));
+    mixin(Conversion("speed"));
+    mixin(Conversion("frontDefense"));
+    mixin(Conversion("rearDefense"));
+    mixin(Conversion("soldierAttack.shortDistance"));
+    mixin(Conversion("soldierAttack.mediumDistance"));
+    mixin(Conversion("soldierAttack.longDistance"));
+    mixin(Conversion("vehicleAttack.shortDistance"));
+    mixin(Conversion("vehicleAttack.mediumDistance"));
+    mixin(Conversion("vehicleAttack.longDistance"));
+    mixin(Conversion("type"));
+    mixin(Conversion("subType"));
+    mixin(Conversion("nation"));
+    mixin(Conversion("year"));
+    mixin(Conversion("specialAbilities"));
+    mixin(Conversion("commandValue"));
+    mixin(Conversion("commandEffect"));
+    mixin(Conversion("rarity"));
+    mixin(Conversion("id"));
+    mixin(Conversion("set"));
 
     return result;
 }
 
-private void Convert(T)(string source, ref T target)
+private string Conversion(string field)
+{
+    return "Convert(tokens[i++], result." ~ field ~ ", \"" ~ field ~ "\");";
+}
+
+private void Convert(T)(string source, ref T target, string field)
 {
     try
     {
@@ -83,7 +88,7 @@ private void Convert(T)(string source, ref T target)
     {
     }
 
-    throw new InvalidType(source, to!string(typeid(target)));
+    throw new InvalidType(source, to!string(typeid(target)), field);
 }
 
 private File OpenFile(string path)
@@ -122,9 +127,10 @@ private class ParseError : StartupException
 
 private class InvalidType : ParseError
 {
-    this(string value, string type)
+    this(string value, string type, string field)
     {
-        super("Token '" ~ value ~ "' is not of expected type " ~ type);
+        super("Cannot convert '" ~ value ~ "' to " ~ type ~ " when reading " ~
+              field);
     }
 }
 

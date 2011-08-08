@@ -16,9 +16,9 @@ unittest
     Compare("Not enough tokens on line 1",
             collectExceptionMsg!NotEnoughTokens(TroopsFromInput(["foo"])));
 
-    const auto invalid = ["name\tshouldBeNumeric\t1"];
+    const auto invalid = ["name\tfoo\t1"];
     assertThrown!InvalidType(TroopsFromInput(invalid));
-    Compare("Token 'shouldBeNumeric' is not of expected type double on line 1",
+    Compare("Cannot convert 'foo' to double when reading cost on line 1",
             collectExceptionMsg!InvalidType(TroopsFromInput(invalid)));
 
     Compare([], TroopsFromInput(new string[0]));

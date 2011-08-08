@@ -24,7 +24,7 @@ string[] ErrorOutput(string reason)
 
 void TestExecutionFailure(string[] arguments)
 {
-    void Throw(Troop[] function( ), string[], void function(Troop[]))
+    void Throw(Troop[] function(string), string[], void function(Troop[]))
     {
         throw new StartupException("Just for testing");
     }
@@ -35,9 +35,9 @@ void TestExecutionFailure(string[] arguments)
 
 void TestExecutionSuccess(string[] arguments)
 {
-    void DoNothing(Troop[] function( ), string[], void function(Troop[])) {}
+    void NoOp(Troop[] function(string), string[], void function(Troop[])) {}
     auto output = new Output;
-    Compare(0, ExecuteAndCatchExceptions(arguments, output, &DoNothing));
+    Compare(0, ExecuteAndCatchExceptions(arguments, output, &NoOp));
     Compare([], output.lines_);
 }
 
@@ -53,23 +53,29 @@ unittest
     TestExecutionSuccess(["executable path", "supposedly a path"]);
 
     void Sink(Troop[] troops) {}
-    Troop[] NoTroops( )
+
+    int callCount = 0;
+    Troop[] NoTroops(string path)
     {
+        ++callCount;
+        Compare("path", path);
         Troop[] result;
         return result;
     }
 
-    assertThrown!StartupException(Execute(NoTroops, ["", "NosuchFile"], &Sink));
+    Execute(&NoTroops, ["", "path"], &Sink);
+    Compare(1, callCount);
 
-    /// @todo refactor this to happen without actually reading file
+    Troop[] OneTroop(string path)
+    {
+        return [Troop("a", 1.0)];
+    }
     Troop[] result;
     void Store(Troop[] troops)
     {
         result = troops;
     }
-    std.file.write("temporary", "a\t1.0");
-    scope(exit) std.file.remove("temporary");
-    Execute(NoTroops, ["", "temporary"], &Store);
+
+    Execute(&OneTroop, ["", ""], &Store);
     Compare([Troop("a", 1.0)], result);
 }
-

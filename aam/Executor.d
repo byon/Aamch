@@ -23,7 +23,7 @@ int ExecuteAndCatchExceptions(Error, Executor)(string[] arguments, Error error,
 
 void Execute(Input, Sink)(Input input, string[] arguments, Sink sink)
 {
-    sink(TroopsFromFile(InputFileName(arguments)));
+    sink(input(InputFileName(arguments)));
 }
 
 void OutputTroops(Troop[] troops)

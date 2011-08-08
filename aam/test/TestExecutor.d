@@ -54,7 +54,9 @@ unittest
 
     void Sink(Troop[] troops) {}
 
-    assertThrown!StartupException(Execute(["", "NosuchFile"], &Sink));
+    alias Troop[] function( ) foo;
+
+    assertThrown!StartupException(Execute!foo(["", "NosuchFile"], &Sink));
 
     /// @todo refactor this to happen without actually reading file
     Troop[] result;
@@ -62,9 +64,9 @@ unittest
     {
         result = troops;
     }
-    std.file.write("temporary", "a\t1.0\n");
+    std.file.write("temporary", "a\t1.0");
     scope(exit) std.file.remove("temporary");
-    Execute(["", "temporary"], &Store);
+    Execute!foo(["", "temporary"], &Store);
     Compare([Troop("a", 1.0)], result);
 }
 

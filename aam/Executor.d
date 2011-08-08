@@ -21,7 +21,7 @@ int ExecuteAndCatchExceptions(Error, Executor)(string[] arguments, Error error,
     return 1;
 }
 
-void Execute(Sink)(string[] arguments, Sink sink)
+void Execute(Input, Sink)(string[] arguments, Sink sink)
 {
     sink(TroopsFromFile(InputFileName(arguments)));
 }

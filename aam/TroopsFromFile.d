@@ -34,7 +34,7 @@ private void HandleTokens(string[] tokens, ref Troop[] troops)
 
 private Troop CreateTroop(string[] tokens)
 {
-    assert (tokens.length > 1);
+    enforce (tokens.length > 1, new NotEnoughTokens);
     return Troop(tokens[0], to!double(tokens[1]));
 }
 
@@ -56,5 +56,13 @@ private class CannotOpenFile : StartupException
     this(string path)
     {
         super("Could not open file '" ~ path ~ "'");
+    }
+}
+
+private class NotEnoughTokens : StartupException
+{
+    this( )
+    {
+        super("Not enough tokens on a line");
     }
 }

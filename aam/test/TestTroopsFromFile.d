@@ -12,6 +12,8 @@ unittest
         Compare([Troop("name", 1)], TroopsFromFile("temporary"));
     }
 
+    assertThrown!NotEnoughTokens(TroopsFromInput(["notEnough"]));
+
     Compare([], TroopsFromInput(new string[0]));
     Compare([Troop("name", 1)], TroopsFromInput([CreateTroopString( )]));
     Compare([Troop("name", 1), Troop("name", 1)],

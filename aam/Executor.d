@@ -31,10 +31,7 @@ void Execute(Sink)(string[] arguments, Sink sink)
         HandleLine(line[0..$-1], troops);
     }
 
-    foreach (Troop troop; troops)
-    {
-        stdout.writeln(troop);
-    }
+    sink(troops);
 }
 
 void OutputTroops(Troop[] troops)

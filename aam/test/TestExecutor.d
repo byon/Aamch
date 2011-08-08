@@ -55,5 +55,16 @@ unittest
     void Sink(Troop[] troops) {}
 
     assertThrown!StartupException(Execute(["", "NosuchFile"], &Sink));
+
+    /// @todo refactor this to happen without actually reading file
+    Troop[] result;
+    void Store(Troop[] troops)
+    {
+        result = troops;
+    }
+    std.file.write("temporary", "a\t1.0\n");
+    scope(exit) std.file.remove("temporary");
+    Execute(["", "temporary"], &Store);
+    Compare([Troop("a", 1.0)], result);
 }
 

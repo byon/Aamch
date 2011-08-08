@@ -29,7 +29,7 @@ void HandleTokens(string[] tokens, ref Troop[] troops)
 
 Troop CreateTroop(string[] tokens)
 {
-    assert (tokens.length > 0);
+    assert (tokens.length > 1);
     return Troop(tokens[0], to!double(tokens[1]));
 }
 

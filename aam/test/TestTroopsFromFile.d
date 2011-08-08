@@ -3,11 +3,6 @@ import aam.TroopsFromFile;
 import aam.test.UnitTest;
 import std.exception;
 
-string CreateTroopString( )
-{
-    return "name\t" ~ "1";
-}
-
 unittest
 {
     Compare([], TroopsFromInput(new string[0]));
@@ -28,4 +23,9 @@ unittest
         scope(exit) std.file.remove("temporary");
         Compare([Troop("name", 1)], TroopsFromFile("temporary"));
     }
+}
+
+string CreateTroopString( )
+{
+    return "name\t" ~ "1";
 }

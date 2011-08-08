@@ -28,14 +28,16 @@ unittest
     {
         return [Troop("a", 1.0)];
     }
-    Troop[] result;
+
+    callCount = 0;
     void Store(Troop[] troops)
     {
-        result = troops;
+        ++callCount;
+        Compare([Troop("a", 1.0)], troops);
     }
 
     Execute(&OneTroop, ["", ""], &Store);
-    Compare([Troop("a", 1.0)], result);
+    Compare(1, callCount);
 }
 
 void TestExecutionFailure(string[] arguments)

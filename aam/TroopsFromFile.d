@@ -120,7 +120,7 @@ private class ParseError : StartupException
     }
 }
 
-private class InvalidType : StartupException
+private class InvalidType : ParseError
 {
     this(string value, string type)
     {

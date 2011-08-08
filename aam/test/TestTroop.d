@@ -4,6 +4,11 @@ import std.stdio;
 
 unittest
 {
+    Troop full = Troop("a", 1.2, 1, 1, 1, Attack(1), Attack(1), "a", "a",
+                       "a", 1, "a", 1, "a", "a", "a", "a");
+    Compare("a 1.2 1 1 1 [1 0 0] [1 0 0] a a a 1 a 1 a a a a",
+            full.toString( ));
+
     mixin(UnequalityTest("name", "\"a\""));
     mixin(UnequalityTest("cost", "1"));
     mixin(UnequalityTest("speed", "1"));

@@ -23,15 +23,7 @@ int ExecuteAndCatchExceptions(Error, Executor)(string[] arguments, Error error,
 
 void Execute(Sink)(string[] arguments, Sink sink)
 {
-    Troop[] troops;
-    auto file = OpenFile(InputFileName(arguments));
-    foreach (string line; lines(file))
-    {
-        /// @todo What if two chars for end of line?
-        HandleLine(line[0..$-1], troops);
-    }
-
-    sink(troops);
+    sink(TroopsFromFile(InputFileName(arguments)));
 }
 
 void OutputTroops(Troop[] troops)

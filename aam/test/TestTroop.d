@@ -4,6 +4,8 @@ import std.stdio;
 
 unittest
 {
+    Compare("[12 345 6]", Attack(12, 345, 6).toString( ));
+
     Troop full = Troop("a", 1.2, 1, 1, 1, Attack(1), Attack(1), "a", "a",
                        "a", 1, "a", 1, "a", "a", "a", "a");
     Compare("a 1.2 1 1 1 [1 0 0] [1 0 0] a a a 1 a 1 a a a a",

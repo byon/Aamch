@@ -14,9 +14,17 @@ auto TroopsFromFile(string path)
 auto TroopsFromInput(Input)(Input input)
 {
     Troop[] result;
-    foreach (string line; input)
+    foreach (int i, string line; input)
     {
-        HandleLine(line, result);
+        try
+        {
+            HandleLine(line, result);
+        }
+        catch (ParseError e)
+        {
+            e.SetLine(i + 1);
+            throw e;
+        }
     }
 
     return result;
@@ -79,10 +87,23 @@ private class CannotOpenFile : StartupException
     }
 }
 
-private class NotEnoughTokens : StartupException
+private class ParseError : StartupException
+{
+    this(string what)
+    {
+        super(what);
+    }
+
+    void SetLine(uint line)
+    {
+        msg ~= " on line " ~ to!string(line);
+    }
+}
+
+private class NotEnoughTokens : ParseError
 {
     this( )
     {
-        super("Not enough tokens on a line");
+        super("Not enough tokens");
     }
 }

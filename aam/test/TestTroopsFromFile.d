@@ -16,7 +16,16 @@ unittest
             TroopsFromInput([CreateTroopString( ), CreateTroopString( )]));
 
     assertThrown!CannotOpenFile(OpenFile("noSuchFile"));
-    std.file.write("temporary", "abc");
-    scope(exit) std.file.remove("temporary");
-    Compare("abc", OpenFile("temporary").readln( ));
+    {
+        std.file.write("temporary", "abc");
+        scope(exit) std.file.remove("temporary");
+        Compare("abc", OpenFile("temporary").readln( ));
+    }
+
+    assertThrown!CannotOpenFile(TroopsFromFile("noSuchFile"));
+    {
+        std.file.write("temporary", CreateTroopString( ));
+        scope(exit) std.file.remove("temporary");
+        Compare([Troop("name", 1)], TroopsFromFile("temporary"));
+    }
 }

@@ -6,6 +6,11 @@ import std.conv;
 import std.stdio;
 import std.exception;
 
+auto TroopsFromFile(string path)
+{
+    return TroopsFromInput(lines(OpenFile(path)));
+}
+
 auto TroopsFromInput(Input)(Input input)
 {
     Troop[] result;

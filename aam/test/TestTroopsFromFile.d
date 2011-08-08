@@ -16,6 +16,8 @@ unittest
     Compare("Not enough tokens on line 1",
             collectExceptionMsg!NotEnoughTokens(TroopsFromInput(["foo"])));
 
+    assertThrown!InvalidType(TroopsFromInput(["name\tshouldBeNumeric\t1"]));
+
     Compare([], TroopsFromInput(new string[0]));
     Compare([Expected( )], TroopsFromInput([CreateTroopString( )]));
     Compare([Expected( ), Expected( )],

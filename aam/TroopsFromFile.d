@@ -43,27 +43,47 @@ private void HandleTokens(string[] tokens, ref Troop[] troops)
 private Troop CreateTroop(string[] tokens)
 {
     enforce (tokens.length > 2, new NotEnoughTokens);
-    return Troop(tokens[0],
-                 to!double(tokens[1]),
-                 to!uint(tokens[2]),
-                 to!uint(tokens[3]),
-                 to!uint(tokens[4]),
-                 Attack(to!uint(tokens[5]),
-                        to!uint(tokens[6]),
-                        to!uint(tokens[7])),
-                 Attack(to!uint(tokens[8]),
-                        to!uint(tokens[9]),
-                        to!uint(tokens[10])),
-                 tokens[11],
-                 tokens[12],
-                 tokens[13],
-                 to!uint(tokens[14]),
-                 tokens[15],
-                 to!uint(tokens[16]),
-                 tokens[17],
-                 tokens[18],
-                 tokens[19],
-                 tokens[20]);
+
+    Troop result;
+    uint i = 0;
+
+    Convert(tokens[i++], result.name);
+    Convert(tokens[i++], result.cost);
+    Convert(tokens[i++], result.speed);
+    Convert(tokens[i++], result.frontDefense);
+    Convert(tokens[i++], result.rearDefense);
+    Convert(tokens[i++], result.soldierAttack.shortDistance);
+    Convert(tokens[i++], result.soldierAttack.mediumDistance);
+    Convert(tokens[i++], result.soldierAttack.longDistance);
+    Convert(tokens[i++], result.vehicleAttack.shortDistance);
+    Convert(tokens[i++], result.vehicleAttack.mediumDistance);
+    Convert(tokens[i++], result.vehicleAttack.longDistance);
+    Convert(tokens[i++], result.type);
+    Convert(tokens[i++], result.subType);
+    Convert(tokens[i++], result.nation);
+    Convert(tokens[i++], result.year);
+    Convert(tokens[i++], result.specialAbilities);
+    Convert(tokens[i++], result.commandValue);
+    Convert(tokens[i++], result.commandEffect);
+    Convert(tokens[i++], result.rarity);
+    Convert(tokens[i++], result.id);
+    Convert(tokens[i++], result.set);
+
+    return result;
+}
+
+private void Convert(T)(string source, ref T target)
+{
+    try
+    {
+        target = to!T(source);
+        return;
+    }
+    catch (ConvException e)
+    {
+    }
+
+    throw new InvalidType(source, to!string(typeid(target)));
 }
 
 private File OpenFile(string path)
@@ -97,6 +117,14 @@ private class ParseError : StartupException
     void SetLine(uint line)
     {
         msg ~= " on line " ~ to!string(line);
+    }
+}
+
+private class InvalidType : StartupException
+{
+    this(string value, string type)
+    {
+        super("Token '" ~ value ~ "' is not of expected type " ~ type);
     }
 }
 

@@ -2,12 +2,6 @@ import aam.Troop;
 import aam.test.UnitTest;
 import std.stdio;
 
-string UnequalityTest(string member, string value)
-{
-    return "{Troop changed; changed." ~ member ~ " = " ~ value ~ ";" ~
-           "CheckUnequal(changed, Troop( ));}";
-}
-
 unittest
 {
     mixin(UnequalityTest("name", "\"a\""));
@@ -32,4 +26,10 @@ unittest
                             "a", 1, "a", 1, "a", "a", "a", "a");
     Troop exactCopy = compareTo;
     Compare(exactCopy, compareTo);
+}
+
+string UnequalityTest(string member, string value)
+{
+    return "{Troop changed; changed." ~ member ~ " = " ~ value ~ ";" ~
+           "CheckUnequal(changed, Troop( ));}";
 }

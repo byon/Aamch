@@ -9,7 +9,7 @@ int ExecuteAndCatchExceptions(Error, Executor)(string[] arguments, Error error,
 {
     try
     {
-        executor(arguments, &OutputTroops);
+        executor(&TroopsFromFile, arguments, &OutputTroops);
         return 0;
     }
     catch (StartupException e)
@@ -21,7 +21,7 @@ int ExecuteAndCatchExceptions(Error, Executor)(string[] arguments, Error error,
     return 1;
 }
 
-void Execute(Input, Sink)(string[] arguments, Sink sink)
+void Execute(Input, Sink)(Input input, string[] arguments, Sink sink)
 {
     sink(TroopsFromFile(InputFileName(arguments)));
 }

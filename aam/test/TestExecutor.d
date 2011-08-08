@@ -24,7 +24,7 @@ string[] ErrorOutput(string reason)
 
 void TestExecutionFailure(string[] arguments)
 {
-    void Throw(string[], void function(Troop[]))
+    void Throw(Troop[] function( ), string[], void function(Troop[]))
     {
         throw new StartupException("Just for testing");
     }
@@ -35,7 +35,7 @@ void TestExecutionFailure(string[] arguments)
 
 void TestExecutionSuccess(string[] arguments)
 {
-    void DoNothing(string[], void function(Troop[])) {}
+    void DoNothing(Troop[] function( ), string[], void function(Troop[])) {}
     auto output = new Output;
     Compare(0, ExecuteAndCatchExceptions(arguments, output, &DoNothing));
     Compare([], output.lines_);
@@ -53,10 +53,13 @@ unittest
     TestExecutionSuccess(["executable path", "supposedly a path"]);
 
     void Sink(Troop[] troops) {}
+    Troop[] NoTroops( )
+    {
+        Troop[] result;
+        return result;
+    }
 
-    alias Troop[] function( ) foo;
-
-    assertThrown!StartupException(Execute!foo(["", "NosuchFile"], &Sink));
+    assertThrown!StartupException(Execute(NoTroops, ["", "NosuchFile"], &Sink));
 
     /// @todo refactor this to happen without actually reading file
     Troop[] result;
@@ -66,7 +69,7 @@ unittest
     }
     std.file.write("temporary", "a\t1.0");
     scope(exit) std.file.remove("temporary");
-    Execute!foo(["", "temporary"], &Store);
+    Execute(NoTroops, ["", "temporary"], &Store);
     Compare([Troop("a", 1.0)], result);
 }
 

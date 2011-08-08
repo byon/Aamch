@@ -2,6 +2,7 @@ import aam.Troop;
 import aam.TroopsFromFile;
 import aam.StartupException;
 
+import std.exception;
 import std.stdio;
 
 int ExecuteAndCatchExceptions(Error, Executor)(string[] arguments, Error error,
@@ -43,10 +44,7 @@ private void OutputTroops(Troop[] troops)
 
 private string InputFileName(string[] arguments)
 {
-    if (arguments.length < 2)
-    {
-        throw new InsufficientArguments;
-    }
+    enforce(arguments.length > 1, new InsufficientArguments);
 
     return arguments[1];
 }

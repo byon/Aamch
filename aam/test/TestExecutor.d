@@ -4,48 +4,6 @@ import aam.Troop;
 import aam.test.UnitTest;
 import std.exception;
 
-class Output
-{
-    string[] lines_;
-
-    void writeln(string line)
-    {
-        lines_ ~= line;
-    }
-}
-
-string[] ErrorOutput(string reason)
-{
-    string[] usage = ["Usage:",
-                      "AamTroops [path]",
-                      "  where [path] is a path to troop information file"];
-    return [reason] ~ usage;
-}
-
-void TestExecutionFailure(string[] arguments)
-{
-    void Throw(Troop[] function(string), string[], void function(Troop[]))
-    {
-        throw new StartupException("Just for testing");
-    }
-    auto error = new Output;
-    Compare(1, ExecuteAndCatchExceptions(arguments, error, &Throw));
-    Compare(ErrorOutput("Just for testing"), error.lines_);
-}
-
-void TestExecutionSuccess(string[] arguments)
-{
-    void NoOp(Troop[] function(string), string[], void function(Troop[])) {}
-    auto output = new Output;
-    Compare(0, ExecuteAndCatchExceptions(arguments, output, &NoOp));
-    Compare([], output.lines_);
-}
-
-string CreateTroopString( )
-{
-    return "name\t" ~ "1";
-}
-
 unittest
 {
     TestExecutionFailure([]);
@@ -78,4 +36,41 @@ unittest
 
     Execute(&OneTroop, ["", ""], &Store);
     Compare([Troop("a", 1.0)], result);
+}
+
+void TestExecutionFailure(string[] arguments)
+{
+    void Throw(Troop[] function(string), string[], void function(Troop[]))
+    {
+        throw new StartupException("Just for testing");
+    }
+    auto error = new Output;
+    Compare(1, ExecuteAndCatchExceptions(arguments, error, &Throw));
+    Compare(ErrorOutput("Just for testing"), error.lines_);
+}
+
+void TestExecutionSuccess(string[] arguments)
+{
+    void NoOp(Troop[] function(string), string[], void function(Troop[])) {}
+    auto output = new Output;
+    Compare(0, ExecuteAndCatchExceptions(arguments, output, &NoOp));
+    Compare([], output.lines_);
+}
+
+string[] ErrorOutput(string reason)
+{
+    string[] usage = ["Usage:",
+                      "AamTroops [path]",
+                      "  where [path] is a path to troop information file"];
+    return [reason] ~ usage;
+}
+
+class Output
+{
+    string[] lines_;
+
+    void writeln(string line)
+    {
+        lines_ ~= line;
+    }
 }

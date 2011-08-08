@@ -40,7 +40,7 @@ unittest
     Compare(1, callCount);
 }
 
-void TestExecutionFailure(string[] arguments)
+private void TestExecutionFailure(string[] arguments)
 {
     void Throw(Troop[] function(string), string[], void function(Troop[]))
     {
@@ -51,7 +51,7 @@ void TestExecutionFailure(string[] arguments)
     Compare(ErrorOutput("Just for testing"), error.lines_);
 }
 
-void TestExecutionSuccess(string[] arguments)
+private void TestExecutionSuccess(string[] arguments)
 {
     void NoOp(Troop[] function(string), string[], void function(Troop[])) {}
     auto output = new Output;
@@ -59,7 +59,7 @@ void TestExecutionSuccess(string[] arguments)
     Compare([], output.lines_);
 }
 
-string[] ErrorOutput(string reason)
+private string[] ErrorOutput(string reason)
 {
     string[] usage = ["Usage:",
                       "AamTroops [path]",
@@ -67,7 +67,7 @@ string[] ErrorOutput(string reason)
     return [reason] ~ usage;
 }
 
-class Output
+private class Output
 {
     string[] lines_;
 

@@ -26,14 +26,14 @@ void Execute(Input, Sink)(Input input, string[] arguments, Sink sink)
     sink(input(InputFileName(arguments)));
 }
 
-void Usage(T)(T error)
+private void Usage(T)(T error)
 {
     error.writeln("Usage:");
     error.writeln("AamTroops [path]");
     error.writeln("  where [path] is a path to troop information file");
 }
 
-void OutputTroops(Troop[] troops)
+private void OutputTroops(Troop[] troops)
 {
     foreach (Troop troop; troops)
     {
@@ -41,7 +41,7 @@ void OutputTroops(Troop[] troops)
     }
 }
 
-string InputFileName(string[] arguments)
+private string InputFileName(string[] arguments)
 {
     if (arguments.length < 2)
     {
@@ -51,7 +51,7 @@ string InputFileName(string[] arguments)
     return arguments[1];
 }
 
-class InsufficientArguments : StartupException
+private class InsufficientArguments : StartupException
 {
     this( )
     {

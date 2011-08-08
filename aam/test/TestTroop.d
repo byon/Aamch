@@ -28,7 +28,7 @@ unittest
     Compare(exactCopy, compareTo);
 }
 
-string UnequalityTest(string member, string value)
+private string UnequalityTest(string member, string value)
 {
     return "{Troop changed; changed." ~ member ~ " = " ~ value ~ ";" ~
            "CheckUnequal(changed, Troop( ));}";

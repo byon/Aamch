@@ -22,23 +22,23 @@ auto TroopsFromInput(Input)(Input input)
     return result;
 }
 
-void HandleLine(string line, ref Troop[] troops)
+private void HandleLine(string line, ref Troop[] troops)
 {
     HandleTokens(split(line, "\t"), troops);
 }
 
-void HandleTokens(string[] tokens, ref Troop[] troops)
+private void HandleTokens(string[] tokens, ref Troop[] troops)
 {
     troops ~= CreateTroop(tokens);
 }
 
-Troop CreateTroop(string[] tokens)
+private Troop CreateTroop(string[] tokens)
 {
     assert (tokens.length > 1);
     return Troop(tokens[0], to!double(tokens[1]));
 }
 
-File OpenFile(string path)
+private File OpenFile(string path)
 {
     try
     {
@@ -51,7 +51,7 @@ File OpenFile(string path)
     throw new CannotOpenFile(path);
 }
 
-class CannotOpenFile : StartupException
+private class CannotOpenFile : StartupException
 {
     this(string path)
     {

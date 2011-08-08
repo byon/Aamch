@@ -18,7 +18,7 @@ unittest
             TroopsFromInput([CreateTroopString( ), CreateTroopString( )]));
 }
 
-string CreateTroopString( )
+private string CreateTroopString( )
 {
     return "name\t" ~ "1";
 }

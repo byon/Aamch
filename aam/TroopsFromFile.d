@@ -63,13 +63,19 @@ private Troop CreateTroop(string[] tokens)
     mixin(Conversion("nation"));
     mixin(Conversion("year"));
     mixin(Conversion("specialAbilities"));
-    mixin(Conversion("commandValue"));
+    mixin(ConversionAllowingEmpty("commandValue"));
     mixin(Conversion("commandEffect"));
     mixin(Conversion("rarity"));
     mixin(Conversion("id"));
     mixin(Conversion("set"));
 
     return result;
+}
+
+private string ConversionAllowingEmpty(string field)
+{
+    return "if (0 == tokens[i].length) { result." ~ field ~
+           " = 0; ++i; } else {" ~ Conversion(field) ~ "}";
 }
 
 private string Conversion(string field)

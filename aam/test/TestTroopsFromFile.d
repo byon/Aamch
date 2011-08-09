@@ -25,17 +25,19 @@ unittest
     Compare([Expected( )], TroopsFromInput([CreateTroopString( )]));
     Compare([Expected( ), Expected( )],
             TroopsFromInput([CreateTroopString( ), CreateTroopString( )]));
+
+    Compare([Expected(0)], TroopsFromInput([CreateTroopString("")]));
 }
 
-private Troop Expected( )
+private Troop Expected(uint commandValue = 2)
 {
     return Troop("name", 1, 1, 1, 1, Attack(2, 3, 4), Attack(5, 6, 7),
-                 "type", "sub", "nation", 1, "abilities", 2, "effect",
-                 "rarity", "id", "set");
+                 "type", "sub", "nation", 1, "abilities", commandValue,
+                 "effect", "rarity", "id", "set");
 }
 
-private string CreateTroopString( )
+private string CreateTroopString(string commandValue = "2")
 {
     return "name\t1\t1\t1\t1\t2\t3\t4\t5\t6\t7\ttype\tsub\tnation\t1"
-           "\tabilities\t2\teffect\trarity\tid\tset";
+           "\tabilities\t" ~ commandValue ~ "\teffect\trarity\tid\tset";
 }

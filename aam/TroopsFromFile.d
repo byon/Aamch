@@ -49,7 +49,7 @@ private Troop CreateTroop(string[] tokens)
 
     mixin(Conversion("name"));
     mixin(Conversion("cost"));
-    mixin(Conversion("speed"));
+    mixin(ConversionAllowingEmpty("speed"));
     mixin(Conversion("frontDefense"));
     mixin(Conversion("rearDefense"));
     mixin(Conversion("soldierAttack.shortDistance"));

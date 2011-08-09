@@ -3,8 +3,9 @@ import aam.StartupException;
 
 import std.array;
 import std.conv;
-import std.stdio;
 import std.exception;
+import std.stdio;
+import std.string;
 
 auto TroopsFromFile(string path)
 {
@@ -18,7 +19,7 @@ auto TroopsFromInput(Input)(Input input)
     {
         try
         {
-            HandleLine(line, result);
+            HandleLine(chomp(line), result);
         }
         catch (ParseError e)
         {

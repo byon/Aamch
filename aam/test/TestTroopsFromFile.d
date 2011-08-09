@@ -31,6 +31,8 @@ unittest
     Compare([Expected(0)], TroopsFromInput([CreateTroopString("")]));
     Compare([Expected(0)], TroopsFromInput([CreateTroopString("A")]));
     Compare([Expected(1, 0)], TroopsFromInput([CreateTroopString("1", "")]));
+
+    Compare([Expected( )], TroopsFromInput([CreateTroopString( ) ~ "\n"]));
 }
 
 private Troop Expected(uint speed = 1, uint defense = 1, uint commandValue = 2)

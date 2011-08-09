@@ -26,20 +26,23 @@ unittest
     Compare([Expected( ), Expected( )],
             TroopsFromInput([CreateTroopString( ), CreateTroopString( )]));
 
-    Compare([Expected(1, 0)], TroopsFromInput([CreateTroopString("1", "")]));
+    Compare([Expected(1, 1, 0)],
+            TroopsFromInput([CreateTroopString("1", "1", "")]));
     Compare([Expected(0)], TroopsFromInput([CreateTroopString("")]));
+    Compare([Expected(1, 0)], TroopsFromInput([CreateTroopString("1", "")]));
 }
 
-private Troop Expected(uint speed = 1, uint commandValue = 2)
+private Troop Expected(uint speed = 1, uint defense = 1, uint commandValue = 2)
 {
-    return Troop("name", 1, speed, 1, 1, Attack(2, 3, 4), Attack(5, 6, 7),
-                 "type", "sub", "nation", 1, "abilities", commandValue,
-                 "effect", "rarity", "id", "set");
+    return Troop("name", 1, speed, defense, defense, Attack(2, 3, 4),
+                 Attack(5, 6, 7), "type", "sub", "nation", 1, "abilities",
+                 commandValue, "effect", "rarity", "id", "set");
 }
 
-private string CreateTroopString(string speed = "1", string commandValue = "2")
+private string CreateTroopString(string speed = "1", string defense = "1",
+                                 string commandValue = "2")
 {
-    return "name\t1\t" ~ speed ~
-           "\t1\t1\t2\t3\t4\t5\t6\t7\ttype\tsub\tnation\t1"
+    return "name\t1\t" ~ speed ~ "\t" ~ defense ~ "\t" ~ defense ~
+           "\t2\t3\t4\t5\t6\t7\ttype\tsub\tnation\t1"
            "\tabilities\t" ~ commandValue ~ "\teffect\trarity\tid\tset";
 }

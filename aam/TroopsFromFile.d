@@ -49,7 +49,7 @@ private Troop CreateTroop(string[] tokens)
 
     mixin(Conversion("name"));
     mixin(Conversion("cost"));
-    mixin(ConversionAllowingEmpty("speed"));
+    mixin(ConversionSpeed( ));
     mixin(ConversionAllowingEmpty("frontDefense"));
     mixin(ConversionAllowingEmpty("rearDefense"));
     mixin(Conversion("soldierAttack.shortDistance"));
@@ -70,6 +70,12 @@ private Troop CreateTroop(string[] tokens)
     mixin(Conversion("set"));
 
     return result;
+}
+
+private string ConversionSpeed( )
+{
+    return "auto t = tokens[i];if (\"\" == t || \"A\" == t) { result.speed"
+           " = 0; ++i; } else {" ~ Conversion("speed") ~ "}";
 }
 
 private string ConversionAllowingEmpty(string field)

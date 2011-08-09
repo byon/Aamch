@@ -29,6 +29,7 @@ unittest
     Compare([Expected(1, 1, 0)],
             TroopsFromInput([CreateTroopString("1", "1", "")]));
     Compare([Expected(0)], TroopsFromInput([CreateTroopString("")]));
+    Compare([Expected(0)], TroopsFromInput([CreateTroopString("A")]));
     Compare([Expected(1, 0)], TroopsFromInput([CreateTroopString("1", "")]));
 }
 

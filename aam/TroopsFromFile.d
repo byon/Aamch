@@ -17,18 +17,20 @@ auto TroopsFromInput(Input)(Input input)
     Troop[] result;
     foreach (int i, string line; input)
     {
-        try
-        {
-            HandleLine(chomp(line), result);
-        }
-        catch (ParseError e)
-        {
-            e.SetLine(i + 1);
-            throw e;
-        }
+        auto e = collectException!ParseError(HandleLine(chomp(line), result));
+        CheckFailure(e, i);
     }
 
     return result;
+}
+
+void CheckFailure(ParseError exception, int line)
+{
+    if (exception)
+    {
+        exception.SetLine(line + 1);
+        throw exception;
+    }
 }
 
 private void HandleLine(string line, ref Troop[] troops)

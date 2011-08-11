@@ -6,11 +6,11 @@ def configure(cnf):
     cnf.load('compiler_d')
 
 def build(bld):
-    bld.stlib(source=aamSources( ), target='aam', dflags='-I..')
+    bld.stlib(source=aamSources( ), target='aam', dflags='-I.. -g')
     bld.program(source=aamTestSources( ), target='AxisAndAlliesTroops.test',
-                dflags='-unittest -I..', use='aam')
+                dflags='-unittest -I.. -g', use='aam')
     bld.program(source='aam/main.d', target='AxisAndAlliesTroops',
-                dflags='-I..', use='aam')
+                dflags='-I.. -g', use='aam')
 
 def aamSources( ):
     return ['aam/' + s for s in aamFiles( )]

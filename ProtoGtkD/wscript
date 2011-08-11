@@ -1,0 +1,19 @@
+
+def options(opt):
+    opt.load('compiler_d')
+
+def configure(cnf):
+    cnf.load('compiler_d')
+
+def build(bld):
+    addProgram(bld, 'hello')
+    addProgram(bld, 'exit')
+    addProgram(bld, 'popup')
+    addProgram(bld, 'button')
+    addProgram(bld, 'grid')
+
+def addProgram(bld, module):
+    title = module.title( )
+    bld.program(source=module + '/' + title + '.d', target=title,
+                dflags='-I.. -I/usr/local/include/d',
+                libpath='/usr/local/lib/libgtkd.a', lib='dl')

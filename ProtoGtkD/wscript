@@ -15,5 +15,5 @@ def build(bld):
 def addProgram(bld, module):
     title = module.title( )
     bld.program(source=module + '/' + title + '.d', target=title,
-                dflags='-I.. -I/usr/local/include/d',
+                dflags='-I.. -I/usr/local/include/d -g',
                 libpath='/usr/local/lib/libgtkd.a', lib='dl')

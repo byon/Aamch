@@ -7,6 +7,7 @@ import gtk.Main;
 import gtk.MainWindow;
 import gtk.ScrolledWindow;
 import gtk.Table;
+import gtk.TreeIter;
 import gtk.TreeModelIF;
 import gtk.TreePath;
 import gtk.TreeSelection;
@@ -48,15 +49,16 @@ class Grid : MainWindow
         auto tree = new TreeView;
         scrolled.add(tree);
 
-        foreach (uint column; 0..COLUMNS)
-        {
-            AddColumn(tree, "column" ~ to!string(column), column);
-        }
-
         GType[COLUMNS] types;
         types[] = GType.STRING;
 
         store = new ListStore(types);
+
+        foreach (uint column; 0..COLUMNS)
+        {
+            store.setSortFunc(column, &Sort, cast(void*)store, null);
+            AddColumn(tree, "column" ~ to!string(column), column);
+        }
 
         foreach (uint row; 0..5)
         {
@@ -94,6 +96,24 @@ class Grid : MainWindow
     }
 }
 
+extern (C) int Sort(GtkTreeModel* model, GtkTreeIter* first,
+                    GtkTreeIter* second, void* userData)
+{
+    auto store = cast(ListStore)userData;
+
+    int sortColumn;
+    GtkSortType order;
+    store.getSortColumnId(sortColumn, order);
+
+    return std.string.cmp(ValueAsString(store, first, sortColumn),
+                          ValueAsString(store, second, sortColumn));
+}
+
+string ValueAsString(ListStore store, GtkTreeIter* iterator, int column)
+{
+    return store.getValueString(new TreeIter(iterator), column);
+}
+
 void AddColumn(TreeView tree, string name, uint index)
 {
     auto column = new TreeViewColumn;
@@ -103,6 +123,7 @@ void AddColumn(TreeView tree, string name, uint index)
     auto text = new CellRendererText;
     column.packStart(text, 0);
     column.addAttribute(text, "text", index);
+    column.setSortColumnId(index);
 }
 
 void AddRow(ListStore store, uint row)
@@ -111,6 +132,6 @@ void AddRow(ListStore store, uint row)
     store.setValue(iterator, 0, to!string(row + 1));
     foreach (uint column; 1..COLUMNS)
     {
-        store.setValue(iterator, column, "foo");
+        store.setValue(iterator, column, "foo" ~ to!string(row));
     }
 }

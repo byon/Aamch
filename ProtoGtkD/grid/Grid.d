@@ -15,7 +15,7 @@ import gtk.TreeView;
 import gtk.TreeViewColumn;
 import std.conv;
 
-const auto COLUMNS = 20;
+const auto COLUMNS = 3;
 
 void main(string[] args)
 {
@@ -27,8 +27,10 @@ void main(string[] args)
 class Grid : MainWindow
 {
     ListStore store;
+    TreeView tree;
     Label selectedRow;
     uint rows;
+    uint columns;
 
 	this( )
 	{
@@ -36,7 +38,8 @@ class Grid : MainWindow
         auto table = new Table(2, 1, false);
         add(table);
         auto box = new HBox(false, 2);
-        box.add(new Button("Add new row", &ButtonClicked));
+        box.add(new Button("Add new row", &OnAddNewRow));
+        box.add(new Button("Add new column", &OnAddNewColumn));
         selectedRow = new Label("No row is selected");
         box.add(selectedRow);
 
@@ -46,7 +49,7 @@ class Grid : MainWindow
         auto scrolled = new ScrolledWindow(null, null);
         table.attachDefaults(scrolled, 0, 1, 1, 2);
 
-        auto tree = new TreeView;
+        tree = new TreeView;
         scrolled.add(tree);
 
         GType[COLUMNS] types;
@@ -56,9 +59,10 @@ class Grid : MainWindow
 
         foreach (uint column; 0..COLUMNS)
         {
-            store.setSortFunc(column, &Sort, cast(void*)store, null);
-            AddColumn(tree, "column" ~ to!string(column), column);
+            AddColumn(tree, store, "column" ~ to!string(column), column);
         }
+
+        columns = COLUMNS;
 
         foreach (uint row; 0..5)
         {
@@ -76,9 +80,18 @@ class Grid : MainWindow
 		showAll( );
 	}
 
-    void ButtonClicked(Button button)
+    void OnAddNewRow(Button button)
     {
         AddRow(store, rows++);
+    }
+
+    void OnAddNewColumn(Button button)
+    {
+        // Apparently this does not really work as an idea. The "model" (in
+        // practise the ListStore) does not support addition of new columns
+        // after rows have been added. We'll need to create the store again
+        // and add a new store into it.
+        AddColumn(tree, store, "column" ~ to!string(columns), columns++);
     }
 
     void SelectionChanged(TreeSelection selection)
@@ -114,7 +127,7 @@ string ValueAsString(ListStore store, GtkTreeIter* iterator, int column)
     return store.getValueString(new TreeIter(iterator), column);
 }
 
-void AddColumn(TreeView tree, string name, uint index)
+void AddColumn(TreeView tree, ListStore store, string name, uint index)
 {
     auto column = new TreeViewColumn;
     column.setTitle = name;
@@ -124,6 +137,8 @@ void AddColumn(TreeView tree, string name, uint index)
     column.packStart(text, 0);
     column.addAttribute(text, "text", index);
     column.setSortColumnId(index);
+
+    store.setSortFunc(index, &Sort, cast(void*)store, null);
 }
 
 void AddRow(ListStore store, uint row)

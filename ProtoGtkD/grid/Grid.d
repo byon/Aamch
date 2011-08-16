@@ -44,9 +44,10 @@ class Grid
         store.setSortFunc(index, &DoSort, cast(void*)store, null);
     }
 
-    void AddRow(uint row)
+    void AddRow( )
     {
         auto iterator = store.createIter( );
+        uint row = rows++;
         store.setValue(iterator, 0, to!string(row + 1));
         foreach (uint column; 1..columns)
         {
@@ -73,6 +74,7 @@ class Grid
     private ListStore store;
     private TreeView tree;
     private uint columns;
+    private uint rows;
     private SelectionListener selectionListener;
 }
 

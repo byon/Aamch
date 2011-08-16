@@ -9,7 +9,7 @@ import gtk.TreeViewColumn;
 
 import std.conv;
 
-class Gridd
+class Grid
 {
     interface SelectionListener
     {

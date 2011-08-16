@@ -20,11 +20,11 @@ const auto COLUMNS = 3;
 void main(string[] args)
 {
 	Main.init(args);
-	new Grid( );
+	new GridWindow( );
 	Main.run( );
 }
 
-class Grid : MainWindow
+class GridWindow : MainWindow
 {
     ListStore store;
     TreeView tree;

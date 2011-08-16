@@ -11,8 +11,14 @@ import std.conv;
 
 class Gridd
 {
-    this( )
+    interface SelectionListener
     {
+        void Changed(string columns);
+    }
+
+    this(SelectionListener listener)
+    {
+        selectionListener = listener;
         tree = new TreeView;
         store = new ListStore([]);
         tree.setModel(store);
@@ -53,11 +59,13 @@ class Gridd
         TreeModelIF model;
         auto selected = selection.getSelectedRows(model);
 
-        string value;
+        string result;
         foreach(TreePath path; selected)
         {
-            value ~= path.toString( );
+            result ~= path.toString( );
         }
+
+        selectionListener.Changed(result);
     }
 
     alias tree this; /// @todo see later, if this works
@@ -65,6 +73,7 @@ class Gridd
     private ListStore store;
     private TreeView tree;
     private uint columns;
+    private SelectionListener selectionListener;
 }
 
 private extern (C) int DoSort(GtkTreeModel* model, GtkTreeIter* first,

@@ -1,11 +1,13 @@
+import gtk.CellRendererText;
 import gtk.ListStore;
 import gtk.TreeIter;
+import gtk.TreeModelIF;
+import gtk.TreePath;
+import gtk.TreeSelection;
 import gtk.TreeView;
 import gtk.TreeViewColumn;
-import gtk.CellRendererText;
 
 import std.conv;
-/// @todo sort
 
 class Gridd
 {
@@ -14,6 +16,10 @@ class Gridd
         tree = new TreeView;
         store = new ListStore([]);
         tree.setModel(store);
+
+        auto selection = tree.getSelection( );
+        selection.addOnChanged(&SelectionChanged);
+        selection.setMode(SelectionMode.MULTIPLE);
     }
 
     void AddColumn(string name)
@@ -41,6 +47,20 @@ class Gridd
             store.setValue(iterator, column, "foo" ~ to!string(row));
         }
     }
+
+    void SelectionChanged(TreeSelection selection)
+    {
+        TreeModelIF model;
+        auto selected = selection.getSelectedRows(model);
+
+        string value;
+        foreach(TreePath path; selected)
+        {
+            value ~= path.toString( );
+        }
+    }
+
+    alias tree this; /// @todo see later, if this works
 
     private ListStore store;
     private TreeView tree;

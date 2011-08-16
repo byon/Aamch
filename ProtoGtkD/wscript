@@ -10,10 +10,10 @@ def build(bld):
     addProgram(bld, 'exit')
     addProgram(bld, 'popup')
     addProgram(bld, 'button')
-    addProgram(bld, 'grid')
+    addProgram(bld, 'grid', 'grid/main.d')
 
-def addProgram(bld, module):
+def addProgram(bld, module, additionalSources=''):
     title = module.title( )
-    bld.program(source=module + '/' + title + '.d', target=title,
-                dflags='-I.. -I/usr/local/include/d -g',
+    bld.program(source=module + '/' + title + '.d ' + additionalSources,
+                target=title, dflags='-I.. -I/usr/local/include/d -g',
                 libpath='/usr/local/lib/libgtkd.a', lib='dl')

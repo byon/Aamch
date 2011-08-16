@@ -9,10 +9,6 @@ import std.conv;
 
 class Gridd
 {
-    ListStore store;
-    TreeView tree;
-    uint columns;
-
     this( )
     {
         tree = new TreeView;
@@ -46,6 +42,9 @@ class Gridd
         }
     }
 
+    private ListStore store;
+    private TreeView tree;
+    private uint columns;
 }
 
 private extern (C) int DoSort(GtkTreeModel* model, GtkTreeIter* first,

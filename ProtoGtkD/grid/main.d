@@ -1,19 +1,15 @@
 import gtk.Button;
-import gtk.CellRendererText;
 import gtk.HBox;
 import gtk.Label;
-import gtk.ListStore;
 import gtk.Main;
 import gtk.MainWindow;
 import gtk.ScrolledWindow;
 import gtk.Table;
-import gtk.TreeIter;
-import gtk.TreeModelIF;
-import gtk.TreePath;
-import gtk.TreeSelection;
-import gtk.TreeView;
-import gtk.TreeViewColumn;
+
 import std.conv;
+import std.stdio;
+
+import grid.Grid;
 
 const auto COLUMNS = 3;
 
@@ -26,12 +22,6 @@ void main(string[] args)
 
 class GridWindow : MainWindow
 {
-    ListStore store;
-    TreeView tree;
-    Label selectedRow;
-    uint rows;
-    uint columns;
-
 	this( )
 	{
 		super("Grid prototype");
@@ -40,8 +30,11 @@ class GridWindow : MainWindow
         auto box = new HBox(false, 2);
         box.add(new Button("Add new row", &OnAddNewRow));
         box.add(new Button("Add new column", &OnAddNewColumn));
-        selectedRow = new Label("No row is selected");
-        box.add(selectedRow);
+
+        Label label = new Label("No row selected");
+        box.add(label);
+
+        selectionHandler = new SelectionHandler(label);
 
         const AttachOptions EXPAND = AttachOptions.EXPAND | AttachOptions.FILL;
         table.attach(box, 0, 1, 0, 1, EXPAND, AttachOptions.SHRINK, 0, 0);
@@ -49,104 +42,49 @@ class GridWindow : MainWindow
         auto scrolled = new ScrolledWindow(null, null);
         table.attachDefaults(scrolled, 0, 1, 1, 2);
 
-        tree = new TreeView;
-        scrolled.add(tree);
-
-        GType[COLUMNS] types;
-        types[] = GType.STRING;
-
-        store = new ListStore(types);
+        grid = new Grid(selectionHandler);
 
         foreach (uint column; 0..COLUMNS)
         {
-            AddColumn(tree, store, "column" ~ to!string(column), column);
+            grid.AddColumn("column" ~ to!string(column));
         }
-
-        columns = COLUMNS;
 
         foreach (uint row; 0..5)
         {
-            AddRow(store, rows++);
+            grid.AddRow( );
         }
+        grid.AddIntoContainer(scrolled);
 
 		setDefaultSize(400, 300);
-
-        tree.setModel(store);
-
-        auto selection = tree.getSelection( );
-        selection.addOnChanged(&SelectionChanged);
-        selection.setMode(SelectionMode.MULTIPLE);
 
 		showAll( );
 	}
 
     void OnAddNewRow(Button button)
     {
-        AddRow(store, rows++);
+        grid.AddRow( );
     }
 
     void OnAddNewColumn(Button button)
     {
-        // Apparently this does not really work as an idea. The "model" (in
-        // practise the ListStore) does not support addition of new columns
-        // after rows have been added. We'll need to create the store again
-        // and add a new store into it.
-        AddColumn(tree, store, "column" ~ to!string(columns), columns++);
+        grid.AddColumn("column" ~ to!string(grid.GetColumnCount( )));
     }
 
-    void SelectionChanged(TreeSelection selection)
+    private class SelectionHandler : Grid.SelectionListener
     {
-        TreeModelIF model;
-        auto selected = selection.getSelectedRows(model);
-
-        string value;
-        foreach(TreePath path; selected)
+        this(Label selectedRow)
         {
-            value ~= path.toString( );
+            this.selectedRow = selectedRow;
         }
 
-        selectedRow.setText(value);
+        void Changed(string columns)
+        {
+            selectedRow.setText(columns);
+        }
+
+        private Label selectedRow;
     }
-}
 
-extern (C) int Sort(GtkTreeModel* model, GtkTreeIter* first,
-                    GtkTreeIter* second, void* userData)
-{
-    auto store = cast(ListStore)userData;
-
-    int sortColumn;
-    GtkSortType order;
-    store.getSortColumnId(sortColumn, order);
-
-    return std.string.cmp(ValueAsString(store, first, sortColumn),
-                          ValueAsString(store, second, sortColumn));
-}
-
-string ValueAsString(ListStore store, GtkTreeIter* iterator, int column)
-{
-    return store.getValueString(new TreeIter(iterator), column);
-}
-
-void AddColumn(TreeView tree, ListStore store, string name, uint index)
-{
-    auto column = new TreeViewColumn;
-    column.setTitle = name;
-    tree.appendColumn(column);
-
-    auto text = new CellRendererText;
-    column.packStart(text, 0);
-    column.addAttribute(text, "text", index);
-    column.setSortColumnId(index);
-
-    store.setSortFunc(index, &Sort, cast(void*)store, null);
-}
-
-void AddRow(ListStore store, uint row)
-{
-    auto iterator = store.createIter( );
-    store.setValue(iterator, 0, to!string(row + 1));
-    foreach (uint column; 1..COLUMNS)
-    {
-        store.setValue(iterator, column, "foo" ~ to!string(row));
-    }
+    Grid grid;
+    SelectionHandler selectionHandler;
 }

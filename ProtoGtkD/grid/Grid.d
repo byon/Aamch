@@ -1,4 +1,5 @@
 import gtk.CellRendererText;
+import gtk.Container;
 import gtk.ListStore;
 import gtk.TreeIter;
 import gtk.TreeModelIF;
@@ -20,7 +21,9 @@ class Grid
     {
         selectionListener = listener;
         tree = new TreeView;
-        store = new ListStore([]);
+        GType[20] types;
+        types[] = GType.STRING;
+        store = new ListStore(types);
         tree.setModel(store);
 
         auto selection = tree.getSelection( );
@@ -55,7 +58,17 @@ class Grid
         }
     }
 
-    void SelectionChanged(TreeSelection selection)
+    uint GetColumnCount( )
+    {
+        return columns;
+    }
+
+    void AddIntoContainer(Container container)
+    {
+        container.add(tree);
+    }
+
+    private void SelectionChanged(TreeSelection selection)
     {
         TreeModelIF model;
         auto selected = selection.getSelectedRows(model);
@@ -68,8 +81,6 @@ class Grid
 
         selectionListener.Changed(result);
     }
-
-    alias tree this; /// @todo see later, if this works
 
     private ListStore store;
     private TreeView tree;

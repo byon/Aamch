@@ -40,17 +40,18 @@ class GridWindow : MainWindow
         const AttachOptions EXPAND = AttachOptions.EXPAND | AttachOptions.FILL;
         table.attach(box, 0, 1, 0, 1, EXPAND, AttachOptions.SHRINK, 0, 0);
 
-        grid = AddScrollableGrid(table);
+        topGrid = AddScrollableGrid(table, 1);
+        bottomGrid = AddScrollableGrid(table, 2);
 
 		setDefaultSize(400, 300);
 
 		showAll( );
 	}
 
-    Grid AddScrollableGrid(Table table)
+    Grid AddScrollableGrid(Table table, uint row)
     {
         auto scrolled = new ScrolledWindow(null, null);
-        table.attachDefaults(scrolled, 0, 1, 1, 2);
+        table.attachDefaults(scrolled, 0, 1, row, row +1);
 
         return AddGrid(scrolled);
     }
@@ -76,12 +77,12 @@ class GridWindow : MainWindow
 
     void OnAddNewRow(Button button)
     {
-        grid.AddRow( );
+        topGrid.AddRow( );
     }
 
     void OnAddNewColumn(Button button)
     {
-        grid.AddColumn("column" ~ to!string(grid.GetColumnCount( )));
+        topGrid.AddColumn("column" ~ to!string(topGrid.GetColumnCount( )));
     }
 
     private class SelectionHandler : Grid.SelectionListener
@@ -99,6 +100,7 @@ class GridWindow : MainWindow
         private Label selectedRow;
     }
 
-    Grid grid;
+    Grid topGrid;
+    Grid bottomGrid;
     SelectionHandler selectionHandler;
 }

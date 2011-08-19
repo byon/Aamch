@@ -1,4 +1,5 @@
 import gtk.Button;
+import gtk.Container;
 import gtk.HBox;
 import gtk.Label;
 import gtk.Main;
@@ -25,7 +26,7 @@ class GridWindow : MainWindow
 	this( )
 	{
 		super("Grid prototype");
-        auto table = new Table(2, 1, false);
+        auto table = new Table(3, 1, false);
         add(table);
         auto box = new HBox(false, 2);
         box.add(new Button("Add new row", &OnAddNewRow));
@@ -39,26 +40,39 @@ class GridWindow : MainWindow
         const AttachOptions EXPAND = AttachOptions.EXPAND | AttachOptions.FILL;
         table.attach(box, 0, 1, 0, 1, EXPAND, AttachOptions.SHRINK, 0, 0);
 
-        auto scrolled = new ScrolledWindow(null, null);
-        table.attachDefaults(scrolled, 0, 1, 1, 2);
-
-        grid = new Grid(selectionHandler);
-
-        foreach (uint column; 0..COLUMNS)
-        {
-            grid.AddColumn("column" ~ to!string(column));
-        }
-
-        foreach (uint row; 0..5)
-        {
-            grid.AddRow( );
-        }
-        grid.AddIntoContainer(scrolled);
+        grid = AddScrollableGrid(table);
 
 		setDefaultSize(400, 300);
 
 		showAll( );
 	}
+
+    Grid AddScrollableGrid(Table table)
+    {
+        auto scrolled = new ScrolledWindow(null, null);
+        table.attachDefaults(scrolled, 0, 1, 1, 2);
+
+        return AddGrid(scrolled);
+    }
+
+    Grid AddGrid(Container container)
+    {
+        auto result = new Grid(selectionHandler);
+
+        foreach (uint column; 0..COLUMNS)
+        {
+            result.AddColumn("column" ~ to!string(column));
+        }
+
+        foreach (uint row; 0..5)
+        {
+            result.AddRow( );
+        }
+
+        result.AddIntoContainer(container);
+
+        return result;
+    }
 
     void OnAddNewRow(Button button)
     {

@@ -26,7 +26,7 @@ class GridWindow : MainWindow
 	this( )
 	{
 		super("Grid prototype");
-        auto table = new Table(3, 1, false);
+        auto table = new Table(2, 1, false);
         add(table);
         auto box = new HBox(false, 2);
         box.add(new Button("Add new row", &OnAddNewRow));
@@ -40,18 +40,20 @@ class GridWindow : MainWindow
         const AttachOptions EXPAND = AttachOptions.EXPAND | AttachOptions.FILL;
         table.attach(box, 0, 1, 0, 1, EXPAND, AttachOptions.SHRINK, 0, 0);
 
-        topGrid = AddScrollableGrid(table, 1);
-        bottomGrid = AddScrollableGrid(table, 2);
+        auto gridBox = new HBox(false, 2);
+        table.attachDefaults(gridBox, 0, 1, 1, 2);
+        topGrid = AddScrollableGrid(gridBox, 1);
+        bottomGrid = AddScrollableGrid(gridBox, 2);
 
 		setDefaultSize(400, 300);
 
 		showAll( );
 	}
 
-    Grid AddScrollableGrid(Table table, uint row)
+    Grid AddScrollableGrid(Container container, uint row)
     {
         auto scrolled = new ScrolledWindow(null, null);
-        table.attachDefaults(scrolled, 0, 1, row, row +1);
+        container.add(scrolled);
 
         return AddGrid(scrolled);
     }

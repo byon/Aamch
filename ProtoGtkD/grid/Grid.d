@@ -1,5 +1,6 @@
 import gtk.CellRendererText;
 import gtk.Container;
+import gdk.Keysyms;
 import gtk.ListStore;
 import gtk.TreeIter;
 import gtk.TreeModelIF;
@@ -7,8 +8,10 @@ import gtk.TreePath;
 import gtk.TreeSelection;
 import gtk.TreeView;
 import gtk.TreeViewColumn;
+import gtk.Widget;
 
 import std.conv;
+import std.stdio;
 
 class Grid
 {
@@ -25,6 +28,7 @@ class Grid
         types[] = GType.STRING;
         store = new ListStore(types);
         tree.setModel(store);
+        tree.addOnKeyPress(&OnKeyPressed);
 
         auto selection = tree.getSelection( );
         selection.addOnChanged(&SelectionChanged);
@@ -80,6 +84,16 @@ class Grid
         }
 
         selectionListener.Changed(result);
+    }
+
+    private bool OnKeyPressed(GdkEventKey* key, Widget widget)
+    {
+        writeln("key pressed, ", key.keyval, " ",
+                key.keyval == GdkKeysyms.GDK_Left, " ",
+                key.keyval == GdkKeysyms.GDK_Right, " ", key.state, " ",
+                (key.state & GdkModifierType.SHIFT_MASK ? true : false), " ",
+                (key.state & GdkModifierType.MOD1_MASK ? true : false) );
+        return widget.onKeyPressEvent(key);
     }
 
     private ListStore store;

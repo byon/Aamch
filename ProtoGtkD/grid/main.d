@@ -1,3 +1,5 @@
+module grid.main;
+
 import gtk.Button;
 import gtk.Container;
 import gtk.HBox;

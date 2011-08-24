@@ -1,3 +1,5 @@
+module grid.Grid;
+
 import gtk.CellRendererText;
 import gtk.Container;
 import gdk.Keysyms;

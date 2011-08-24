@@ -1,0 +1,29 @@
+
+* User stories for Axis And Allies Minitaures Chooser, Aamch
+** Environment
+** As a developer I want to see empty UI before building functionality, so I can be confident the build system is working
+** Error handling
+*** As a player I want to see instructions for finding a troop data file, if it is missing, so I will know to look for the file
+*** As a player I want to see instructions for replacing troop data file with a valid one, if parsing fails, so I can point to a valid file
+** Listing of the basic values
+*** As a player I want to see the name of troops listed, so I can identify them
+*** As a player I want to see the cost of the troops listed, so I can pick the ones I can afford
+*** As a player I want to see the type and subtype of the troops listed, so I can choose troops of specific type
+*** As a player I want to see the defense values of the troops listed, so I can choose troops that can defend well
+*** As a player I want to see the soldier attack values against solders of the troops listed, so I can choose troops that can attack well against soldiers
+*** As a player I want to see the vehicle attack values of the troops listed, so I can choose troops that can attack well against vehicles
+*** As a player I want to see the
+*** As a player I want to see list of the special ability names listed with the troops, so I can choose troops when I already know the special ability
+*** As a player I want to see possible command effects listed with special ability names, so I can use them to choose effective commander
+** Specifics of a troop
+*** As a player I want to see the complete information of a particular troop when I want, so I can see it all in a condensed format when I need it, but not otherwise
+*** As a player I want possibility to see nation and year of a particular troop, so I can use it in scenarios that require specific background
+*** As a player I want possibility to see speed of a particular troop, so I can make strategic decisions of the army movement capabilities
+*** As a player I want possibility to see possible command value of a troop listed, so I can select suitable commanders
+*** As a player I want possibility to see the id of the troop so I can use it to match the troop to a miniature
+*** As a player I do not want to see the rarity or the set of the troops, as they are irrelevant to troop selection
+*** As a player I want to be able to select which information of troops are listed constantly and which are available only when viewing specifics
+** Troop organization in view
+*** As a player I want to be able to sort the shown troops alphabetically according to a particular listed item, so I can find specific kinds of troops easily
+*** As a player I want to sort the shown troops alphabetically in reverse order according to a particular listed item, so I can find specific kinds of troops easily
+*** As a player I want to filter away listed troops, if values of particular field do not match a string I've given, so I can concentrate my selection process to particular kinds of troops

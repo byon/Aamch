@@ -23,6 +23,7 @@
 *** As a player I want possibility to see the id of the troop so I can use it to match the troop to a miniature
 *** As a player I do not want to see the rarity or the set of the troops, as they are irrelevant to troop selection
 *** As a player I want to be able to select which information of troops are listed constantly and which are available only when viewing specifics
+*** As a player I want to be able to see description of a special ability, so I do not need to rely on my memory when selecting a troop
 ** Troop organization in view
 *** As a player I want to be able to sort the shown troops alphabetically according to a particular listed item, so I can find specific kinds of troops easily
 *** As a player I want to sort the shown troops alphabetically in reverse order according to a particular listed item, so I can find specific kinds of troops easily
@@ -30,6 +31,18 @@
 ** Selection of troops
 *** TODO As a player I want to select a troop into a group, so I can create a list of troops for the actual game
 *** TODO As a player I want to remove a troop from a group, so I can undo any mistakes made
+*** TODO As a player I want to see the group's cost increase by the cost of a newly selected troop, so I can evaluate whether the troop is worth the price
+*** TODO As a player I want to see the group's cost decrease by the cost of a newly removed troop, so the group cost will be up-to-date
+*** TODO As a player I want to add several troops at the same time into a group, so the UI will not force me to repeat the same actions
+*** TODO As a player I want to remove several troops at the same time from  a group, so the UI will not force me to repeat the same actions
 *** TODO As a player I want to create several groups at the same time, so I can compare them for the final army selection
 *** TODO As a player I want the group selection and removal to work through keyboard input, so I can make modifications fast
 *** TODO As a player I want the group selection and removal to work through mouse input, so I don't need necessarily to learn the keyboard commands
+*** TODO As a player I want to be notified when adding a troop into a group will take the cost over the maximum, so I do not need to remember the maximum cost by myself
+*** TODO As a player I want to be notified when adding a troop into a group will take the army size over the maximum, so I do not need to remember the maximum size by myself
+*** TODO As a player I want to add troops into group regardless of the group cost, so I will be able to to play with possible group possibilities
+*** TODO As a player I want to add troops into group regardless of the group size, so I will be able to to play with possible group possibilities
+*** TODO As a player I want to be change the maximum army cost, so I can use the tool for different game rules
+*** TODO As a player I want to be change the maximum army size, so I can use the tool for different game rules
+*** TODO As a player I want to remove an entire group in one user action, so the repetition will not annoy me
+*** TODO As a player I want to create subgroups of subgroups, so I can refine the final army selection incrementally

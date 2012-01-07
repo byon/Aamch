@@ -1,7 +1,7 @@
 
 * User stories for Axis And Allies Minitaures Chooser, Aamch
 ** Environment
-** As a developer I want to see empty UI before building functionality, so I can be confident the build system is working
+*** As a developer I want to see empty UI before building functionality, so I can be confident the build system is working
 ** Error handling
 *** As a player I want to see instructions for finding a troop data file, if it is missing, so I will know to look for the file
 *** As a player I want to see instructions for replacing troop data file with a valid one, if parsing fails, so I can point to a valid file
@@ -27,3 +27,9 @@
 *** As a player I want to be able to sort the shown troops alphabetically according to a particular listed item, so I can find specific kinds of troops easily
 *** As a player I want to sort the shown troops alphabetically in reverse order according to a particular listed item, so I can find specific kinds of troops easily
 *** As a player I want to filter away listed troops, if values of particular field do not match a string I've given, so I can concentrate my selection process to particular kinds of troops
+** Selection of troops
+*** TODO As a player I want to select a troop into a group, so I can create a list of troops for the actual game
+*** TODO As a player I want to remove a troop from a group, so I can undo any mistakes made
+*** TODO As a player I want to create several groups at the same time, so I can compare them for the final army selection
+*** TODO As a player I want the group selection and removal to work through keyboard input, so I can make modifications fast
+*** TODO As a player I want the group selection and removal to work through mouse input, so I don't need necessarily to learn the keyboard commands

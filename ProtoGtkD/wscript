@@ -6,10 +6,6 @@ def configure(cnf):
     cnf.load('compiler_d')
 
 def build(bld):
-    addProgram(bld, 'hello')
-    addProgram(bld, 'exit')
-    addProgram(bld, 'popup')
-    addProgram(bld, 'button')
     addProgram(bld, 'grid', 'grid/main.d')
 
 def addProgram(bld, module, additionalSources=''):

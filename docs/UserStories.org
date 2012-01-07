@@ -46,3 +46,6 @@
 *** TODO As a player I want to be change the maximum army size, so I can use the tool for different game rules
 *** TODO As a player I want to remove an entire group in one user action, so the repetition will not annoy me
 *** TODO As a player I want to create subgroups of subgroups, so I can refine the final army selection incrementally
+** Miscellaneous
+*** TODO As a developer I want to add comment lines into troop file, so I can add proper copyright information
+*** TODO As a developer I want the the troop file contain the copyright information, so the credit is given where credit is due

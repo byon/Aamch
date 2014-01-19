@@ -9,33 +9,16 @@ namespace AcceptanceTests
     [TestClass]
     public class ApplicationTest
     {
-        private const string APPLICATION_BASE = @"..\..\..\Aamch\bin\";
-#if DEBUG
-        private const string CONFIGURATION = @"Debug\";
-#else
-        private const string CONFIGURATION = @"Release\";
-#endif
-        private const string APPLICATION_DIRECTORY = APPLICATION_BASE +
-                                                     CONFIGURATION;
-        private const string APPLICATION_NAME = "Aamch.exe";
-        private const string APPLICATION = APPLICATION_DIRECTORY +
-                                           APPLICATION_NAME;
-
-        private Application application;
-        private Window  window;
-
         [TestInitialize]
         public void StartApplication()
         {
-            application = Application.Launch(APPLICATION);
-            window = application.GetWindow("MainWindow",
-                                           InitializeOption.NoCache);
+            Context.GetMainWindow();
         }
 
         [TestCleanup]
         public void CloseApplication()
         {
-            window.Close();
+            Context.CloseMainWindow();
         }
 
         [TestMethod]

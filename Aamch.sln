@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aamch", "Aamch/Aamch.csproj", "{77D85D7A-15AF-44BB-8CA1-4633E514EA71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aamch", "Aamch\Aamch.csproj", "{77D85D7A-15AF-44BB-8CA1-4633E514EA71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcceptanceTests", "AcceptanceTests\AcceptanceTests.csproj", "{87CD2A55-203D-4B1A-8322-2A1AACD7A80C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,10 @@ Global
 		{77D85D7A-15AF-44BB-8CA1-4633E514EA71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77D85D7A-15AF-44BB-8CA1-4633E514EA71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77D85D7A-15AF-44BB-8CA1-4633E514EA71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87CD2A55-203D-4B1A-8322-2A1AACD7A80C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87CD2A55-203D-4B1A-8322-2A1AACD7A80C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87CD2A55-203D-4B1A-8322-2A1AACD7A80C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87CD2A55-203D-4B1A-8322-2A1AACD7A80C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace AcceptanceTests
 {
     [TestClass]
-    public class UnitTest1
+    public class ApplicationTest
     {
         [TestMethod]
         public void TestMethod1()

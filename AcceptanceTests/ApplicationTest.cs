@@ -13,7 +13,7 @@ namespace AcceptanceTests
 #if DEBUG
         private const string CONFIGURATION = @"Debug\";
 #else
-        private const string CONFIGURATION = "Release";
+        private const string CONFIGURATION = @"Release\";
 #endif
         private const string APPLICATION_DIRECTORY = APPLICATION_BASE +
                                                      CONFIGURATION;

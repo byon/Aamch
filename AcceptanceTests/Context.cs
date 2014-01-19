@@ -37,12 +37,21 @@ namespace AcceptanceTests
         public static void CloseMainWindow()
         {
             GetMainWindow().Close();
-            ScenarioContext.Current.Remove("application");
+        }
+
+        public static bool IsApplicationRunning()
+        {
+            return !CachedObject<Application>("application").HasExited;
         }
 
         private static Window GetWindow(string name)
         {
             return GetApplication().GetWindow(name, InitializeOption.NoCache);
+        }
+
+        private static T CachedObject<T>(string id)
+        {
+            return (T)ScenarioContext.Current[id];
         }
 
         private static T CachedObject<T>(string id, Creator creator)

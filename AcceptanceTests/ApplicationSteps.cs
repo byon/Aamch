@@ -10,13 +10,13 @@ namespace AcceptanceTests
         [Given(@"the application is running")]
         public void GivenTheApplicationIsRunning()
         {
-            Context.GetMainWindow();
+            Context.GetApplication();
         }
         
         [When(@"I close the application")]
         public void WhenICloseTheApplication()
         {
-            Context.CloseMainWindow();
+            Context.GetApplication().Exit();
         }
         
         [Then(@"application is no longer running")]

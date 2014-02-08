@@ -1,52 +1,21 @@
 ﻿using TechTalk.SpecFlow;
-using TestStack.White;
-using TestStack.White.Factory;
-using TestStack.White.UIItems.WindowItems;
 
 namespace AcceptanceTests
 {
     class Context
     {
-        private const string APPLICATION_BASE = @"..\..\..\Aamch\bin\";
-#if DEBUG
-        private const string CONFIGURATION = @"Debug\";
-#else
-        private const string CONFIGURATION = @"Release\";
-#endif
-        private const string APPLICATION_DIRECTORY = APPLICATION_BASE +
-                                                     CONFIGURATION;
-        private const string APPLICATION_NAME = "Aamch.exe";
-        private const string APPLICATION = APPLICATION_DIRECTORY +
-                                           APPLICATION_NAME;
-
         private delegate object Creator();
 
-        /// @todo Should not return White specific objects, but wrappers
-
-        public static Application GetApplication()
+        public static TestedApplication GetApplication()
         {
-            Creator launch = () => Application.Launch(APPLICATION);
-            return CachedObject<Application>("application", launch);
-        }
-
-        public static Window GetMainWindow()
-        {
-            return GetWindow("MainWindow");
-        }
-
-        public static void CloseMainWindow()
-        {
-            GetMainWindow().Close();
+            Creator launch = () => new TestedApplication();
+            return CachedObject<TestedApplication>("application", launch);
         }
 
         public static bool IsApplicationRunning()
         {
-            return !CachedObject<Application>("application").HasExited;
-        }
-
-        private static Window GetWindow(string name)
-        {
-            return GetApplication().GetWindow(name, InitializeOption.NoCache);
+            var application = CachedObject<TestedApplication>("application");
+            return application.IsApplicationRunning();
         }
 
         private static T CachedObject<T>(string id)

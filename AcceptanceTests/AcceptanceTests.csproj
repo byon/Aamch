@@ -59,6 +59,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="TestedApplication.cs" />
     <Compile Include="ApplicationSteps.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

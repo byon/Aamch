@@ -3,3 +3,4 @@ bin/
 obj/
 packages/
 *.feature.cs
+AllTroops.txt

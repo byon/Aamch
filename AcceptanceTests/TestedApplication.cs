@@ -32,7 +32,7 @@ namespace AcceptanceTests
 
         public bool IsApplicationRunning()
         {
-            return application.HasExited;
+            return !application.HasExited;
         }
 
         private Window GetMainWindow()

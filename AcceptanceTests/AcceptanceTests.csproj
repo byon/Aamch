@@ -69,11 +69,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BasicValues.feature</DependentUpon>
     </Compile>
-    <Compile Include="TestedApplication.cs" />
-    <Compile Include="ApplicationSteps.cs" />
-    <Compile Include="Context.cs" />
+    <Compile Include="Support\TestedApplication.cs" />
+    <Compile Include="Steps\ApplicationSteps.cs" />
+    <Compile Include="Support\Context.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValueSteps.cs" />
+    <Compile Include="Steps\ValueSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

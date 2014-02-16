@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json.Linq;
 
 namespace TestData
 {
@@ -37,6 +39,25 @@ namespace TestData
         {
             repository.Write(TROOP_FILE_PATH);
             Assert.IsTrue(Directory.Exists(TROOP_DIRECTORY));
+        }
+
+        [TestMethod]
+        public void OneTroopIsWritten()
+        {
+            repository.AddTroop(new Repository.Troop("troop"));
+            repository.Write(TROOP_FILE_PATH);
+            Assert.AreEqual(1, WrittenTroops().Count);
+        }
+
+        private List<Repository.Troop> WrittenTroops()
+        {
+            var result = new List<Repository.Troop>();
+            var data = JArray.Parse(File.ReadAllText(TROOP_FILE_PATH));
+            foreach (var troop in data.Children())
+            {
+                result.Add(new Repository.Troop("don't care yet"));
+            }
+            return result;
         }
 
         private void CleanupTroopData()

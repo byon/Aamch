@@ -46,7 +46,7 @@ namespace TestData
         {
             repository.AddTroop(new Repository.Troop("troop"));
             repository.Write(TROOP_FILE_PATH);
-            Assert.AreEqual(1, WrittenTroops().Count);
+            Assert.AreEqual(1, WrittenTroops().Length);
         }
 
         [TestMethod]
@@ -57,18 +57,26 @@ namespace TestData
                 repository.AddTroop(new Repository.Troop("troop" + i));
             }
             repository.Write(TROOP_FILE_PATH);
-            Assert.AreEqual(20, WrittenTroops().Count);
+            Assert.AreEqual(20, WrittenTroops().Length);
         }
 
-        private List<Repository.Troop> WrittenTroops()
+        [TestMethod]
+        public void NameIsWritten()
+        {
+            repository.AddTroop(new Repository.Troop("troop"));
+            repository.Write(TROOP_FILE_PATH);
+            Assert.AreEqual("troop", WrittenTroops()[0].Name);
+        }
+
+        private Repository.Troop[] WrittenTroops()
         {
             var result = new List<Repository.Troop>();
             var data = JArray.Parse(File.ReadAllText(TROOP_FILE_PATH));
             foreach (var troop in data.Children())
             {
-                result.Add(new Repository.Troop("don't care yet"));
+                result.Add(new Repository.Troop(troop.Value<string>("Name")));
             }
-            return result;
+            return result.ToArray();
         }
 
         private void CleanupTroopData()

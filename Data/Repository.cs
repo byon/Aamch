@@ -10,7 +10,7 @@ namespace Data
     {
         public class Troop
         {
-            public Troop(string name)
+            public Troop(string name = "")
             {
                 Name = name;
             }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Data
 {
@@ -17,7 +18,20 @@ namespace Data
 
         public void Write(string path)
         {
-            throw new IoFailure("Could not write troop file");
+            try
+            {
+                WriteWithoutErrorHandling(path);
+            }
+            catch (SystemException e)
+            {
+                throw new IoFailure("Failed to write troop file " +
+                                    e.Message);
+            }
+        }
+
+        private void WriteWithoutErrorHandling(string path)
+        {
+            File.WriteAllText(path, "nothing yet");
         }
     }
 }

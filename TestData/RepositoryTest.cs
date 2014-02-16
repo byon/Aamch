@@ -16,6 +16,7 @@ namespace TestData
         public void Initialize()
         {
             CleanupTroopData();
+            Directory.CreateDirectory(TROOP_DIRECTORY);
         }
 
         [TestCleanup]
@@ -29,6 +30,13 @@ namespace TestData
         public void WritingFailureIsNoticed()
         {
             repository.Write(@"unexistingFolder\file.json");
+        }
+
+        [TestMethod]
+        public void WritingTroopsCreatesCorrectFile()
+        {
+            repository.Write(TROOP_FILE_PATH);
+            Assert.IsTrue(Directory.Exists(TROOP_DIRECTORY));
         }
 
         private void CleanupTroopData()

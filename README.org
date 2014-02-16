@@ -1,6 +1,6 @@
 
 * Aamch
-Aamch is a tool to help choosing troops for a session of Axis and Allies Miniatures boardgame. It is very much a work in progress. The intention is to have fun, learn about D programming language and perhaps finally get usable tool of some sorts.
+Aamch is a tool to help choosing troops for a session of Axis and Allies Miniatures boardgame. It is very much a work in progress. The intention is to have fun, learn about C# programming language and perhaps finally get usable tool of some sorts.
 ** Legal stuff
 *** License for code
 **** Aamch code is licensed under Boost Software license 1.0

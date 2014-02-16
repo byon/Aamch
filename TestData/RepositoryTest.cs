@@ -49,6 +49,17 @@ namespace TestData
             Assert.AreEqual(1, WrittenTroops().Count);
         }
 
+        [TestMethod]
+        public void SeveralTroopsAreWritten()
+        {
+            for (var i = 0; i < 20; ++i)
+            {
+                repository.AddTroop(new Repository.Troop("troop" + i));
+            }
+            repository.Write(TROOP_FILE_PATH);
+            Assert.AreEqual(20, WrittenTroops().Count);
+        }
+
         private List<Repository.Troop> WrittenTroops()
         {
             var result = new List<Repository.Troop>();

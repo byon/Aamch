@@ -1,5 +1,6 @@
 ﻿using System;
 using TechTalk.SpecFlow;
+using Data;
 
 namespace AcceptanceTests
 {
@@ -9,7 +10,7 @@ namespace AcceptanceTests
         [Given(@"that troops include ""(.*)""")]
         public void GivenThatTroopsInclude(string name)
         {
-            ScenarioContext.Current.Pending();
+            Context.EnsureTroopExists(name);
         }
         
         [When(@"troops are viewed")]

@@ -49,7 +49,13 @@ namespace Data
 
         private void WriteWithoutErrorHandling(string path)
         {
+            EnsureDirectoryExistsForFile(path);
             File.WriteAllText(path, TroopsToJson());
+        }
+
+        private void EnsureDirectoryExistsForFile(string path)
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
         }
 
         private string TroopsToJson()
@@ -62,6 +68,11 @@ namespace Data
         {
             var troop = pair.Value;
             return new JObject(new JProperty("Name", troop.Name));
+        }
+
+        public bool HasTroop(string name)
+        {
+            return troops.ContainsKey(name);
         }
     }
 }

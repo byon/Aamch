@@ -31,14 +31,23 @@ namespace TestData
         [ExpectedException(typeof(Repository.IoFailure))]
         public void WritingFailureIsNoticed()
         {
-            repository.Write(@"unexistingFolder\file.json");
+            File.WriteAllText(@"Troops\file", "irrelevant contents");
+            repository.Write(@"Troops\file\file.json");
         }
 
         [TestMethod]
         public void WritingTroopsCreatesCorrectFile()
         {
             repository.Write(TROOP_FILE_PATH);
-            Assert.IsTrue(Directory.Exists(TROOP_DIRECTORY));
+            Assert.IsTrue(File.Exists(TROOP_FILE_PATH));
+        }
+
+        [TestMethod]
+        public void WritingTroopsCreatesDirectoryStructure()
+        {
+            var directory = TROOP_DIRECTORY + @"dir\";
+            repository.Write(directory + "troop.json");
+            Assert.IsTrue(Directory.Exists(directory));
         }
 
         [TestMethod]
@@ -66,6 +75,19 @@ namespace TestData
             repository.AddTroop(new Repository.Troop("troop"));
             repository.Write(TROOP_FILE_PATH);
             Assert.AreEqual("troop", WrittenTroops()[0].Name);
+        }
+
+        [TestMethod]
+        public void CanRecognizeThatTroopDoesNotExist()
+        {
+            Assert.IsFalse(repository.HasTroop("doesNotExist"));
+        }
+
+        [TestMethod]
+        public void CanRecognizeThatTroopDoesExists()
+        {
+            repository.AddTroop(new Repository.Troop("existing"));
+            Assert.IsTrue(repository.HasTroop("existing"));
         }
 
         private Repository.Troop[] WrittenTroops()

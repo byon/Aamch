@@ -69,6 +69,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BasicValues.feature</DependentUpon>
     </Compile>
+    <Compile Include="Steps\EnsureApplicationLifetime.cs" />
     <Compile Include="Support\TestedApplication.cs" />
     <Compile Include="Steps\ApplicationSteps.cs" />
     <Compile Include="Support\Context.cs" />

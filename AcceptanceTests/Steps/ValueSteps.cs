@@ -1,11 +1,13 @@
 ﻿using System;
 using TechTalk.SpecFlow;
 using Data;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using AcceptanceTests.Steps;
 
 namespace AcceptanceTests
 {
     [Binding]
-    public class StepDefinitions
+    public class StepDefinitions : EnsureApplicationLifetime
     {
         [Given(@"that troops include ""(.*)""")]
         public void GivenThatTroopsInclude(string name)

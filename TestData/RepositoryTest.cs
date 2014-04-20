@@ -7,12 +7,12 @@ using Newtonsoft.Json.Linq;
 
 namespace TestData
 {
-    [TestClass]
-    public class RepositoryTest
+    public class RepositoryTestBase
     {
-        private static string TROOP_DIRECTORY = @"Troops\";
-        private static string TROOP_FILE_PATH = TROOP_DIRECTORY + "troop.json";
-        private Repository repository = new Repository();
+        protected static string TROOP_DIRECTORY = @"Troops\";
+        protected static string TROOP_FILE_PATH = TROOP_DIRECTORY +
+                                                  "troop.json";
+        protected Repository repository = new Repository();
 
         [TestInitialize]
         public void Initialize()
@@ -27,6 +27,29 @@ namespace TestData
             CleanupTroopData();
         }
 
+        protected Repository.Troop[] WrittenTroops()
+        {
+            var result = new List<Repository.Troop>();
+            var data = JArray.Parse(File.ReadAllText(TROOP_FILE_PATH));
+            foreach (var troop in data.Children())
+            {
+                result.Add(new Repository.Troop(troop.Value<string>("Name")));
+            }
+            return result.ToArray();
+        }
+
+        private void CleanupTroopData()
+        {
+            if (Directory.Exists(TROOP_DIRECTORY))
+            {
+                Directory.Delete(TROOP_DIRECTORY, true);
+            }
+        }
+    }
+
+    [TestClass]
+    public class WritingToRepositoryTest : RepositoryTestBase
+    {
         [TestMethod]
         [ExpectedException(typeof(Repository.IoFailure))]
         public void WritingFailureIsNoticed()
@@ -88,25 +111,6 @@ namespace TestData
         {
             repository.AddTroop(new Repository.Troop("existing"));
             Assert.IsTrue(repository.HasTroop("existing"));
-        }
-
-        private Repository.Troop[] WrittenTroops()
-        {
-            var result = new List<Repository.Troop>();
-            var data = JArray.Parse(File.ReadAllText(TROOP_FILE_PATH));
-            foreach (var troop in data.Children())
-            {
-                result.Add(new Repository.Troop(troop.Value<string>("Name")));
-            }
-            return result.ToArray();
-        }
-
-        private void CleanupTroopData()
-        {
-            if (Directory.Exists(TROOP_DIRECTORY))
-            {
-                Directory.Delete(TROOP_DIRECTORY, true);
-            }
         }
     }
 }

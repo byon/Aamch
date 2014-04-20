@@ -24,7 +24,7 @@ namespace AcceptanceTests
         [Then(@"""(.*)"" should be included in list of troops")]
         public void ThenShouldBeIncludedInListOfTroops(string name)
         {
-            ScenarioContext.Current.Pending();
+            CollectionAssert.Contains(Context.GetTroops(), name);
         }
     }
 }

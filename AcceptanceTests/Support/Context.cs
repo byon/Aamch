@@ -41,6 +41,11 @@ namespace AcceptanceTests
             CacheObject("viewedTroops", GetApplication().GetTroops());
         }
 
+        public static string[] GetTroops()
+        {
+            return CachedObject<string[]>("viewedTroops");
+        }
+
         private static Repository.Troop CreateTroop(string name)
         {
             return new Repository.Troop(name);

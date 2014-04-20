@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Data;
 
 namespace Aamch
 {
@@ -20,9 +21,20 @@ namespace Aamch
     /// </summary>
     public partial class MainWindow : Window
     {
+        Repository repository = new Repository();
+
         public MainWindow()
         {
             InitializeComponent();
+            ShowTroops();
+        }
+
+        private void ShowTroops()
+        {
+            /*
+            repository.Read(@"Troops\troops.json");
+            var troops = repository.GetTroops();
+             */
         }
     }
 }

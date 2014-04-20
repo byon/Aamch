@@ -40,11 +40,26 @@ namespace Data
             }
         }
 
+        public void Read(string path)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddTroop(Troop troop)
         {
             /// @todo Troop is not necessarily uniquely identifieble from the
             ///       name. Some troops come from different supplements.
             troops[troop.Name] = troop;
+        }
+
+        public bool HasTroop(string name)
+        {
+            return troops.ContainsKey(name);
+        }
+
+        public Troop[] GetTroops()
+        {
+            throw new NotImplementedException();
         }
 
         private void WriteWithoutErrorHandling(string path)
@@ -68,11 +83,6 @@ namespace Data
         {
             var troop = pair.Value;
             return new JObject(new JProperty("Name", troop.Name));
-        }
-
-        public bool HasTroop(string name)
-        {
-            return troops.ContainsKey(name);
         }
     }
 }

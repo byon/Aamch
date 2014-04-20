@@ -36,6 +36,11 @@ namespace AcceptanceTests
             return application.IsApplicationRunning();
         }
 
+        public static void ViewTroops()
+        {
+            CacheObject("viewedTroops", GetApplication().GetTroops());
+        }
+
         private static Repository.Troop CreateTroop(string name)
         {
             return new Repository.Troop(name);
@@ -51,9 +56,14 @@ namespace AcceptanceTests
             var current = ScenarioContext.Current;
             if (!current.ContainsKey(id))
             {
-                current.Add(id, creator());
+                CacheObject(id, creator());
             }
             return (T)current[id];
+        }
+
+        private static void CacheObject(string id, object toStore)
+        {
+            ScenarioContext.Current.Add(id, toStore);
         }
     }
 }

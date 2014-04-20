@@ -1,5 +1,7 @@
-﻿using TestStack.White;
+﻿using System;
+using TestStack.White;
 using TestStack.White.Factory;
+using TestStack.White.UIItems;
 using TestStack.White.UIItems.WindowItems;
 
 namespace AcceptanceTests
@@ -27,12 +29,21 @@ namespace AcceptanceTests
 
         public void Exit()
         {
-            GetMainWindow().Close();
+            if (IsApplicationRunning())
+            {
+                GetMainWindow().Close();
+            }
         }
 
         public bool IsApplicationRunning()
         {
             return !application.HasExited;
+        }
+
+        public string[] GetTroops()
+        {
+            var item = GetMainWindow().Get<Label>("troopList");
+            return new[] {item.Name};
         }
 
         private Window GetMainWindow()

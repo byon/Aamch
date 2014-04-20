@@ -18,7 +18,7 @@ namespace AcceptanceTests
         [When(@"troops are viewed")]
         public void WhenTroopsAreViewed()
         {
-            ScenarioContext.Current.Pending();
+            Context.ViewTroops();
         }
         
         [Then(@"""(.*)"" should be included in list of troops")]

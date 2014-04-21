@@ -9,15 +9,8 @@ namespace AcceptanceTests.Steps
     [Binding]
     public class EnsureApplicationLifetime
     {
-        [BeforeScenario]
-        public static void EnsureApplicationIsRunning()
-        {
-            /// @todo Explicit start method might be more clear
-            Context.GetApplication();
-        }
-
         [AfterFeature]
-        public static void EnsureApplicationIsStopped()
+        public static void StopApplication()
         {
             Context.GetApplication().Exit();
         }

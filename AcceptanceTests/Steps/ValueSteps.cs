@@ -7,7 +7,7 @@ using AcceptanceTests.Steps;
 namespace AcceptanceTests
 {
     [Binding]
-    public class StepDefinitions : EnsureApplicationLifetime
+    public class StepDefinitions
     {
         [Given(@"that troops include ""(.*)""")]
         public void GivenThatTroopsInclude(string name)

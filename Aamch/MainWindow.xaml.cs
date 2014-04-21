@@ -31,10 +31,9 @@ namespace Aamch
 
         private void ShowTroops()
         {
-            /*
             repository.Read(@"Troops\troops.json");
             var troops = repository.GetTroops();
-             */
+            this.troopList.Content = troops[0].Name;
         }
     }
 }

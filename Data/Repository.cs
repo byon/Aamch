@@ -26,31 +26,18 @@ namespace Data
         }
 
         Dictionary<string, Troop> troops = new Dictionary<string, Troop>();
+        private delegate void IoOperation();
 
         public void Write(string path)
         {
-            try
-            {
-                WriteWithoutErrorHandling(path);
-            }
-            catch (SystemException e)
-            {
-                throw new IoFailure("Failed to write troop file " +
-                                    e.Message);
-            }
+            IoOperation writer = () => WriteWithoutErrorHandling(path);
+            TranslateIoExceptions(writer, "write");
         }
 
         public void Read(string path)
         {
-            try
-            {
-                ReadWithoutErrorHandling(path);
-            }
-            catch (SystemException e)
-            {
-                throw new IoFailure("Failed to read troop file " +
-                                    e.Message);
-            }
+            IoOperation reader = () => ReadWithoutErrorHandling(path);
+            TranslateIoExceptions(reader, "read");
         }
 
         public void AddTroop(Troop troop)
@@ -68,6 +55,20 @@ namespace Data
         public Troop[] GetTroops()
         {
             return troops.Values.ToArray();
+        }
+
+        private void TranslateIoExceptions(IoOperation operation,
+                                           string name)
+        {
+            try
+            {
+                operation();
+            }
+            catch (SystemException e)
+            {
+                var message = "Failed to " + name + " troop file " + e.Message;
+                throw new IoFailure(message);
+            }
         }
 
         private void WriteWithoutErrorHandling(string path)

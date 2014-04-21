@@ -141,6 +141,14 @@ namespace TestData
             Assert.AreEqual(1, repository.GetTroops().Length);
         }
 
+        [TestMethod]
+        public void ReadingName()
+        {
+            AddTroops(1);
+            repository.Read(TROOP_FILE_PATH);
+            Assert.AreEqual("troop1", repository.GetTroops()[0].Name);
+        }
+
         private void AddTroops(int count)
         {
             File.WriteAllText(TROOP_FILE_PATH, CreateTroopJson(count));
@@ -158,7 +166,8 @@ namespace TestData
             var result = new Repository.Troop[count];
             for (int i = 0; i < count; ++i)
             {
-                result[0] = new Repository.Troop("fuffeli");
+                var name = "troop" + (i + 1).ToString();
+                result[0] = new Repository.Troop(name);
             }
             return result;
         }

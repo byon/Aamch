@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using TestStack.White;
 using TestStack.White.Factory;
 using TestStack.White.UIItems;
@@ -42,8 +43,14 @@ namespace AcceptanceTests
 
         public string[] GetTroops()
         {
-            var item = GetMainWindow().Get<Label>("troopList");
-            return new[] {item.Name};
+            var item = GetMainWindow().Get<ListView>("troopList");
+            return item.Rows.Select(r => RowToTroop(r)).ToArray();
+        }
+
+        private string RowToTroop(ListViewRow row)
+        {
+            var cells = row.Cells;
+            return cells["Name"].Name;
         }
 
         private Window GetMainWindow()

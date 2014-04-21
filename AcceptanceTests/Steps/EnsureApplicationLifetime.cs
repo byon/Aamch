@@ -9,7 +9,7 @@ namespace AcceptanceTests.Steps
     [Binding]
     public class EnsureApplicationLifetime
     {
-        [AfterFeature]
+        [AfterScenario]
         public static void StopApplication()
         {
             Context.GetApplication().Exit();

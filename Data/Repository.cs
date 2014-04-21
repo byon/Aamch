@@ -42,7 +42,7 @@ namespace Data
 
         public void AddTroop(Troop troop)
         {
-            /// @todo Troop is not necessarily uniquely identifieble from the
+            /// @todo Troop is not necessarily uniquely identifiable from the
             ///       name. Some troops come from different supplements.
             troops[troop.Name] = troop;
         }

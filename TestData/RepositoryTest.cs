@@ -119,10 +119,10 @@ namespace TestData
     public class ReadingFromRepositoryTest : RepositoryTestBase
     {
         [TestMethod]
-        [ExpectedException(typeof(Repository.IoFailure))]
-        public void ReadingFailureIsNoticed()
+        public void ReadingFailureResultsInEmptyTroopList()
         {
             repository.Read(@"Troops\DoesNotExist.json");
+            Assert.AreEqual(0, repository.GetTroops().Length);
         }
 
         [TestMethod]

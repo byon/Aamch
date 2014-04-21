@@ -42,7 +42,15 @@ namespace Data
 
         public void Read(string path)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ReadWithoutErrorHandling(path);
+            }
+            catch (SystemException e)
+            {
+                throw new IoFailure("Failed to read troop file " +
+                                    e.Message);
+            }
         }
 
         public void AddTroop(Troop troop)
@@ -59,13 +67,39 @@ namespace Data
 
         public Troop[] GetTroops()
         {
-            throw new NotImplementedException();
+            return troops.Values.ToArray();
         }
 
         private void WriteWithoutErrorHandling(string path)
         {
             EnsureDirectoryExistsForFile(path);
             File.WriteAllText(path, TroopsToJson());
+        }
+
+        private void ReadWithoutErrorHandling(string path)
+        {
+            StoreTroops(TroopsFromJson(File.ReadAllText(path)));
+        }
+
+        private void StoreTroops(Troop[] troops)
+        {
+            this.troops = new Dictionary<string, Troop>();
+            foreach (var troop in troops)
+            {
+                AddTroop(troop);
+            }
+        }
+
+        private Troop[] TroopsFromJson(string json)
+        {
+            var troopArray = JArray.Parse(json);
+            var troopList = troopArray.Select(TroopFromJson);
+            return troopList.ToArray();
+        }
+
+        private Troop TroopFromJson(JToken json)
+        {
+            return new Troop((string)json["Name"]);
         }
 
         private void EnsureDirectoryExistsForFile(string path)

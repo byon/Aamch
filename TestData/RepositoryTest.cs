@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 using Newtonsoft.Json.Linq;
 
 namespace TestData
@@ -111,6 +112,60 @@ namespace TestData
         {
             repository.AddTroop(new Repository.Troop("existing"));
             Assert.IsTrue(repository.HasTroop("existing"));
+        }
+    }
+
+    [TestClass]
+    public class ReadingFromRepositoryTest : RepositoryTestBase
+    {
+        [TestMethod]
+        [ExpectedException(typeof(Repository.IoFailure))]
+        public void ReadingFailureIsNoticed()
+        {
+            repository.Read(@"Troops\DoesNotExist.json");
+        }
+
+        [TestMethod]
+        public void EmptyFileResultsInNoTroops()
+        {
+            AddTroops(0);
+            repository.Read(TROOP_FILE_PATH);
+            Assert.AreEqual(0, repository.GetTroops().Length);
+        }
+
+        [TestMethod]
+        public void ReadingOneTroop()
+        {
+            AddTroops(1);
+            repository.Read(TROOP_FILE_PATH);
+            Assert.AreEqual(1, repository.GetTroops().Length);
+        }
+
+        private void AddTroops(int count)
+        {
+            File.WriteAllText(TROOP_FILE_PATH, CreateTroopJson(count));
+        }
+
+        private string CreateTroopJson(int count)
+        {
+            var troops = CreateTroops(count);
+            var jsonTroops = from t in troops select TroopToJson(t);
+            return new JArray(jsonTroops).ToString();
+        }
+
+        private Repository.Troop[] CreateTroops(int count)
+        {
+            var result = new Repository.Troop[count];
+            for (int i = 0; i < count; ++i)
+            {
+                result[0] = new Repository.Troop("fuffeli");
+            }
+            return result;
+        }
+
+        private JObject TroopToJson(Repository.Troop troop)
+        {
+            return new JObject(new JProperty("Name", troop.Name));
         }
     }
 }

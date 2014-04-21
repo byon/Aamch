@@ -16,9 +16,6 @@ using Data;
 
 namespace Aamch
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         Repository repository = new Repository();
@@ -33,7 +30,10 @@ namespace Aamch
         {
             repository.Read(@"Troops\troops.json");
             var troops = repository.GetTroops();
-            this.troopList.Content = troops[0].Name;
+            if (troops.Length > 0)
+            {
+                this.troopList.Content = troops[0].Name;
+            }
         }
     }
 }

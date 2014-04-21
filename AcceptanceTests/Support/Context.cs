@@ -1,4 +1,5 @@
 ﻿using Data;
+using System.IO;
 using TechTalk.SpecFlow;
 
 namespace AcceptanceTests
@@ -18,6 +19,20 @@ namespace AcceptanceTests
         {
             Creator creator = () => new Repository();
             return CachedObject<Repository>("TroopRepository", creator);
+        }
+
+        public static void EnsureThereIsNoTroopFile()
+        {
+            System.IO.File.Delete(TROOP_FILE);
+        }
+
+        public static void EnsureTroopFileExists()
+        {
+            if (!Directory.Exists("troops"))
+            {
+                Directory.CreateDirectory("troops");
+            }
+            System.IO.File.WriteAllText(TROOP_FILE, "");
         }
 
         public static void EnsureTroopExists(string name)

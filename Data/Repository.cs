@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Data
@@ -31,14 +32,14 @@ namespace Data
 
         public void Write(string path)
         {
-            HandleIoExceptions(() => WriteWithoutErrorHandling(path),
-                               (e) => ThrowWriteFailure(e));
+            HandleExceptions(() => WriteWithoutErrorHandling(path),
+                             (e) => ThrowWriteFailure(e));
         }
 
         public void Read(string path)
         {
-            HandleIoExceptions(() => ReadWithoutErrorHandling(path),
-                               (e) => { });
+            HandleExceptions(() => ReadWithoutErrorHandling(path),
+                             (e) => { });
         }
 
         public void AddTroop(Troop troop)
@@ -58,12 +59,16 @@ namespace Data
             return troops.Values.ToArray();
         }
 
-        private void HandleIoExceptions(IoOperation operation,
+        private void HandleExceptions(IoOperation operation,
                                         ErrorHandler errorHandler)
         {
             try
             {
                 operation();
+            }
+            catch (JsonException e)
+            {
+                errorHandler(e);
             }
             catch (SystemException e)
             {

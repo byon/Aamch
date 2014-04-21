@@ -119,6 +119,12 @@ namespace TestData
     public class ReadingFromRepositoryTest : RepositoryTestBase
     {
         [TestMethod]
+        public void TroopsAreEmptyBeforeFirstRead()
+        {
+            Assert.AreEqual(0, repository.GetTroops().Length);
+        }
+
+        [TestMethod]
         public void ReadingFailureResultsInEmptyTroopList()
         {
             repository.Read(@"Troops\DoesNotExist.json");
@@ -127,6 +133,14 @@ namespace TestData
 
         [TestMethod]
         public void EmptyFileResultsInNoTroops()
+        {
+            WriteTroopFile("");
+            repository.Read(TROOP_FILE_PATH);
+            Assert.AreEqual(0, repository.GetTroops().Length);
+        }
+
+        [TestMethod]
+        public void NoTroopsToRead()
         {
             AddTroops(0);
             repository.Read(TROOP_FILE_PATH);
@@ -151,7 +165,12 @@ namespace TestData
 
         private void AddTroops(int count)
         {
-            File.WriteAllText(TROOP_FILE_PATH, CreateTroopJson(count));
+            WriteTroopFile(CreateTroopJson(count));
+        }
+
+        private void WriteTroopFile(string content)
+        {
+            File.WriteAllText(TROOP_FILE_PATH, content);
         }
 
         private string CreateTroopJson(int count)

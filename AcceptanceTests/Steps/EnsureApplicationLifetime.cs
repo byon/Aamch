@@ -7,12 +7,18 @@ using TechTalk.SpecFlow;
 namespace AcceptanceTests.Steps
 {
     [Binding]
-    public class EnsureApplicationLifetime
+    public class EnsureApplicationLifeTime
     {
-        [AfterScenario]
+        [AfterTestRun]
         public static void StopApplication()
         {
-            Context.GetApplication().Exit();
+            ApplicationLifetime.Stop();
+        }
+
+        [BeforeScenario("ApplicationIsNotRunningBeforeTest")]
+        public static void EnsureApplicationIsStopped()
+        {
+            ApplicationLifetime.Stop();
         }
     }
 }

@@ -11,8 +11,7 @@ namespace AcceptanceTests
 
         public static TestedApplication GetApplication()
         {
-            Creator creator = () => new TestedApplication();
-            return CachedObject<TestedApplication>("application", creator);
+            return ApplicationLifetime.GetApplication();
         }
 
         public static Repository GetRepository()
@@ -47,8 +46,7 @@ namespace AcceptanceTests
 
         public static bool IsApplicationRunning()
         {
-            var application = CachedObject<TestedApplication>("application");
-            return application.IsApplicationRunning();
+            return ApplicationLifetime.IsRunning( );
         }
 
         public static void ViewTroops()

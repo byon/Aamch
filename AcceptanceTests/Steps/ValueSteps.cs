@@ -18,6 +18,7 @@ namespace AcceptanceTests
         [When(@"troops are viewed")]
         public void WhenTroopsAreViewed()
         {
+            Context.GetApplication().Refresh();
             Context.ViewTroops();
         }
         

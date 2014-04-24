@@ -4,6 +4,7 @@ using TestStack.White;
 using TestStack.White.Factory;
 using TestStack.White.UIItems;
 using TestStack.White.UIItems.WindowItems;
+using TestStack.White.WindowsAPI;
 
 namespace AcceptanceTests
 {
@@ -45,6 +46,12 @@ namespace AcceptanceTests
         {
             var item = GetMainWindow().Get<ListView>("troopList");
             return item.Rows.Select(r => RowToTroop(r)).ToArray();
+        }
+
+        public void Refresh()
+        {
+            var window = GetMainWindow();
+            window.Keyboard.PressSpecialKey(KeyboardInput.SpecialKeys.F5);
         }
 
         private string RowToTroop(ListViewRow row)

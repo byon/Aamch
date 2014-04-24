@@ -85,7 +85,8 @@ namespace Data
         private void WriteWithoutErrorHandling(string path)
         {
             EnsureDirectoryExistsForFile(path);
-            File.WriteAllText(path, TroopsToJson());
+            var json = TroopsToJson();
+            File.WriteAllText(path, json);
         }
 
         private void ReadWithoutErrorHandling(string path)

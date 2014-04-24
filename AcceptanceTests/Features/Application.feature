@@ -1,3 +1,4 @@
+@ApplicationIsNotRunningBeforeTest
 Feature: Stopping the application
     As a user
     I want to stop the application

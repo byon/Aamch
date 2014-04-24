@@ -13,3 +13,4 @@ Scenario: Application can start without troop file
     Given there is no troop file
     When I start the application
     Then application is running
+	And status message tells that troop file could not be read

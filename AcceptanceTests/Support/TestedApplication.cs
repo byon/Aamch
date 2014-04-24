@@ -48,6 +48,11 @@ namespace AcceptanceTests
             return item.Rows.Select(r => RowToTroop(r)).ToArray();
         }
 
+        public string GetStatusMessage()
+        {
+            return GetMainWindow().Get<Label>("statusMessage").Text;
+        }
+
         public void Refresh()
         {
             var window = GetMainWindow();

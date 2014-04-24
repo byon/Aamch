@@ -4,7 +4,12 @@
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="MainWindow" Height="350" Width="525"
         KeyDown="KeyPressed">
-  <Grid>
+  <DockPanel>
+    <StatusBar DockPanel.Dock="Bottom">
+      <StatusBarItem>
+        <TextBlock Name="statusMessage"/>
+      </StatusBarItem>
+    </StatusBar>
     <ListView Name="troopList" ItemsSource="{Binding TroopCollection}">
       <ListView.View>
         <GridView>
@@ -13,5 +18,5 @@
         </GridView>
       </ListView.View>
     </ListView>
-  </Grid>
+  </DockPanel>
 </Window>

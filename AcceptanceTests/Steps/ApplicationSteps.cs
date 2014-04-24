@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
 
@@ -42,6 +43,13 @@ namespace AcceptanceTests
         public void ThenApplicationIsRunning()
         {
             Assert.IsTrue(Context.IsApplicationRunning());
+        }
+
+        [Then(@"status message tells that troop file could not be read")]
+        public void ThenStatusMessageTellsThatTroopFileCouldNotBeRead()
+        {
+            var status = Context.GetStatusMessage();
+            StringAssert.Matches(status, new Regex("Could not read troop file '.+'"));
         }
     }
 }

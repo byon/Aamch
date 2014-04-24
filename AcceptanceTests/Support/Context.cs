@@ -62,6 +62,11 @@ namespace AcceptanceTests
             return CachedObject<string[]>("viewedTroops");
         }
 
+        public static string GetStatusMessage()
+        {
+            return GetApplication().GetStatusMessage();
+        }
+
         private static void EnsureTroopDirectoryExists()
         {
             if (!Directory.Exists("troops"))

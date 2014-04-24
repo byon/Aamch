@@ -27,5 +27,17 @@ namespace AcceptanceTests
         {
             CollectionAssert.Contains(Context.GetTroops(), name);
         }
+
+        [Given(@"that there are no troops")]
+        public void GivenThatThereAreNoTroops()
+        {
+            Context.ResetTroops();
+        }
+
+        [Then(@"no troops are included in list of troops")]
+        public void ThenNoTroopsAreIncludedInListOfTroops()
+        {
+            Assert.AreEqual(0, Context.GetTroops().Length);
+        }
     }
 }

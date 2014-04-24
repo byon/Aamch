@@ -27,11 +27,14 @@ namespace AcceptanceTests
 
         public static void EnsureTroopFileExists()
         {
-            if (!Directory.Exists("troops"))
-            {
-                Directory.CreateDirectory("troops");
-            }
+            EnsureTroopDirectoryExists();
             System.IO.File.WriteAllText(TROOP_FILE, "");
+        }
+
+        public static void ResetTroops()
+        {
+            EnsureTroopDirectoryExists();
+            System.IO.File.WriteAllText(TROOP_FILE, "[]");
         }
 
         public static void EnsureTroopExists(string name)
@@ -57,6 +60,14 @@ namespace AcceptanceTests
         public static string[] GetTroops()
         {
             return CachedObject<string[]>("viewedTroops");
+        }
+
+        private static void EnsureTroopDirectoryExists()
+        {
+            if (!Directory.Exists("troops"))
+            {
+                Directory.CreateDirectory("troops");
+            }
         }
 
         private static Repository.Troop CreateTroop(string name)

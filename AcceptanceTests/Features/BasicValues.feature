@@ -16,3 +16,8 @@ Scenario: Viewing names of several troops
 	Then "Barbed Wire" should be included in list of troops
     And "6-Pounder ATG" should be included in list of troops
     And "Vickers MG Team" should be included in list of troops
+
+Scenario: Empty troop list is handled
+	Given that there are no troops
+	When troops are viewed
+	Then no troops are included in list of troops

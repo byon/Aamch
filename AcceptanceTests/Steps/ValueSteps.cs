@@ -39,5 +39,17 @@ namespace AcceptanceTests
         {
             Assert.AreEqual(0, Context.GetTroops().Length);
         }
+
+        [Given(@"a single troop with cost (.*)")]
+        public void GivenASingleTroopWithCost(int cost)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"the single troop listed has cost of (.*)")]
+        public void ThenTheSingleTroopListedHasCostOf(int cost)
+        {
+            ScenarioContext.Current.Pending();
+        }
     }
 }

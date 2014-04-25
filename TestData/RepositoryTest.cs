@@ -211,6 +211,14 @@ namespace TestData
             repository.Read(TROOP_FILE_PATH);
             Assert.AreEqual(1, repository.GetTroops().Length);
         }
+
+        [TestMethod]
+        public void ReadingMultipleTroops()
+        {
+            AddTroops(101);
+            repository.Read(TROOP_FILE_PATH);
+            Assert.AreEqual(101, repository.GetTroops().Length);
+        }
     }
 
     [TestClass]

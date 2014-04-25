@@ -17,6 +17,7 @@ namespace Data
             }
 
             public string Name { get; set; }
+            public int Cost { get; set; }
         }
 
         public class IoFailure : Exception
@@ -114,7 +115,9 @@ namespace Data
 
         private Troop TroopFromJson(JToken json)
         {
-            return new Troop((string)json["Name"]);
+            var result = new Troop((string)json["Name"]);
+            result.Cost = (int)json["Cost"];
+            return result;
         }
 
         private void EnsureDirectoryExistsForFile(string path)
@@ -131,7 +134,8 @@ namespace Data
         private JObject TroopToJson(KeyValuePair<string, Troop> pair)
         {
             var troop = pair.Value;
-            return new JObject(new JProperty("Name", troop.Name));
+            return new JObject(new JProperty("Name", troop.Name),
+                               new JProperty("Cost", troop.Cost));
         }
     }
 }

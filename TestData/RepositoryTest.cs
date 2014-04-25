@@ -32,9 +32,11 @@ namespace TestData
         {
             var result = new List<Repository.Troop>();
             var data = JArray.Parse(File.ReadAllText(TROOP_FILE_PATH));
-            foreach (var troop in data.Children())
+            foreach (var child in data.Children())
             {
-                result.Add(new Repository.Troop(troop.Value<string>("Name")));
+                var troop = new Repository.Troop(child.Value<string>("Name"));
+                troop.Cost = child.Value<int>("Cost");
+                result.Add(troop);
             }
             return result.ToArray();
         }
@@ -94,14 +96,6 @@ namespace TestData
         }
 
         [TestMethod]
-        public void NameIsWritten()
-        {
-            repository.AddTroop(new Repository.Troop("troop"));
-            repository.Write(TROOP_FILE_PATH);
-            Assert.AreEqual("troop", WrittenTroops()[0].Name);
-        }
-
-        [TestMethod]
         public void CanRecognizeThatTroopDoesNotExist()
         {
             Assert.IsFalse(repository.HasTroop("doesNotExist"));
@@ -112,6 +106,33 @@ namespace TestData
         {
             repository.AddTroop(new Repository.Troop("existing"));
             Assert.IsTrue(repository.HasTroop("existing"));
+        }
+    }
+
+    [TestClass]
+    public class WritingValuesToRepositoryTest : RepositoryTestBase
+    {
+        private Repository.Troop troop;
+
+        [TestInitialize]
+        public void WriteTroop()
+        {
+            troop = new Repository.Troop("troop");
+            troop.Cost = 1234;
+            repository.AddTroop(troop);
+            repository.Write(TROOP_FILE_PATH);
+        }
+
+        [TestMethod]
+        public void NameIsWritten()
+        {
+            Assert.AreEqual("troop", WrittenTroops()[0].Name);
+        }
+
+        [TestMethod]
+        public void CostIsWritten()
+        {
+            Assert.AreEqual(1234, WrittenTroops()[0].Cost);
         }
     }
 
@@ -163,6 +184,14 @@ namespace TestData
             Assert.AreEqual("troop1", repository.GetTroops()[0].Name);
         }
 
+        [TestMethod]
+        public void ReadingCost()
+        {
+            AddTroops(1);
+            repository.Read(TROOP_FILE_PATH);
+            Assert.AreEqual(4321, repository.GetTroops()[0].Cost);
+        }
+
         private void AddTroops(int count)
         {
             WriteTroopFile(CreateTroopJson(count));
@@ -175,25 +204,25 @@ namespace TestData
 
         private string CreateTroopJson(int count)
         {
-            var troops = CreateTroops(count);
+            var troops = CreateTroopNames(count);
             var jsonTroops = from t in troops select TroopToJson(t);
             return new JArray(jsonTroops).ToString();
         }
 
-        private Repository.Troop[] CreateTroops(int count)
+        private string[] CreateTroopNames(int count)
         {
-            var result = new Repository.Troop[count];
+            var result = new string[count];
             for (int i = 0; i < count; ++i)
             {
-                var name = "troop" + (i + 1).ToString();
-                result[0] = new Repository.Troop(name);
+                result[i] = "troop" + (i + 1).ToString();
             }
             return result;
         }
 
-        private JObject TroopToJson(Repository.Troop troop)
+        private JObject TroopToJson(string name)
         {
-            return new JObject(new JProperty("Name", troop.Name));
+            return new JObject(new JProperty("Name", name),
+                               new JProperty("Cost", 4321));
         }
     }
 }

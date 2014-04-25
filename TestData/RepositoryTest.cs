@@ -136,8 +136,44 @@ namespace TestData
         }
     }
 
+    public class ReadingTestBase : RepositoryTestBase
+    {
+        protected void AddTroops(int count)
+        {
+            WriteTroopFile(CreateTroopJson(count));
+        }
+
+        protected void WriteTroopFile(string content)
+        {
+            File.WriteAllText(TROOP_FILE_PATH, content);
+        }
+
+        private string CreateTroopJson(int count)
+        {
+            var troops = CreateTroopNames(count);
+            var jsonTroops = from t in troops select TroopToJson(t);
+            return new JArray(jsonTroops).ToString();
+        }
+
+        private string[] CreateTroopNames(int count)
+        {
+            var result = new string[count];
+            for (int i = 0; i < count; ++i)
+            {
+                result[i] = "troop" + (i + 1).ToString();
+            }
+            return result;
+        }
+
+        private JObject TroopToJson(string name)
+        {
+            return new JObject(new JProperty("Name", name),
+                               new JProperty("Cost", 4321));
+        }
+    }
+
     [TestClass]
-    public class ReadingFromRepositoryTest : RepositoryTestBase
+    public class ReadingFromRepositoryTest : ReadingTestBase
     {
         [TestMethod]
         public void TroopsAreEmptyBeforeFirstRead()
@@ -175,54 +211,31 @@ namespace TestData
             repository.Read(TROOP_FILE_PATH);
             Assert.AreEqual(1, repository.GetTroops().Length);
         }
+    }
+
+    [TestClass]
+    public class ReadingValuesFromRepositoryTest : ReadingTestBase
+    {
+        private Repository.Troop readTroop;
+
+        [TestInitialize]
+        public void ReadOneTroop()
+        {
+            AddTroops(1);
+            repository.Read(TROOP_FILE_PATH);
+            readTroop = repository.GetTroops()[0];
+        }
 
         [TestMethod]
         public void ReadingName()
         {
-            AddTroops(1);
-            repository.Read(TROOP_FILE_PATH);
-            Assert.AreEqual("troop1", repository.GetTroops()[0].Name);
+            Assert.AreEqual("troop1", readTroop.Name);
         }
 
         [TestMethod]
         public void ReadingCost()
         {
-            AddTroops(1);
-            repository.Read(TROOP_FILE_PATH);
-            Assert.AreEqual(4321, repository.GetTroops()[0].Cost);
-        }
-
-        private void AddTroops(int count)
-        {
-            WriteTroopFile(CreateTroopJson(count));
-        }
-
-        private void WriteTroopFile(string content)
-        {
-            File.WriteAllText(TROOP_FILE_PATH, content);
-        }
-
-        private string CreateTroopJson(int count)
-        {
-            var troops = CreateTroopNames(count);
-            var jsonTroops = from t in troops select TroopToJson(t);
-            return new JArray(jsonTroops).ToString();
-        }
-
-        private string[] CreateTroopNames(int count)
-        {
-            var result = new string[count];
-            for (int i = 0; i < count; ++i)
-            {
-                result[i] = "troop" + (i + 1).ToString();
-            }
-            return result;
-        }
-
-        private JObject TroopToJson(string name)
-        {
-            return new JObject(new JProperty("Name", name),
-                               new JProperty("Cost", 4321));
+            Assert.AreEqual(4321, readTroop.Cost);
         }
     }
 }

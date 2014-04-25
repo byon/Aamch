@@ -33,6 +33,12 @@ namespace AcceptanceTests
             Context.EnsureThereIsNoTroopFile();
         }
 
+        [Given(@"the troop file is invalid")]
+        public void GivenTheTroopFileIsInvalid()
+        {
+            Context.CreateInvalidTroopFile();
+        }
+
         [When(@"I start the application")]
         public void WhenIStartTheApplication()
         {

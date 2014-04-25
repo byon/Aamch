@@ -25,16 +25,19 @@ namespace AcceptanceTests
             System.IO.File.Delete(TROOP_FILE);
         }
 
+        public static void CreateInvalidTroopFile()
+        {
+            CreateTroopFile("[");
+        }
+
         public static void EnsureTroopFileExists()
         {
-            EnsureTroopDirectoryExists();
-            System.IO.File.WriteAllText(TROOP_FILE, "");
+            CreateTroopFile("");
         }
 
         public static void ResetTroops()
         {
-            EnsureTroopDirectoryExists();
-            System.IO.File.WriteAllText(TROOP_FILE, "[]");
+            CreateTroopFile("[]");
         }
 
         public static void EnsureTroopExists(string name)
@@ -65,6 +68,12 @@ namespace AcceptanceTests
         public static string GetStatusMessage()
         {
             return GetApplication().GetStatusMessage();
+        }
+
+        private static void CreateTroopFile(string contents)
+        {
+            EnsureTroopDirectoryExists();
+            System.IO.File.WriteAllText(TROOP_FILE, contents);
         }
 
         private static void EnsureTroopDirectoryExists()

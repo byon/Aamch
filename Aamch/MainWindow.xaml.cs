@@ -7,8 +7,8 @@ namespace Aamch
 {
     public partial class MainWindow : Window
     {
-        Repository repository = new Repository();
-        ObservableCollection<Repository.Troop> troopCollection =
+        private Repository repository = new Repository();
+        private ObservableCollection<Repository.Troop> troopCollection =
             new ObservableCollection<Repository.Troop>();
 
         public MainWindow()
@@ -24,8 +24,26 @@ namespace Aamch
 
         private void ShowTroops()
         {
-            repository.Read(@"Troops\troops.json");
+            ReadTroopList();
             var troops = repository.GetTroops();
+            UpdateTroopCollection(troops);
+        }
+
+        private void ReadTroopList()
+        {
+            try
+            {
+                repository.Read(@"Troops\troops.json");
+                statusMessage.Text = "Refreshed troop list";
+            }
+            catch (Repository.IoFailure e)
+            {
+                statusMessage.Text = e.Message;
+            }
+        }
+
+        private void UpdateTroopCollection(Repository.Troop[] troops)
+        {
             troopCollection.Clear();
             foreach (var troop in troops)
             {

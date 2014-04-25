@@ -21,7 +21,8 @@ namespace Data
 
         public class IoFailure : Exception
         {
-            public IoFailure(string reason)
+            public IoFailure(string reason) :
+                base(reason)
             {
             }
         }
@@ -33,13 +34,13 @@ namespace Data
         public void Write(string path)
         {
             HandleExceptions(() => WriteWithoutErrorHandling(path),
-                             (e) => ThrowWriteFailure(e));
+                             (e) => ThrowIoFailure(e, "write"));
         }
 
         public void Read(string path)
         {
             HandleExceptions(() => ReadWithoutErrorHandling(path),
-                             (e) => { });
+                             (e) => ThrowIoFailure(e, "read"));
         }
 
         public void AddTroop(Troop troop)
@@ -60,7 +61,7 @@ namespace Data
         }
 
         private void HandleExceptions(IoOperation operation,
-                                        ErrorHandler errorHandler)
+                                      ErrorHandler errorHandler)
         {
             try
             {
@@ -76,9 +77,10 @@ namespace Data
             }
         }
 
-        private static void ThrowWriteFailure(Exception e)
+        private static void ThrowIoFailure(Exception e, string operation)
         {
-            var message = "Failed to write troop file " + e.Message;
+            var message = "Failed to " + operation + " troop file " +
+                          "'" + e.Message + "'";
             throw new IoFailure(message);
         }
 

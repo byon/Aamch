@@ -48,8 +48,8 @@ namespace AcceptanceTests
         [Then(@"status message tells that troop file could not be read")]
         public void ThenStatusMessageTellsThatTroopFileCouldNotBeRead()
         {
-            var status = Context.GetStatusMessage();
-            StringAssert.Matches(status, new Regex("Could not read troop file '.+'"));
+            var expected = new Regex("Failed to read troop file '.+'");
+            StringAssert.Matches(Context.GetStatusMessage(), expected);
         }
     }
 }

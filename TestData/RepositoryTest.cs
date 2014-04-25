@@ -125,18 +125,18 @@ namespace TestData
         }
 
         [TestMethod]
-        public void ReadingFailureResultsInEmptyTroopList()
+        [ExpectedException(typeof(Repository.IoFailure))]
+        public void ReadingFailureIsNoticed()
         {
             repository.Read(@"Troops\DoesNotExist.json");
-            Assert.AreEqual(0, repository.GetTroops().Length);
         }
 
         [TestMethod]
+        [ExpectedException(typeof(Repository.IoFailure))]
         public void EmptyFileResultsInNoTroops()
         {
             WriteTroopFile("");
             repository.Read(TROOP_FILE_PATH);
-            Assert.AreEqual(0, repository.GetTroops().Length);
         }
 
         [TestMethod]

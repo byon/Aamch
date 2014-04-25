@@ -1,8 +1,7 @@
-﻿using System;
+﻿using System.Linq;
 using TechTalk.SpecFlow;
 using Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using AcceptanceTests.Steps;
 
 namespace AcceptanceTests
 {
@@ -12,7 +11,7 @@ namespace AcceptanceTests
         [Given(@"that troops include ""(.*)""")]
         public void GivenThatTroopsInclude(string name)
         {
-            Context.EnsureTroopExists(name);
+            Context.AddTroop(CreateTroop(name));
         }
         
         [When(@"troops are viewed")]
@@ -25,7 +24,7 @@ namespace AcceptanceTests
         [Then(@"""(.*)"" should be included in list of troops")]
         public void ThenShouldBeIncludedInListOfTroops(string name)
         {
-            CollectionAssert.Contains(Context.GetTroops(), name);
+            Assert.IsTrue(Context.GetTroops().Any(t => t.Name == name));
         }
 
         [Given(@"that there are no troops")]
@@ -43,13 +42,21 @@ namespace AcceptanceTests
         [Given(@"a single troop with cost (.*)")]
         public void GivenASingleTroopWithCost(int cost)
         {
-            ScenarioContext.Current.Pending();
+            Context.ResetTroops();
+            var troop = new Repository.Troop();
+            troop.Cost = cost;
+            Context.AddTroop(troop);
         }
 
         [Then(@"the single troop listed has cost of (.*)")]
         public void ThenTheSingleTroopListedHasCostOf(int cost)
         {
             ScenarioContext.Current.Pending();
+        }
+
+        private static Repository.Troop CreateTroop(string name)
+        {
+            return new Repository.Troop(name);
         }
     }
 }

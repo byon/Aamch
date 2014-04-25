@@ -1,5 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using Data;
 using TestStack.White;
 using TestStack.White.Factory;
 using TestStack.White.UIItems;
@@ -42,7 +42,7 @@ namespace AcceptanceTests
             return !application.HasExited;
         }
 
-        public string[] GetTroops()
+        public Repository.Troop[] GetTroops()
         {
             var item = GetMainWindow().Get<ListView>("troopList");
             return item.Rows.Select(r => RowToTroop(r)).ToArray();
@@ -59,10 +59,19 @@ namespace AcceptanceTests
             window.Keyboard.PressSpecialKey(KeyboardInput.SpecialKeys.F5);
         }
 
-        private string RowToTroop(ListViewRow row)
+        private Repository.Troop RowToTroop(ListViewRow row)
         {
             var cells = row.Cells;
-            return cells["Name"].Name;
+            return new Repository.Troop(CellValue(cells["Name"]));
+        }
+
+        private static string CellValue(ListViewCell value)
+        {
+            if (value == null)
+            {
+                return "";
+            }
+            return value.Text;
         }
 
         private Window GetMainWindow()

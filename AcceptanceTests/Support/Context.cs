@@ -40,14 +40,11 @@ namespace AcceptanceTests
             CreateTroopFile("[]");
         }
 
-        public static void EnsureTroopExists(string name)
+        public static void AddTroop(Repository.Troop troop)
         {
             var repository = GetRepository();
-            if (!repository.HasTroop(name))
-            {
-                repository.AddTroop(CreateTroop(name));
-                repository.Write(TROOP_FILE);
-            }
+            repository.AddTroop(troop);
+            repository.Write(TROOP_FILE);
         }
 
         public static bool IsApplicationRunning()
@@ -60,9 +57,9 @@ namespace AcceptanceTests
             CacheObject("viewedTroops", GetApplication().GetTroops());
         }
 
-        public static string[] GetTroops()
+        public static Repository.Troop[] GetTroops()
         {
-            return CachedObject<string[]>("viewedTroops");
+            return CachedObject<Repository.Troop[]>("viewedTroops");
         }
 
         public static string GetStatusMessage()
@@ -82,11 +79,6 @@ namespace AcceptanceTests
             {
                 Directory.CreateDirectory("troops");
             }
-        }
-
-        private static Repository.Troop CreateTroop(string name)
-        {
-            return new Repository.Troop(name);
         }
 
         private static T CachedObject<T>(string id)

@@ -64,6 +64,8 @@ namespace AcceptanceTests
             var cells = row.Cells;
             var troop = new Repository.Troop(CellValue(cells["Name"]));
             troop.Cost = IntFromCell(cells["Cost"]);
+            troop.Type = CellValue(cells["Type"]);
+            troop.Subtype = CellValue(cells["Subtype"]);
             return troop;
         }
 

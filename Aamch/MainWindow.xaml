@@ -17,6 +17,10 @@
                           DisplayMemberBinding="{Binding Name}"/>
           <GridViewColumn Header="Cost"
                           DisplayMemberBinding="{Binding Cost}"/>
+          <GridViewColumn Header="Type"
+                          DisplayMemberBinding="{Binding Type}"/>
+          <GridViewColumn Header="Subtype"
+                          DisplayMemberBinding="{Binding Subtype}"/>
         </GridView>
       </ListView.View>
     </ListView>

@@ -62,21 +62,19 @@ namespace AcceptanceTests
         [Then(@"the single troop listed has cost of (.*)")]
         public void ThenTheSingleTroopListedHasCostOf(int cost)
         {
-            var troops = Context.GetTroops();
-            Assert.AreEqual(1, troops.Length);
-            Assert.AreEqual(cost, troops[0].Cost);
+            Assert.AreEqual(cost, GetSingleTroop().Cost);
         }
 
         [Then(@"the single troop listed has type of (.*)")]
         public void ThenTheSingleTroopListedHasTypeOf(string type)
         {
-            ScenarioContext.Current.Pending();
+            Assert.AreEqual(type, GetSingleTroop().Type);
         }
 
         [Then(@"the single troop listed has subtype of (.*)")]
         public void ThenTheSingleTroopListedHasSubtypeOf(string type)
         {
-            ScenarioContext.Current.Pending();
+            Assert.AreEqual(type, GetSingleTroop().Subtype);
         }
 
         private static void AddSingleTroop(ModifyTroop modifier)
@@ -85,6 +83,13 @@ namespace AcceptanceTests
             var troop = new Repository.Troop("Troop name");
             modifier(troop);
             Context.AddTroop(troop);
+        }
+
+        private Repository.Troop GetSingleTroop()
+        {
+            var troops = Context.GetTroops();
+            Assert.AreEqual(1, troops.Length);
+            return troops[0];
         }
 
         private static Repository.Troop CreateTroop(string name)

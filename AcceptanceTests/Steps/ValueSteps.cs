@@ -51,7 +51,9 @@ namespace AcceptanceTests
         [Then(@"the single troop listed has cost of (.*)")]
         public void ThenTheSingleTroopListedHasCostOf(int cost)
         {
-            ScenarioContext.Current.Pending();
+            var troops = Context.GetTroops();
+            Assert.AreEqual(1, troops.Length);
+            Assert.AreEqual(cost, troops[0].Cost);
         }
 
         private static Repository.Troop CreateTroop(string name)

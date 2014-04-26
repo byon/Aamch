@@ -62,16 +62,19 @@ namespace AcceptanceTests
         private Repository.Troop RowToTroop(ListViewRow row)
         {
             var cells = row.Cells;
-            return new Repository.Troop(CellValue(cells["Name"]));
+            var troop = new Repository.Troop(CellValue(cells["Name"]));
+            troop.Cost = IntFromCell(cells["Cost"]);
+            return troop;
+        }
+
+        private static int IntFromCell(ListViewCell cell)
+        {
+            return System.Convert.ToInt32(CellValue(cell));
         }
 
         private static string CellValue(ListViewCell value)
         {
-            if (value == null)
-            {
-                return "";
-            }
-            return value.Text;
+            return value == null ? "" : value.Text;
         }
 
         private Window GetMainWindow()

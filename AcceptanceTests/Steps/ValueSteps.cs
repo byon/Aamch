@@ -43,7 +43,7 @@ namespace AcceptanceTests
         public void GivenASingleTroopWithCost(int cost)
         {
             Context.ResetTroops();
-            var troop = new Repository.Troop();
+            var troop = new Repository.Troop("Troop name");
             troop.Cost = cost;
             Context.AddTroop(troop);
         }

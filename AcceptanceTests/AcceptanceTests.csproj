@@ -69,6 +69,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BasicValues.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\ListingTroops.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListingTroops.feature</DependentUpon>
+    </Compile>
     <Compile Include="Steps\CleanTroopData.cs" />
     <Compile Include="Steps\EnsureApplicationLifetime.cs" />
     <Compile Include="Support\ApplicationLifetime.cs" />
@@ -87,6 +92,10 @@
     <None Include="Features\BasicValues.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BasicValues.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\ListingTroops.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ListingTroops.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

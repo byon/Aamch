@@ -36,6 +36,8 @@ namespace TestData
             {
                 var troop = new Repository.Troop(child.Value<string>("Name"));
                 troop.Cost = child.Value<int>("Cost");
+                troop.Type = child.Value<string>("Type");
+                troop.Subtype = child.Value<string>("Subtype");
                 result.Add(troop);
             }
             return result.ToArray();
@@ -119,6 +121,8 @@ namespace TestData
         {
             troop = new Repository.Troop("troop");
             troop.Cost = 1234;
+            troop.Type = "Type";
+            troop.Subtype = "Subtype";
             repository.AddTroop(troop);
             repository.Write(TROOP_FILE_PATH);
         }
@@ -133,6 +137,18 @@ namespace TestData
         public void CostIsWritten()
         {
             Assert.AreEqual(1234, WrittenTroops()[0].Cost);
+        }
+
+        [TestMethod]
+        public void TypeIsWritten()
+        {
+            Assert.AreEqual("Type", WrittenTroops()[0].Type);
+        }
+
+        [TestMethod]
+        public void SubtypeIsWritten()
+        {
+            Assert.AreEqual("Subtype", WrittenTroops()[0].Subtype);
         }
     }
 
@@ -168,7 +184,9 @@ namespace TestData
         private JObject TroopToJson(string name)
         {
             return new JObject(new JProperty("Name", name),
-                               new JProperty("Cost", 4321));
+                               new JProperty("Cost", 4321),
+                               new JProperty("Type", "Type"),
+                               new JProperty("Subtype", "Subtype"));
         }
     }
 
@@ -244,6 +262,18 @@ namespace TestData
         public void ReadingCost()
         {
             Assert.AreEqual(4321, readTroop.Cost);
+        }
+
+        [TestMethod]
+        public void ReadingType()
+        {
+            Assert.AreEqual("Type", readTroop.Type);
+        }
+
+        [TestMethod]
+        public void ReadingSubtype()
+        {
+            Assert.AreEqual("Subtype", readTroop.Subtype);
         }
     }
 }

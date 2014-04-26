@@ -119,6 +119,8 @@ namespace Data
         {
             var result = new Troop((string)json["Name"]);
             result.Cost = (int)json["Cost"];
+            result.Type = (string)json["Type"];
+            result.Subtype = (string)json["Subtype"];
             return result;
         }
 
@@ -137,7 +139,9 @@ namespace Data
         {
             var troop = pair.Value;
             return new JObject(new JProperty("Name", troop.Name),
-                               new JProperty("Cost", troop.Cost));
+                               new JProperty("Cost", troop.Cost),
+                               new JProperty("Type", troop.Type),
+                               new JProperty("Subtype", troop.Subtype));
         }
     }
 }

@@ -69,6 +69,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BasicValues.feature</DependentUpon>
     </Compile>
+    <Compile Include="Steps\CleanTroopData.cs" />
     <Compile Include="Steps\EnsureApplicationLifetime.cs" />
     <Compile Include="Support\ApplicationLifetime.cs" />
     <Compile Include="Support\TestedApplication.cs" />

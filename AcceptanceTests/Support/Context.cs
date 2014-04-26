@@ -22,7 +22,10 @@ namespace AcceptanceTests
 
         public static void EnsureThereIsNoTroopFile()
         {
-            System.IO.File.Delete(TROOP_FILE);
+            if (System.IO.File.Exists(TROOP_FILE))
+            {
+                System.IO.File.Delete(TROOP_FILE);
+            }
         }
 
         public static void CreateInvalidTroopFile()

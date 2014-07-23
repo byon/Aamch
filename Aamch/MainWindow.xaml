@@ -21,6 +21,10 @@
                           DisplayMemberBinding="{Binding Type}"/>
           <GridViewColumn Header="Subtype"
                           DisplayMemberBinding="{Binding Subtype}"/>
+          <GridViewColumn Header="Front defense"
+                          DisplayMemberBinding="{Binding FrontDefense}"/>
+          <GridViewColumn Header="Rear defense"
+                          DisplayMemberBinding="{Binding RearDefense}"/>
         </GridView>
       </ListView.View>
     </ListView>

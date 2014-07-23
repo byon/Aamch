@@ -59,6 +59,18 @@ namespace AcceptanceTests
             AddSingleTroop(t => t.Subtype = type);
         }
 
+        [Given(@"a single troop with front defense (.*)")]
+        public void GivenASingleTroopWithFrontDefense(int defense)
+        {
+            AddSingleTroop(t => t.FrontDefense = defense);
+        }
+
+        [Given(@"a single troop with rear defense (.*)")]
+        public void GivenASingleTroopWithRearDefense(int defense)
+        {
+            AddSingleTroop(t => t.RearDefense = defense);
+        }
+
         [Then(@"the single troop listed has cost of (.*)")]
         public void ThenTheSingleTroopListedHasCostOf(int cost)
         {
@@ -75,6 +87,18 @@ namespace AcceptanceTests
         public void ThenTheSingleTroopListedHasSubtypeOf(string type)
         {
             Assert.AreEqual(type, GetSingleTroop().Subtype);
+        }
+
+        [Then(@"the single troop listed has front defense of (.*)")]
+        public void ThenTheSingleTroopListedHasFrontDefenseOf(int type)
+        {
+            Assert.AreEqual(type, GetSingleTroop().FrontDefense);
+        }
+
+        [Then(@"the single troop listed has rear defense of (.*)")]
+        public void ThenTheSingleTroopListedHasRearDefenseOf(int type)
+        {
+            Assert.AreEqual(type, GetSingleTroop().RearDefense);
         }
 
         private static void AddSingleTroop(ModifyTroop modifier)

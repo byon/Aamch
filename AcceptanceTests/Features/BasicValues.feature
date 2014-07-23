@@ -13,8 +13,10 @@ Scenario Outline: Viewing values of the troops
     Then the single troop listed has <field> of <value>
 
     Examples:
-    | field   | value     |
-    | cost    | 12        |
-    | type    | soldier   |
-    | subtype | artillery |
-    | subtype |           |
+    | field         | value     |
+    | cost          | 12        |
+    | type          | soldier   |
+    | subtype       | artillery |
+    | subtype       |           |
+    | front defense | 48        |
+    | rear defense  | 36        |

@@ -38,6 +38,8 @@ namespace TestData
                 troop.Cost = child.Value<int>("Cost");
                 troop.Type = child.Value<string>("Type");
                 troop.Subtype = child.Value<string>("Subtype");
+                troop.FrontDefense = child.Value<int>("Fdef");
+                troop.RearDefense = child.Value<int>("Rdef");
                 result.Add(troop);
             }
             return result.ToArray();
@@ -123,6 +125,8 @@ namespace TestData
             troop.Cost = 1234;
             troop.Type = "Type";
             troop.Subtype = "Subtype";
+            troop.FrontDefense = 4321;
+            troop.RearDefense = 5678;
             repository.AddTroop(troop);
             repository.Write(TROOP_FILE_PATH);
         }
@@ -149,6 +153,18 @@ namespace TestData
         public void SubtypeIsWritten()
         {
             Assert.AreEqual("Subtype", WrittenTroops()[0].Subtype);
+        }
+
+        [TestMethod]
+        public void FrontDefenseIsWritten()
+        {
+            Assert.AreEqual(4321, WrittenTroops()[0].FrontDefense);
+        }
+
+        [TestMethod]
+        public void RearDefenseIsWritten()
+        {
+            Assert.AreEqual(5678, WrittenTroops()[0].RearDefense);
         }
     }
 
@@ -186,7 +202,9 @@ namespace TestData
             return new JObject(new JProperty("Name", name),
                                new JProperty("Cost", 4321),
                                new JProperty("Type", "Type"),
-                               new JProperty("Subtype", "Subtype"));
+                               new JProperty("Subtype", "Subtype"),
+                               new JProperty("Fdef", 1234),
+                               new JProperty("Rdef", 5678));
         }
     }
 
@@ -274,6 +292,18 @@ namespace TestData
         public void ReadingSubtype()
         {
             Assert.AreEqual("Subtype", readTroop.Subtype);
+        }
+
+        [TestMethod]
+        public void ReadingFrontDefense()
+        {
+            Assert.AreEqual(1234, readTroop.FrontDefense);
+        }
+
+        [TestMethod]
+        public void ReadingRearDefense()
+        {
+            Assert.AreEqual(5678, readTroop.RearDefense);
         }
     }
 }

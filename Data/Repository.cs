@@ -20,6 +20,8 @@ namespace Data
             public int Cost { get; set; }
             public string Type { get; set; }
             public string Subtype { get; set; }
+            public int FrontDefense { get; set; }
+            public int RearDefense { get; set; }
         }
 
         public class IoFailure : Exception
@@ -121,6 +123,8 @@ namespace Data
             result.Cost = (int)json["Cost"];
             result.Type = (string)json["Type"];
             result.Subtype = (string)json["Subtype"];
+            result.FrontDefense = (int)json["Fdef"];
+            result.RearDefense = (int)json["Rdef"];
             return result;
         }
 
@@ -141,7 +145,9 @@ namespace Data
             return new JObject(new JProperty("Name", troop.Name),
                                new JProperty("Cost", troop.Cost),
                                new JProperty("Type", troop.Type),
-                               new JProperty("Subtype", troop.Subtype));
+                               new JProperty("Subtype", troop.Subtype),
+                               new JProperty("Fdef", troop.FrontDefense),
+                               new JProperty("Rdef", troop.RearDefense));
         }
     }
 }

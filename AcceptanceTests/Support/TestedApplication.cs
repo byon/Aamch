@@ -66,8 +66,8 @@ namespace AcceptanceTests
             troop.Cost = IntFromCell(cells["Cost"]);
             troop.Type = CellValue(cells["Type"]);
             troop.Subtype = CellValue(cells["Subtype"]);
-            troop.FrontDefense = IntFromCell(cells["Front defense"]);
-            troop.RearDefense = IntFromCell(cells["Rear defense"]);
+            troop.Defense.Front = IntFromCell(cells["Front defense"]);
+            troop.Defense.Rear = IntFromCell(cells["Rear defense"]);
             return troop;
         }
 

@@ -62,13 +62,13 @@ namespace AcceptanceTests
         [Given(@"a single troop with front defense (.*)")]
         public void GivenASingleTroopWithFrontDefense(int defense)
         {
-            AddSingleTroop(t => t.FrontDefense = defense);
+            AddSingleTroop(t => t.Defense.Front = defense);
         }
 
         [Given(@"a single troop with rear defense (.*)")]
         public void GivenASingleTroopWithRearDefense(int defense)
         {
-            AddSingleTroop(t => t.RearDefense = defense);
+            AddSingleTroop(t => t.Defense.Rear = defense);
         }
 
         [Then(@"the single troop listed has cost of (.*)")]
@@ -92,13 +92,13 @@ namespace AcceptanceTests
         [Then(@"the single troop listed has front defense of (.*)")]
         public void ThenTheSingleTroopListedHasFrontDefenseOf(int type)
         {
-            Assert.AreEqual(type, GetSingleTroop().FrontDefense);
+            Assert.AreEqual(type, GetSingleTroop().Defense.Front);
         }
 
         [Then(@"the single troop listed has rear defense of (.*)")]
         public void ThenTheSingleTroopListedHasRearDefenseOf(int type)
         {
-            Assert.AreEqual(type, GetSingleTroop().RearDefense);
+            Assert.AreEqual(type, GetSingleTroop().Defense.Rear);
         }
 
         private static void AddSingleTroop(ModifyTroop modifier)

@@ -38,8 +38,8 @@ namespace TestData
                 troop.Cost = child.Value<int>("Cost");
                 troop.Type = child.Value<string>("Type");
                 troop.Subtype = child.Value<string>("Subtype");
-                troop.FrontDefense = child.Value<int>("Fdef");
-                troop.RearDefense = child.Value<int>("Rdef");
+                troop.Defense.Front = child.Value<int>("Fdef");
+                troop.Defense.Rear = child.Value<int>("Rdef");
                 result.Add(troop);
             }
             return result.ToArray();
@@ -125,8 +125,8 @@ namespace TestData
             troop.Cost = 1234;
             troop.Type = "Type";
             troop.Subtype = "Subtype";
-            troop.FrontDefense = 4321;
-            troop.RearDefense = 5678;
+            troop.Defense.Front = 4321;
+            troop.Defense.Rear = 5678;
             repository.AddTroop(troop);
             repository.Write(TROOP_FILE_PATH);
         }
@@ -158,13 +158,13 @@ namespace TestData
         [TestMethod]
         public void FrontDefenseIsWritten()
         {
-            Assert.AreEqual(4321, WrittenTroops()[0].FrontDefense);
+            Assert.AreEqual(4321, WrittenTroops()[0].Defense.Front);
         }
 
         [TestMethod]
         public void RearDefenseIsWritten()
         {
-            Assert.AreEqual(5678, WrittenTroops()[0].RearDefense);
+            Assert.AreEqual(5678, WrittenTroops()[0].Defense.Rear);
         }
     }
 
@@ -297,13 +297,13 @@ namespace TestData
         [TestMethod]
         public void ReadingFrontDefense()
         {
-            Assert.AreEqual(1234, readTroop.FrontDefense);
+            Assert.AreEqual(1234, readTroop.Defense.Front);
         }
 
         [TestMethod]
         public void ReadingRearDefense()
         {
-            Assert.AreEqual(5678, readTroop.RearDefense);
+            Assert.AreEqual(5678, readTroop.Defense.Rear);
         }
     }
 }

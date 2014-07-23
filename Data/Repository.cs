@@ -14,14 +14,20 @@ namespace Data
             public Troop(string name)
             {
                 Name = name;
+                Defense = new DefenseValues();
+            }
+
+            public class DefenseValues
+            {
+                public int Front { get; set; }
+                public int Rear { get; set; }
             }
 
             public string Name { get; set; }
             public int Cost { get; set; }
             public string Type { get; set; }
             public string Subtype { get; set; }
-            public int FrontDefense { get; set; }
-            public int RearDefense { get; set; }
+            public DefenseValues Defense { get; set; }
         }
 
         public class IoFailure : Exception
@@ -123,8 +129,8 @@ namespace Data
             result.Cost = (int)json["Cost"];
             result.Type = (string)json["Type"];
             result.Subtype = (string)json["Subtype"];
-            result.FrontDefense = (int)json["Fdef"];
-            result.RearDefense = (int)json["Rdef"];
+            result.Defense.Front = (int)json["Fdef"];
+            result.Defense.Rear = (int)json["Rdef"];
             return result;
         }
 
@@ -146,8 +152,8 @@ namespace Data
                                new JProperty("Cost", troop.Cost),
                                new JProperty("Type", troop.Type),
                                new JProperty("Subtype", troop.Subtype),
-                               new JProperty("Fdef", troop.FrontDefense),
-                               new JProperty("Rdef", troop.RearDefense));
+                               new JProperty("Fdef", troop.Defense.Front),
+                               new JProperty("Rdef", troop.Defense.Rear));
         }
     }
 }

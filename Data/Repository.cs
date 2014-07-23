@@ -148,12 +148,16 @@ namespace Data
         private JObject TroopToJson(KeyValuePair<string, Troop> pair)
         {
             var troop = pair.Value;
-            return new JObject(new JProperty("Name", troop.Name),
-                               new JProperty("Cost", troop.Cost),
-                               new JProperty("Type", troop.Type),
-                               new JProperty("Subtype", troop.Subtype),
-                               new JProperty("Fdef", troop.Defense.Front),
-                               new JProperty("Rdef", troop.Defense.Rear));
+            var result = new JObject(new JProperty("Name", troop.Name),
+                                     new JProperty("Cost", troop.Cost),
+                                     new JProperty("Type", troop.Type),
+                                     new JProperty("Subtype", troop.Subtype));
+            if (troop.Defense != null)
+            {
+                result.Add(new JProperty("Fdef", troop.Defense.Front));
+                result.Add(new JProperty("Rdef", troop.Defense.Rear));
+            }
+            return result;
         }
     }
 }

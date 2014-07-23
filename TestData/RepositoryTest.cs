@@ -44,6 +44,17 @@ namespace TestData
             }
         }
 
+        protected static Repository.Troop TroopToWrite()
+        {
+            var result = new Repository.Troop("troop");
+            result.Cost = 1234;
+            result.Type = "Type";
+            result.Subtype = "Subtype";
+            result.Defense.Front = 4321;
+            result.Defense.Rear = 5678;
+            return result;
+        }
+
         private JEnumerable<JToken> GetWrittenTroops()
         {
             return JArray.Parse(File.ReadAllText(TROOP_FILE_PATH)).Children();
@@ -120,18 +131,10 @@ namespace TestData
     [TestClass]
     public class WritingValuesToRepositoryTest : RepositoryTestBase
     {
-        private Repository.Troop troop;
-
         [TestInitialize]
         public void WriteTroop()
         {
-            troop = new Repository.Troop("troop");
-            troop.Cost = 1234;
-            troop.Type = "Type";
-            troop.Subtype = "Subtype";
-            troop.Defense.Front = 4321;
-            troop.Defense.Rear = 5678;
-            repository.AddTroop(troop);
+            repository.AddTroop(TroopToWrite());
             repository.Write(TROOP_FILE_PATH);
         }
 
@@ -174,6 +177,31 @@ namespace TestData
         private void TestValue<T>(string name, T expected)
         {
             TestSingleTroop(t => Assert.AreEqual(expected, t.Value<T>(name)));
+        }
+    }
+
+    [TestClass]
+    public class WritingNullValuesToRepositoryTest : RepositoryTestBase
+    {
+        [TestInitialize]
+        public void WriteTroop()
+        {
+            var troop = TroopToWrite();
+            troop.Defense = null;
+            repository.AddTroop(troop);
+            repository.Write(TROOP_FILE_PATH);
+        }
+
+        [TestMethod]
+        public void FrontDefenseIsNull()
+        {
+            TestSingleTroop(t => Assert.IsNull(t.Value<int?>("Fdef")));
+        }
+
+        [TestMethod]
+        public void RearDefenseIsNull()
+        {
+            TestSingleTroop(t => Assert.IsNull(t.Value<int?>("Fdef")));
         }
     }
 

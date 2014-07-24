@@ -17,6 +17,11 @@ namespace Data
                 Defense = new DefenseValues();
             }
 
+            public Troop Copy()
+            {
+                return (Troop)MemberwiseClone();
+            }
+
             public class DefenseValues
             {
                 public int Front { get; set; }

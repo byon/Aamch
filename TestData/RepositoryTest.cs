@@ -15,9 +15,6 @@ namespace TestData
                                                   "troop.json";
         protected Repository repository = new Repository();
 
-        protected delegate void TroopsChecker(JEnumerable<JToken> troops);
-        protected delegate void SingleTroopChecker(JToken troop);
-
         [TestInitialize]
         public void Initialize()
         {
@@ -29,35 +26,6 @@ namespace TestData
         public void Cleanup()
         {
             CleanupTroopData();
-        }
-
-        protected void TestAllTroops(TroopsChecker checker)
-        {
-            checker(GetWrittenTroops());
-        }
-
-        protected void TestSingleTroop(SingleTroopChecker checker)
-        {
-            foreach (var child in GetWrittenTroops())
-            {
-                checker(child);
-            }
-        }
-
-        protected static Repository.Troop TroopToWrite()
-        {
-            var result = new Repository.Troop("troop");
-            result.Cost = 1234;
-            result.Type = "Type";
-            result.Subtype = "Subtype";
-            result.Defense.Front = 4321;
-            result.Defense.Rear = 5678;
-            return result;
-        }
-
-        private JEnumerable<JToken> GetWrittenTroops()
-        {
-            return JArray.Parse(File.ReadAllText(TROOP_FILE_PATH)).Children();
         }
 
         private void CleanupTroopData()
@@ -72,6 +40,8 @@ namespace TestData
     [TestClass]
     public class WritingToRepositoryTest : RepositoryTestBase
     {
+        private TroopWriter writer = new TroopWriter(TROOP_FILE_PATH);
+
         [TestMethod]
         [ExpectedException(typeof(Repository.IoFailure))]
         public void WritingFailureIsNoticed()
@@ -98,31 +68,27 @@ namespace TestData
         [TestMethod]
         public void OneTroopIsWritten()
         {
-            repository.AddTroop(new Repository.Troop("troop"));
-            repository.Write(TROOP_FILE_PATH);
-            TestAllTroops(t => Assert.AreEqual(1, t.Count()));
+            var troops = writer.WithTroopCount(1).GetWrittenTroops();
+            Assert.AreEqual(1, troops.Count());
         }
 
         [TestMethod]
         public void SeveralTroopsAreWritten()
         {
-            for (var i = 0; i < 20; ++i)
-            {
-                repository.AddTroop(new Repository.Troop("troop" + i));
-            }
-            repository.Write(TROOP_FILE_PATH);
-            TestAllTroops(t => Assert.AreEqual(20, t.Count()));
+            var troops = writer.WithTroopCount(20).GetWrittenTroops();
+            Assert.AreEqual(20, troops.Count());
         }
 
         [TestMethod]
         public void CanRecognizeThatTroopDoesNotExist()
         {
-            Assert.IsFalse(repository.HasTroop("doesNotExist"));
+            Assert.IsFalse(new Repository().HasTroop("doesNotExist"));
         }
 
         [TestMethod]
         public void CanRecognizeThatTroopDoesExists()
         {
+            var repository = new Repository();
             repository.AddTroop(new Repository.Troop("existing"));
             Assert.IsTrue(repository.HasTroop("existing"));
         }
@@ -131,77 +97,64 @@ namespace TestData
     [TestClass]
     public class WritingValuesToRepositoryTest : RepositoryTestBase
     {
-        [TestInitialize]
-        public void WriteTroop()
-        {
-            repository.AddTroop(TroopToWrite());
-            repository.Write(TROOP_FILE_PATH);
-        }
-
         [TestMethod]
         public void NameIsWritten()
         {
-            TestValue("Name", "troop");
+            Assert.AreEqual("id0", Test<string>(t => t.Name = "id", "Name"));
         }
 
         [TestMethod]
         public void CostIsWritten()
         {
-            TestValue("Cost", 1234);
+            TestValue(t => t.Cost = 1234, "Cost", 1234);
         }
 
         [TestMethod]
         public void TypeIsWritten()
         {
-            TestValue("Type", "Type");
+            TestValue(t => t.Type = "a value", "Type", "a value");
         }
 
         [TestMethod]
         public void SubtypeIsWritten()
         {
-            TestValue("Subtype", "Subtype");
+            TestValue(t => t.Subtype = "value", "Subtype", "value");
         }
 
         [TestMethod]
         public void FrontDefenseIsWritten()
         {
-            TestValue("Fdef", 4321);
+            TestValue(t => t.Defense.Front = 4321, "Fdef", 4321);
         }
 
         [TestMethod]
         public void RearDefenseIsWritten()
         {
-            TestValue("Rdef", 5678);
-        }
-
-        private void TestValue<T>(string name, T expected)
-        {
-            TestSingleTroop(t => Assert.AreEqual(expected, t.Value<T>(name)));
-        }
-    }
-
-    [TestClass]
-    public class WritingNullValuesToRepositoryTest : RepositoryTestBase
-    {
-        [TestInitialize]
-        public void WriteTroop()
-        {
-            var troop = TroopToWrite();
-            troop.Defense = null;
-            repository.AddTroop(troop);
-            repository.Write(TROOP_FILE_PATH);
+            TestValue(t => t.Defense.Rear = 5678, "Rdef", 5678);
         }
 
         [TestMethod]
         public void FrontDefenseIsNull()
         {
-            TestSingleTroop(t => Assert.IsNull(t.Value<int?>("Fdef")));
+            Assert.IsNull(Test<int?>(t => t.Defense = null, "Fdef"));
         }
 
         [TestMethod]
         public void RearDefenseIsNull()
         {
-            TestSingleTroop(t => Assert.IsNull(t.Value<int?>("Fdef")));
+            Assert.IsNull(Test<int?>(t => t.Defense = null, "Rdef"));
+        }
+
+        private void TestValue<T>(TroopWriter.TroopChanger changer,
+                                  string name, T value)
+        {
+            Assert.AreEqual(value, Test<T>(changer, name));
+        }
+
+        private T Test<T>(TroopWriter.TroopChanger changer, string name)
+        {
+            TroopWriter writer = new TroopWriter(TROOP_FILE_PATH);
+            return writer.WithTroop(changer).GetWrittenTroop().Value<T>(name);
         }
     }
 
@@ -289,6 +242,55 @@ namespace TestData
         public void ReadingRearDefense()
         {
             Assert.AreEqual(5678, reader.FirstReadTroop().Defense.Rear);
+        }
+    }
+
+    public class TroopWriter
+    {
+        private int troopCount = 1;
+        private string path;
+        private Repository repository = new Repository();
+        private Repository.Troop troopTemplate = new Repository.Troop("troop");
+
+        public delegate void TroopChanger(Repository.Troop troop);
+
+        public TroopWriter(string path)
+        {
+            this.path = path;
+        }
+
+        public JEnumerable<JToken> GetWrittenTroops()
+        {
+            for (int i = 0; i < troopCount; ++i)
+            {
+                repository.AddTroop(CreateTroop(i.ToString()));
+            }
+            repository.Write(path);
+            return JArray.Parse(File.ReadAllText(path)).Children();
+        }
+
+        public JToken GetWrittenTroop()
+        {
+            return GetWrittenTroops().ElementAt(0);
+        }
+
+        public TroopWriter WithTroopCount(int count)
+        {
+            troopCount = count;
+            return this;
+        }
+
+        public TroopWriter WithTroop(TroopChanger changer)
+        {
+            changer(troopTemplate);
+            return this;
+        }
+
+        private Repository.Troop CreateTroop(string id)
+        {
+            var result = troopTemplate.Copy();
+            result.Name += id;
+            return result;
         }
     }
 

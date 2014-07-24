@@ -42,64 +42,16 @@ namespace AcceptanceTests
             Assert.AreEqual(0, Context.GetTroops().Count());
         }
 
-        [Given(@"a single troop with cost (.*)")]
-        public void GivenASingleTroopWithCost(string cost)
+        [Given(@"a single troop with (.*) (.*)")]
+        public void GivenASingleTroopWith(string name, string cost)
         {
-            AddSingleTroop(t => t["Cost"] = cost);
+            AddSingleTroop(t => t[MapToFieldId(name)] = cost);
         }
 
-        [Given(@"a single troop with type (.*)")]
-        public void GivenASingleTroopWithType(string type)
+        [Then(@"the single troop listed has (.*) of (.*)")]
+        public void ThenTheSingleTroopListedHasFieldOf(string id, string value)
         {
-            AddSingleTroop(t => t["Type"] = type);
-        }
-
-        [Given(@"a single troop with subtype (.*)")]
-        public void GivenASingleTroopWithSubtype(string type)
-        {
-            AddSingleTroop(t => t["Subtype"] = type);
-        }
-
-        [Given(@"a single troop with front defense (.*)")]
-        public void GivenASingleTroopWithFrontDefense(string defense)
-        {
-            AddSingleTroop(t => t["Fdef"] = defense);
-        }
-
-        [Given(@"a single troop with rear defense (.*)")]
-        public void GivenASingleTroopWithRearDefense(string defense)
-        {
-            AddSingleTroop(t => t["Rdef"] = defense);
-        }
-
-        [Then(@"the single troop listed has cost of (.*)")]
-        public void ThenTheSingleTroopListedHasCostOf(string cost)
-        {
-            Assert.AreEqual(cost, GetSingleTroop()["Cost"]);
-        }
-
-        [Then(@"the single troop listed has type of (.*)")]
-        public void ThenTheSingleTroopListedHasTypeOf(string type)
-        {
-            Assert.AreEqual(type, GetSingleTroop()["Type"]);
-        }
-
-        [Then(@"the single troop listed has subtype of (.*)")]
-        public void ThenTheSingleTroopListedHasSubtypeOf(string type)
-        {
-            Assert.AreEqual(type, GetSingleTroop()["Subtype"]);
-        }
-
-        [Then(@"the single troop listed has front defense of (.*)")]
-        public void ThenTheSingleTroopListedHasFrontDefenseOf(string type)
-        {
-            Assert.AreEqual(type, GetSingleTroop()["Front defense"]);
-        }
-
-        [Then(@"the single troop listed has rear defense of (.*)")]
-        public void ThenTheSingleTroopListedHasRearDefenseOf(string type)
-        {
-            Assert.AreEqual(type, GetSingleTroop()["Rear defense"]);
+            Assert.AreEqual(value, GetSingleTroop()[MapToHeader(id)]);
         }
 
         private static void AddSingleTroop(ModifyTroop modifier)
@@ -125,6 +77,21 @@ namespace AcceptanceTests
                                                     { "Subtype", "" },
                                                     { "Fdef", "0" },
                                                     { "Rdef", "0" } };
+        }
+
+        private static string MapToFieldId(string name)
+        {
+            var mapping = new Dictionary<string, string>{ {"cost", "Cost"},
+                                                          {"type", "Type"},
+                                                          {"subtype", "Subtype"},
+                                                          {"front defense", "Fdef"},
+                                                          {"rear defense", "Rdef"} };
+            return mapping[name];
+        }
+
+        private static string MapToHeader(string id)
+        {
+            return char.ToUpper(id[0]) + id.Substring(1);
         }
     }
 }

@@ -17,11 +17,6 @@ namespace Data
                 Defense = new DefenseValues();
             }
 
-            public Troop Copy()
-            {
-                return (Troop)MemberwiseClone();
-            }
-
             public class DefenseValues
             {
                 public int Front { get; set; }
@@ -44,19 +39,21 @@ namespace Data
         }
 
         Dictionary<string, Troop> troops = new Dictionary<string, Troop>();
-        private delegate void IoOperation();
-        private delegate void ErrorHandler(Exception error);
-
-        public void Write(string path)
-        {
-            HandleExceptions(() => WriteWithoutErrorHandling(path),
-                             (e) => ThrowIoFailure(e, "write"));
-        }
 
         public void Read(string path)
         {
-            HandleExceptions(() => ReadWithoutErrorHandling(path),
-                             (e) => ThrowIoFailure(e, "read"));
+            try
+            {
+                ReadWithoutErrorHandling(path);
+            }
+            catch (JsonException e)
+            {
+                ThrowIoFailure(e);
+            }
+            catch (SystemException e)
+            {
+                ThrowIoFailure(e);
+            }
         }
 
         public void AddTroop(Troop troop)
@@ -66,45 +63,15 @@ namespace Data
             troops[troop.Name] = troop;
         }
 
-        public bool HasTroop(string name)
-        {
-            return troops.ContainsKey(name);
-        }
-
         public Troop[] GetTroops()
         {
             return troops.Values.ToArray();
         }
 
-        private void HandleExceptions(IoOperation operation,
-                                      ErrorHandler errorHandler)
+        private static void ThrowIoFailure(Exception e)
         {
-            try
-            {
-                operation();
-            }
-            catch (JsonException e)
-            {
-                errorHandler(e);
-            }
-            catch (SystemException e)
-            {
-                errorHandler(e);
-            }
-        }
-
-        private static void ThrowIoFailure(Exception e, string operation)
-        {
-            var message = "Failed to " + operation + " troop file " +
-                          "'" + e.Message + "'";
+            var message = "Failed to read troop file " + "'" + e.Message + "'";
             throw new IoFailure(message);
-        }
-
-        private void WriteWithoutErrorHandling(string path)
-        {
-            EnsureDirectoryExistsForFile(path);
-            var json = TroopsToJson();
-            File.WriteAllText(path, json);
         }
 
         private void ReadWithoutErrorHandling(string path)
@@ -135,32 +102,6 @@ namespace Data
             result.Type = (string)json["Type"];
             result.Subtype = (string)json["Subtype"];
             ReadDefenseToTroop(json, result);
-            return result;
-        }
-
-        private void EnsureDirectoryExistsForFile(string path)
-        {
-            Directory.CreateDirectory(Path.GetDirectoryName(path));
-        }
-
-        private string TroopsToJson()
-        {
-            var jsonTroops = from t in troops select TroopToJson(t);
-            return new JArray(jsonTroops).ToString();
-        }
-
-        private JObject TroopToJson(KeyValuePair<string, Troop> pair)
-        {
-            var troop = pair.Value;
-            var result = new JObject(new JProperty("Name", troop.Name),
-                                     new JProperty("Cost", troop.Cost),
-                                     new JProperty("Type", troop.Type),
-                                     new JProperty("Subtype", troop.Subtype));
-            if (troop.Defense != null)
-            {
-                result.Add(new JProperty("Fdef", troop.Defense.Front));
-                result.Add(new JProperty("Rdef", troop.Defense.Rear));
-            }
             return result;
         }
 

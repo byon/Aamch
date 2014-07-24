@@ -205,142 +205,213 @@ namespace TestData
         }
     }
 
-    public class ReadingTestBase : RepositoryTestBase
-    {
-        protected void AddTroops(int count)
-        {
-            WriteTroopFile(CreateTroopJson(count));
-        }
-
-        protected void WriteTroopFile(string content)
-        {
-            File.WriteAllText(TROOP_FILE_PATH, content);
-        }
-
-        private string CreateTroopJson(int count)
-        {
-            var troops = CreateTroopNames(count);
-            var jsonTroops = from t in troops select TroopToJson(t);
-            return new JArray(jsonTroops).ToString();
-        }
-
-        private string[] CreateTroopNames(int count)
-        {
-            var result = new string[count];
-            for (int i = 0; i < count; ++i)
-            {
-                result[i] = "troop" + (i + 1).ToString();
-            }
-            return result;
-        }
-
-        private JObject TroopToJson(string name)
-        {
-            return new JObject(new JProperty("Name", name),
-                               new JProperty("Cost", 4321),
-                               new JProperty("Type", "Type"),
-                               new JProperty("Subtype", "Subtype"),
-                               new JProperty("Fdef", 1234),
-                               new JProperty("Rdef", 5678));
-        }
-    }
-
     [TestClass]
-    public class ReadingFromRepositoryTest : ReadingTestBase
+    public class ReadingFromRepositoryTest : RepositoryTestBase
     {
+        private TroopReader reader = new TroopReader(TROOP_FILE_PATH);
+
         [TestMethod]
         public void TroopsAreEmptyBeforeFirstRead()
         {
-            Assert.AreEqual(0, repository.GetTroops().Length);
+            Assert.AreEqual(0, new Repository().GetTroops().Length);
         }
 
         [TestMethod]
         [ExpectedException(typeof(Repository.IoFailure))]
         public void ReadingFailureIsNoticed()
         {
-            repository.Read(@"Troops\DoesNotExist.json");
+            new Repository().Read(@"Troops\DoesNotExist.json");
         }
 
         [TestMethod]
         [ExpectedException(typeof(Repository.IoFailure))]
         public void EmptyFileResultsInNoTroops()
         {
-            WriteTroopFile("");
-            repository.Read(TROOP_FILE_PATH);
+            reader.WithFileContent("").ReadTroops();
         }
 
         [TestMethod]
         public void NoTroopsToRead()
         {
-            AddTroops(0);
-            repository.Read(TROOP_FILE_PATH);
-            Assert.AreEqual(0, repository.GetTroops().Length);
+            Assert.AreEqual(0, reader.WithTroopCount(0).ReadTroops().Length);
         }
 
         [TestMethod]
         public void ReadingOneTroop()
         {
-            AddTroops(1);
-            repository.Read(TROOP_FILE_PATH);
-            Assert.AreEqual(1, repository.GetTroops().Length);
+            Assert.AreEqual(1, reader.WithTroopCount(1).ReadTroops().Length);
         }
 
         [TestMethod]
         public void ReadingMultipleTroops()
         {
-            AddTroops(101);
-            repository.Read(TROOP_FILE_PATH);
-            Assert.AreEqual(101, repository.GetTroops().Length);
+            Assert.AreEqual(101,
+                            reader.WithTroopCount(101).ReadTroops().Length);
         }
     }
 
     [TestClass]
-    public class ReadingValuesFromRepositoryTest : ReadingTestBase
+    public class ReadingValuesFromRepositoryTest : RepositoryTestBase
     {
-        private Repository.Troop readTroop;
-
-        [TestInitialize]
-        public void ReadOneTroop()
-        {
-            AddTroops(1);
-            repository.Read(TROOP_FILE_PATH);
-            readTroop = repository.GetTroops()[0];
-        }
+        private TroopReader reader = new TroopReader(TROOP_FILE_PATH);
 
         [TestMethod]
         public void ReadingName()
         {
-            Assert.AreEqual("troop1", readTroop.Name);
+            Assert.AreEqual("troop1", reader.FirstReadTroop().Name);
         }
 
         [TestMethod]
         public void ReadingCost()
         {
-            Assert.AreEqual(4321, readTroop.Cost);
+            Assert.AreEqual(4321, reader.FirstReadTroop().Cost);
         }
 
         [TestMethod]
         public void ReadingType()
         {
-            Assert.AreEqual("Type", readTroop.Type);
+            Assert.AreEqual("Type", reader.FirstReadTroop().Type);
         }
 
         [TestMethod]
         public void ReadingSubtype()
         {
-            Assert.AreEqual("Subtype", readTroop.Subtype);
+            Assert.AreEqual("Subtype", reader.FirstReadTroop().Subtype);
         }
 
         [TestMethod]
         public void ReadingFrontDefense()
         {
-            Assert.AreEqual(1234, readTroop.Defense.Front);
+            Assert.AreEqual(1234, reader.FirstReadTroop().Defense.Front);
         }
 
         [TestMethod]
         public void ReadingRearDefense()
         {
-            Assert.AreEqual(5678, readTroop.Defense.Rear);
+            Assert.AreEqual(5678, reader.FirstReadTroop().Defense.Rear);
+        }
+    }
+
+    public class TroopReader
+    {
+        private int troopCount = 1;
+        private string path;
+        private TroopJsonBuilder jsonBuilder = new TroopJsonBuilder();
+        private Repository repository = new Repository();
+        private string fileContent = null;
+
+        public TroopReader(string path)
+        {
+            this.path = path;
+        }
+
+        public Repository.Troop[] ReadTroops()
+        {
+            WriteTroopFile(path, SelectContent());
+            repository.Read(path);
+            return repository.GetTroops();
+        }
+
+        public Repository.Troop FirstReadTroop()
+        {
+            return ReadTroops()[0];
+        }
+
+        public TroopReader WithFileContent(string content)
+        {
+            fileContent = content;
+            return this;
+        }
+
+        public TroopReader WithTroopCount(int count)
+        {
+            troopCount = count;
+            return this;
+        }
+
+        public TroopReader WithCost(int cost)
+        {
+            jsonBuilder.cost = cost;
+            return this;
+        }
+
+        public TroopReader WithType(string type)
+        {
+            jsonBuilder.type = type;
+            return this;
+        }
+
+        public TroopReader WithSubtype(string subtype)
+        {
+            jsonBuilder.subtype = subtype;
+            return this;
+        }
+
+        public TroopReader WithFrontDefense(int defense)
+        {
+            jsonBuilder.frontDefense = defense;
+            return this;
+        }
+
+        public TroopReader WithRearDefense(int defense)
+        {
+            jsonBuilder.rearDefense = defense;
+            return this;
+        }
+
+        private string SelectContent()
+        {
+            if (fileContent != null)
+            {
+                return fileContent;
+            }
+            return jsonBuilder.CreateTroops(troopCount);
+        }
+
+        private void WriteTroopFile(string path, string content)
+        {
+            File.WriteAllText(path, content);
+        }
+
+        private class TroopJsonBuilder
+        {
+            public int cost = 4321;
+            public string type = "Type";
+            public string subtype = "Subtype";
+            public int frontDefense = 1234;
+            public int rearDefense = 5678;
+
+            public string CreateTroops(int count)
+            {
+                return CreateTroopJson(count);
+            }
+
+            private string CreateTroopJson(int count)
+            {
+                var troops = CreateTroopNames(count);
+                var jsonTroops = from t in troops select TroopToJson(t);
+                return new JArray(jsonTroops).ToString();
+            }
+
+            private string[] CreateTroopNames(int count)
+            {
+                var result = new string[count];
+                for (int i = 0; i < count; ++i)
+                {
+                    result[i] = "troop" + (i + 1).ToString();
+                }
+                return result;
+            }
+
+            private JObject TroopToJson(string name)
+            {
+                return new JObject(new JProperty("Name", name),
+                                   new JProperty("Cost", cost),
+                                   new JProperty("Type", type),
+                                   new JProperty("Subtype", subtype),
+                                   new JProperty("Fdef", frontDefense),
+                                   new JProperty("Rdef", rearDefense));
+            }
         }
     }
 }

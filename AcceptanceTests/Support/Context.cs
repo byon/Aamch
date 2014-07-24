@@ -1,5 +1,4 @@
-﻿using Data;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using TechTalk.SpecFlow;
 
@@ -44,7 +43,7 @@ namespace AcceptanceTests
             CreateTroopFile("[]");
         }
 
-        public static void AddTroop(Repository.Troop troop)
+        public static void AddTroop(Dictionary<string, string> troop)
         {
             var repository = GetRepository();
             repository.AddTroop(troop);

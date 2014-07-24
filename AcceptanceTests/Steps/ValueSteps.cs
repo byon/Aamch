@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using TechTalk.SpecFlow;
-using Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
@@ -9,7 +8,7 @@ namespace AcceptanceTests
     [Binding]
     public class StepDefinitions
     {
-        private delegate void ModifyTroop(Repository.Troop troop);
+        private delegate void ModifyTroop(Dictionary<string, string> troop);
 
         [Given(@"that troops include ""(.*)""")]
         public void GivenThatTroopsInclude(string name)
@@ -44,33 +43,33 @@ namespace AcceptanceTests
         }
 
         [Given(@"a single troop with cost (.*)")]
-        public void GivenASingleTroopWithCost(int cost)
+        public void GivenASingleTroopWithCost(string cost)
         {
-            AddSingleTroop(t => t.Cost = cost);
+            AddSingleTroop(t => t["Cost"] = cost);
         }
 
         [Given(@"a single troop with type (.*)")]
         public void GivenASingleTroopWithType(string type)
         {
-            AddSingleTroop(t => t.Type = type);
+            AddSingleTroop(t => t["Type"] = type);
         }
 
         [Given(@"a single troop with subtype (.*)")]
         public void GivenASingleTroopWithSubtype(string type)
         {
-            AddSingleTroop(t => t.Subtype = type);
+            AddSingleTroop(t => t["Subtype"] = type);
         }
 
         [Given(@"a single troop with front defense (.*)")]
-        public void GivenASingleTroopWithFrontDefense(int defense)
+        public void GivenASingleTroopWithFrontDefense(string defense)
         {
-            AddSingleTroop(t => t.Defense.Front = defense);
+            AddSingleTroop(t => t["Fdef"] = defense);
         }
 
         [Given(@"a single troop with rear defense (.*)")]
-        public void GivenASingleTroopWithRearDefense(int defense)
+        public void GivenASingleTroopWithRearDefense(string defense)
         {
-            AddSingleTroop(t => t.Defense.Rear = defense);
+            AddSingleTroop(t => t["Rdef"] = defense);
         }
 
         [Then(@"the single troop listed has cost of (.*)")]
@@ -106,7 +105,7 @@ namespace AcceptanceTests
         private static void AddSingleTroop(ModifyTroop modifier)
         {
             Context.ResetTroops();
-            var troop = new Repository.Troop("Troop name");
+            var troop = CreateTroop("Troop name");
             modifier(troop);
             Context.AddTroop(troop);
         }
@@ -118,9 +117,14 @@ namespace AcceptanceTests
             return troops.First();
         }
 
-        private static Repository.Troop CreateTroop(string name)
+        private static Dictionary<string, string> CreateTroop(string name)
         {
-            return new Repository.Troop(name);
+            return new Dictionary<string, string> { { "Name", name },
+                                                    { "Cost", "0" },
+                                                    { "Type", "" },
+                                                    { "Subtype", "" },
+                                                    { "Fdef", "0" },
+                                                    { "Rdef", "0" } };
         }
     }
 }

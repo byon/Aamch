@@ -38,6 +38,10 @@
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.3.2.2\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="TechTalk.SpecFlow">
       <HintPath>..\packages\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
@@ -77,6 +81,7 @@
     <Compile Include="Steps\CleanTroopData.cs" />
     <Compile Include="Steps\EnsureApplicationLifetime.cs" />
     <Compile Include="Support\ApplicationLifetime.cs" />
+    <Compile Include="Support\Repository.cs" />
     <Compile Include="Support\TestedApplication.cs" />
     <Compile Include="Steps\ApplicationSteps.cs" />
     <Compile Include="Support\Context.cs" />
@@ -98,12 +103,6 @@
       <LastGenOutput>ListingTroops.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Data\Data.csproj">
-      <Project>{e6e487c7-9623-4963-b31f-d2b3bc8b8051}</Project>
-      <Name>Data</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

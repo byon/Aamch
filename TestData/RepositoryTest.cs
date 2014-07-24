@@ -243,6 +243,20 @@ namespace TestData
         {
             Assert.AreEqual(5678, reader.FirstReadTroop().Defense.Rear);
         }
+
+        [TestMethod]
+        public void ReadingNullFrontDefense()
+        {
+            var troop = reader.WithFrontDefense(null).FirstReadTroop();
+            Assert.IsNull(troop.Defense);
+        }
+
+        [TestMethod]
+        public void ReadingNullRearDefense()
+        {
+            var troop = reader.WithRearDefense(null).FirstReadTroop();
+            Assert.IsNull(troop.Defense);
+        }
     }
 
     public class TroopWriter
@@ -349,13 +363,13 @@ namespace TestData
             return this;
         }
 
-        public TroopReader WithFrontDefense(int defense)
+        public TroopReader WithFrontDefense(int? defense)
         {
             jsonBuilder.frontDefense = defense;
             return this;
         }
 
-        public TroopReader WithRearDefense(int defense)
+        public TroopReader WithRearDefense(int? defense)
         {
             jsonBuilder.rearDefense = defense;
             return this;
@@ -380,8 +394,8 @@ namespace TestData
             public int cost = 4321;
             public string type = "Type";
             public string subtype = "Subtype";
-            public int frontDefense = 1234;
-            public int rearDefense = 5678;
+            public int? frontDefense = 1234;
+            public int? rearDefense = 5678;
 
             public string CreateTroops(int count)
             {

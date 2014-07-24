@@ -134,8 +134,7 @@ namespace Data
             result.Cost = (int)json["Cost"];
             result.Type = (string)json["Type"];
             result.Subtype = (string)json["Subtype"];
-            result.Defense.Front = (int)json["Fdef"];
-            result.Defense.Rear = (int)json["Rdef"];
+            ReadDefenseToTroop(json, result);
             return result;
         }
 
@@ -163,6 +162,21 @@ namespace Data
                 result.Add(new JProperty("Rdef", troop.Defense.Rear));
             }
             return result;
+        }
+
+        private void ReadDefenseToTroop(JToken json, Troop result)
+        {
+            int? front = (int?)json["Fdef"];
+            int? rear = (int?)json["Rdef"];
+
+            if (front == null || rear == null)
+            {
+                result.Defense = null;
+                return;
+            }
+
+            result.Defense.Front = (int)front;
+            result.Defense.Rear = (int)rear;
         }
     }
 }

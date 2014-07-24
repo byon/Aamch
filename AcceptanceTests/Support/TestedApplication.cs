@@ -1,10 +1,10 @@
 ﻿using System.Linq;
-using Data;
 using TestStack.White;
 using TestStack.White.Factory;
 using TestStack.White.UIItems;
 using TestStack.White.UIItems.WindowItems;
 using TestStack.White.WindowsAPI;
+using System.Collections.Generic;
 
 namespace AcceptanceTests
 {
@@ -42,10 +42,11 @@ namespace AcceptanceTests
             return !application.HasExited;
         }
 
-        public Repository.Troop[] GetTroops()
+        public List<Dictionary<string, string>> GetTroops()
         {
             var item = GetMainWindow().Get<ListView>("troopList");
-            return item.Rows.Select(r => RowToTroop(r)).ToArray();
+            var headers = item.Header.Columns.Select(c => c.Text).ToList();
+            return item.Rows.Select(r => RowToDictionary(r, headers)).ToList();
         }
 
         public string GetStatusMessage()
@@ -59,16 +60,12 @@ namespace AcceptanceTests
             window.Keyboard.PressSpecialKey(KeyboardInput.SpecialKeys.F5);
         }
 
-        private Repository.Troop RowToTroop(ListViewRow row)
+        private Dictionary<string, string> RowToDictionary(ListViewRow row,
+                                                           List<string> names)
         {
-            var cells = row.Cells;
-            var troop = new Repository.Troop(CellValue(cells["Name"]));
-            troop.Cost = IntFromCell(cells["Cost"]);
-            troop.Type = CellValue(cells["Type"]);
-            troop.Subtype = CellValue(cells["Subtype"]);
-            troop.Defense.Front = IntFromCell(cells["Front defense"]);
-            troop.Defense.Rear = IntFromCell(cells["Rear defense"]);
-            return troop;
+            var values = row.Cells.Select(c => c.Text).ToList();
+            var combined = names.Zip(values, (k, v) => new { k, v });
+            return combined.ToDictionary(x => x.k, x => x.v);
         }
 
         private static int IntFromCell(ListViewCell cell)

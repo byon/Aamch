@@ -1,4 +1,5 @@
 ﻿using Data;
+using System.Collections.Generic;
 using System.IO;
 using TechTalk.SpecFlow;
 
@@ -60,9 +61,10 @@ namespace AcceptanceTests
             CacheObject("viewedTroops", GetApplication().GetTroops());
         }
 
-        public static Repository.Troop[] GetTroops()
+        public static List<Dictionary<string, string>> GetTroops()
         {
-            return CachedObject<Repository.Troop[]>("viewedTroops");
+            var name = "viewedTroops";
+            return CachedObject<List<Dictionary<string, string>>>(name);
         }
 
         public static string GetStatusMessage()

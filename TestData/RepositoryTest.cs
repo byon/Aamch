@@ -156,6 +156,26 @@ namespace TestData
             var troop = reader.FirstReadTroop();
             Assert.AreEqual(9999999, troop.SoldierAttack.Long);
         }
+
+        [TestMethod]
+        public void ReadingShortVehicleAttack()
+        {
+            Assert.AreEqual(4, reader.FirstReadTroop().VehicleAttack.Short);
+        }
+
+        [TestMethod]
+        public void ReadingMediumVehicleAttack()
+        {
+            var troop = reader.FirstReadTroop();
+            Assert.AreEqual(3, troop.VehicleAttack.Medium);
+        }
+
+        [TestMethod]
+        public void ReadingLongVehicleAttack()
+        {
+            var troop = reader.FirstReadTroop();
+            Assert.AreEqual(1, troop.VehicleAttack.Long);
+        }
     }
 
     public class TroopReader
@@ -243,6 +263,24 @@ namespace TestData
             return this;
         }
 
+        public TroopReader WithShortVehicleAttack(int attack)
+        {
+            jsonBuilder.shortVehicleAttack = attack;
+            return this;
+        }
+
+        public TroopReader WithMediumVehicleAttack(int attack)
+        {
+            jsonBuilder.mediumVehicleAttack = attack;
+            return this;
+        }
+
+        public TroopReader WithLongVehicleAttack(int attack)
+        {
+            jsonBuilder.longVehicleAttack = attack;
+            return this;
+        }
+
         private string SelectContent()
         {
             if (fileContent != null)
@@ -267,6 +305,9 @@ namespace TestData
             public int shortSoldierAttack = 2345;
             public int mediumSoldierAttack = 5432;
             public int longSoldierAttack = 9999999;
+            public int shortVehicleAttack = 4;
+            public int mediumVehicleAttack = 3;
+            public int longVehicleAttack = 1;
 
             public string CreateTroops(int count)
             {
@@ -300,7 +341,10 @@ namespace TestData
                                    new JProperty("Rdef", rearDefense),
                                    new JProperty("SS", shortSoldierAttack),
                                    new JProperty("MS", mediumSoldierAttack),
-                                   new JProperty("LS", longSoldierAttack));
+                                   new JProperty("LS", longSoldierAttack),
+                                   new JProperty("SV", shortVehicleAttack),
+                                   new JProperty("MV", mediumVehicleAttack),
+                                   new JProperty("LV", longVehicleAttack));
             }
         }
     }

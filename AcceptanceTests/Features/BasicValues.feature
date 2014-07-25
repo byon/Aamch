@@ -23,6 +23,9 @@ Scenario Outline: Viewing values of the troops
     | attack (soldier/short)   | 22        |
     | attack (soldier/medium)  | 18        |
     | attack (soldier/long)    | 2         |
+    | attack (vehicle/short)   | 46        |
+    | attack (vehicle/medium)  | 22        |
+    | attack (vehicle/long)    | 12        |
 
 Scenario: Viewing troops without defense
     Given a single troop without defense

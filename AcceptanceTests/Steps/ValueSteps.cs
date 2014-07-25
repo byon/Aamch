@@ -94,7 +94,10 @@ namespace AcceptanceTests
                                                     { "Rdef", "0" },
                                                     { "SS", "0" },
                                                     { "MS", "0" },
-                                                    { "LS", "0" } };
+                                                    { "LS", "0" },
+                                                    { "SV", "0" },
+                                                    { "MV", "0" },
+                                                    { "LV", "0" } };
         }
 
         private static string MapToFieldId(string name)
@@ -106,7 +109,10 @@ namespace AcceptanceTests
                                                           {"rear defense", "Rdef"},
                                                           {"attack (soldier/short)", "SS"},
                                                           {"attack (soldier/medium)", "MS"},
-                                                          {"attack (soldier/long)", "LS"} };
+                                                          {"attack (soldier/long)", "LS"},
+                                                          {"attack (vehicle/short)", "SV"},
+                                                          {"attack (vehicle/medium)", "MV"},
+                                                          {"attack (vehicle/long)", "LV"} };
             return mapping[name];
         }
 

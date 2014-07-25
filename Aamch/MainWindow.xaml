@@ -44,6 +44,12 @@
                           DisplayMemberBinding="{Binding SoldierAttack.Medium}"/>
           <GridViewColumn Header="Attack (soldier/long)"
                           DisplayMemberBinding="{Binding SoldierAttack.Long}"/>
+          <GridViewColumn Header="Attack (vehicle/short)"
+                          DisplayMemberBinding="{Binding VehicleAttack.Short}"/>
+          <GridViewColumn Header="Attack (vehicle/medium)"
+                          DisplayMemberBinding="{Binding VehicleAttack.Medium}"/>
+          <GridViewColumn Header="Attack (vehicle/long)"
+                          DisplayMemberBinding="{Binding VehicleAttack.Long}"/>
         </GridView>
       </ListView.View>
     </ListView>

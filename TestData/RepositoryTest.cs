@@ -176,6 +176,44 @@ namespace TestData
             var troop = reader.FirstReadTroop();
             Assert.AreEqual(1, troop.VehicleAttack.Long);
         }
+
+        [TestMethod]
+        public void SpecialAbilitiesAreEmptyByDefault()
+        {
+            var troop = reader.FirstReadTroop();
+            CollectionAssert.AreEqual(new string[0], troop.SpecialAbilities);
+        }
+
+        [TestMethod]
+        public void ReadingOneSpecialAbility()
+        {
+            var troop = reader.WithAbilities("ability").FirstReadTroop();
+            var expected = new string[] { "ability" };
+            CollectionAssert.AreEqual(expected, troop.SpecialAbilities);
+        }
+
+        [TestMethod]
+        public void IgnoringEmptySpecialAbilities()
+        {
+            var troop = reader.WithAbilities(";").FirstReadTroop();
+            CollectionAssert.AreEqual(new string[0], troop.SpecialAbilities);
+        }
+
+        [TestMethod]
+        public void WhiteSpaceIsTrimmedFromSpecialAbilities()
+        {
+            var troop = reader.WithAbilities("  ability\t").FirstReadTroop();
+            var expected = new string[] { "ability" };
+            CollectionAssert.AreEqual(expected, troop.SpecialAbilities);
+        }
+
+        [TestMethod]
+        public void ReadingSeveralSpecialAbilities()
+        {
+            var troop = reader.WithAbilities("a;b;c").FirstReadTroop();
+            var expected = new string[] { "a", "b", "c" };
+            CollectionAssert.AreEqual(expected, troop.SpecialAbilities);
+        }
     }
 
     public class TroopReader
@@ -281,6 +319,12 @@ namespace TestData
             return this;
         }
 
+        public TroopReader WithAbilities(string abilities)
+        {
+            jsonBuilder.specialAbilities = abilities;
+            return this;
+        }
+
         private string SelectContent()
         {
             if (fileContent != null)
@@ -308,6 +352,7 @@ namespace TestData
             public int shortVehicleAttack = 4;
             public int mediumVehicleAttack = 3;
             public int longVehicleAttack = 1;
+            public string specialAbilities = "";
 
             public string CreateTroops(int count)
             {
@@ -344,7 +389,8 @@ namespace TestData
                                    new JProperty("LS", longSoldierAttack),
                                    new JProperty("SV", shortVehicleAttack),
                                    new JProperty("MV", mediumVehicleAttack),
-                                   new JProperty("LV", longVehicleAttack));
+                                   new JProperty("LV", longVehicleAttack),
+                                   new JProperty("Special", specialAbilities));
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿<Window x:Class="Aamch.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:src="clr-namespace:Aamch"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="MainWindow" Height="350" Width="525"
         KeyDown="KeyPressed">
@@ -14,6 +15,7 @@
         </TextBlock>
       </DockPanel>
     </DataTemplate>
+    <src:StringArrayConverter x:Key="stringArrayConverter"/>
   </Window.Resources>
   <DockPanel>
     <StatusBar DockPanel.Dock="Bottom">
@@ -50,6 +52,9 @@
                           DisplayMemberBinding="{Binding VehicleAttack.Medium}"/>
           <GridViewColumn Header="Attack (vehicle/long)"
                           DisplayMemberBinding="{Binding VehicleAttack.Long}"/>
+          <GridViewColumn Header="Special abilities"
+                          DisplayMemberBinding="{Binding SpecialAbilities,
+                                                 Converter={StaticResource stringArrayConverter}}"/>
         </GridView>
       </ListView.View>
     </ListView>

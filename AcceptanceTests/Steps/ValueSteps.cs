@@ -42,7 +42,7 @@ namespace AcceptanceTests
             Assert.AreEqual(0, Context.GetTroops().Count());
         }
 
-        [Given(@"a single troop with (.*) (.*)")]
+        [Given(@"a single troop with (.*) set to (.*)")]
         public void GivenASingleTroopWith(string name, string value)
         {
             AddSingleTroop(t => t[MapToFieldId(name)] = value);
@@ -97,7 +97,8 @@ namespace AcceptanceTests
                                                     { "LS", "0" },
                                                     { "SV", "0" },
                                                     { "MV", "0" },
-                                                    { "LV", "0" } };
+                                                    { "LV", "0" },
+                                                    { "Special", "0" } };
         }
 
         private static string MapToFieldId(string name)
@@ -112,7 +113,8 @@ namespace AcceptanceTests
                                                           {"attack (soldier/long)", "LS"},
                                                           {"attack (vehicle/short)", "SV"},
                                                           {"attack (vehicle/medium)", "MV"},
-                                                          {"attack (vehicle/long)", "LV"} };
+                                                          {"attack (vehicle/long)", "LV"},
+                                                          {"special abilities", "Special"} };
             return mapping[name];
         }
 

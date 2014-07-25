@@ -17,6 +17,7 @@ namespace Data
                 Defense = new DefenseValues();
                 SoldierAttack = new AttackValues();
                 VehicleAttack = new AttackValues();
+                SpecialAbilities = new string[0];
             }
 
             public class DefenseValues
@@ -39,6 +40,7 @@ namespace Data
             public DefenseValues Defense { get; set; }
             public AttackValues SoldierAttack { get; set; }
             public AttackValues VehicleAttack { get; set; }
+            public string[] SpecialAbilities { get; set; }
         }
 
         public class IoFailure : Exception
@@ -114,6 +116,7 @@ namespace Data
             result.Subtype = (string)json["Subtype"];
             ReadDefenseToTroop(json, result);
             ReadAttacksToTroop(json, result);
+            ReadSpecialAbilities(json, result);
             return result;
         }
 
@@ -145,6 +148,19 @@ namespace Data
             result.Medium = (int)json["M" + typeId];
             result.Long = (int)json["L" + typeId];
             return result;
+        }
+
+        private void ReadSpecialAbilities(JToken json, Troop result)
+        {
+            var value = (string)json["Special"];
+            result.SpecialAbilities = ParseSpecialAbilities(value);
+        }
+
+        private string[] ParseSpecialAbilities(string value)
+        {
+            var options = StringSplitOptions.RemoveEmptyEntries;
+            var tokens = value.Split(new char[] { ';' }, options);
+            return tokens.Select(a => a.Trim()).ToArray();
         }
     }
 }

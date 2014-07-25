@@ -4,6 +4,17 @@
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="MainWindow" Height="350" Width="525"
         KeyDown="KeyPressed">
+  <Window.Resources>
+    <DataTemplate x:Key="MultiLineHeader">
+      <DockPanel>
+        <TextBlock TextWrapping="Wrap" Width="50"  TextAlignment="Center">
+          <TextBlock.Text>
+            <Binding/>
+          </TextBlock.Text>
+        </TextBlock>
+      </DockPanel>
+    </DataTemplate>
+  </Window.Resources>
   <DockPanel>
     <StatusBar DockPanel.Dock="Bottom">
       <StatusBarItem>
@@ -12,7 +23,7 @@
     </StatusBar>
     <ListView Name="troopList" ItemsSource="{Binding TroopCollection}">
       <ListView.View>
-        <GridView>
+        <GridView ColumnHeaderTemplate="{StaticResource MultiLineHeader}">
           <GridViewColumn Header="Name"
                           DisplayMemberBinding="{Binding Name}"/>
           <GridViewColumn Header="Cost"

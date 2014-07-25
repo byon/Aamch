@@ -22,9 +22,11 @@
           <GridViewColumn Header="Subtype"
                           DisplayMemberBinding="{Binding Subtype}"/>
           <GridViewColumn Header="Front defense"
-                          DisplayMemberBinding="{Binding Defense.Front}"/>
+                          DisplayMemberBinding="{Binding Defense.Front,
+                                                 FallbackValue=N/A}"/>
           <GridViewColumn Header="Rear defense"
-                          DisplayMemberBinding="{Binding Defense.Rear}"/>
+                          DisplayMemberBinding="{Binding Defense.Rear,
+                                                 FallbackValue=N/A}"/>
         </GridView>
       </ListView.View>
     </ListView>

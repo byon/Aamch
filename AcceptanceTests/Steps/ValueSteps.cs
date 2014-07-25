@@ -48,6 +48,12 @@ namespace AcceptanceTests
             AddSingleTroop(t => t[MapToFieldId(name)] = cost);
         }
 
+        [Given(@"a single troop without defense")]
+        public void GivenASingleTroopWitoutDefense()
+        {
+            AddSingleTroop(t => t["Fdef"] = t["Rdef"] = null);
+        }
+
         [Then(@"the single troop listed has (.*) of (.*)")]
         public void ThenTheSingleTroopListedHasFieldOf(string id, string value)
         {

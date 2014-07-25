@@ -20,3 +20,9 @@ Scenario Outline: Viewing values of the troops
     | subtype       |           |
     | front defense | 48        |
     | rear defense  | 36        |
+
+Scenario: Viewing troops without defense
+    Given a single troop without defense
+    When troops are viewed
+    Then the single troop listed has front defense of N/A
+    Then the single troop listed has rear defense of N/A

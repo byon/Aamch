@@ -43,9 +43,9 @@ namespace AcceptanceTests
         }
 
         [Given(@"a single troop with (.*) (.*)")]
-        public void GivenASingleTroopWith(string name, string cost)
+        public void GivenASingleTroopWith(string name, string value)
         {
-            AddSingleTroop(t => t[MapToFieldId(name)] = cost);
+            AddSingleTroop(t => t[MapToFieldId(name)] = value);
         }
 
         [Given(@"a single troop without defense")]

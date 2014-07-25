@@ -18,6 +18,7 @@ namespace Data
                 SoldierAttack = new AttackValues();
                 VehicleAttack = new AttackValues();
                 SpecialAbilities = new string[0];
+                CommanderAbility = "";
             }
 
             public class DefenseValues
@@ -41,6 +42,7 @@ namespace Data
             public AttackValues SoldierAttack { get; set; }
             public AttackValues VehicleAttack { get; set; }
             public string[] SpecialAbilities { get; set; }
+            public string CommanderAbility { get; set; }
         }
 
         public class IoFailure : Exception
@@ -114,6 +116,7 @@ namespace Data
             result.Cost = (int)json["Cost"];
             result.Type = (string)json["Type"];
             result.Subtype = (string)json["Subtype"];
+            result.CommanderAbility = (string)json["Com Effect"];
             ReadDefenseToTroop(json, result);
             ReadAttacksToTroop(json, result);
             ReadSpecialAbilities(json, result);

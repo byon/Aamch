@@ -27,6 +27,7 @@ Scenario Outline: Viewing values of the troops
     | attack (vehicle/medium)  | 22            |
     | attack (vehicle/long)    | 12            |
     | special abilities        | an ability    |
+    | commander ability        | Stalwart      |
 
 Scenario: Viewing troops without defense
     Given a single troop without defense

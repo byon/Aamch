@@ -55,6 +55,8 @@
           <GridViewColumn Header="Special abilities"
                           DisplayMemberBinding="{Binding SpecialAbilities,
                                                  Converter={StaticResource stringArrayConverter}}"/>
+          <GridViewColumn Header="Commander ability"
+                          DisplayMemberBinding="{Binding CommanderAbility}"/>
         </GridView>
       </ListView.View>
     </ListView>

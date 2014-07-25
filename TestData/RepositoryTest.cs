@@ -214,6 +214,19 @@ namespace TestData
             var expected = new string[] { "a", "b", "c" };
             CollectionAssert.AreEqual(expected, troop.SpecialAbilities);
         }
+
+        [TestMethod]
+        public void CommanderAbilityIsEmptyByDefault()
+        {
+            Assert.AreEqual("", reader.FirstReadTroop().CommanderAbility);
+        }
+
+        [TestMethod]
+        public void ReadingCommanderAbility()
+        {
+            var troop = reader.WithCommanderAbility("abc").FirstReadTroop();
+            Assert.AreEqual("abc", reader.FirstReadTroop().CommanderAbility);
+        }
     }
 
     public class TroopReader
@@ -325,6 +338,12 @@ namespace TestData
             return this;
         }
 
+        public TroopReader WithCommanderAbility(string ability)
+        {
+            jsonBuilder.commanderAbility = ability;
+            return this;
+        }
+
         private string SelectContent()
         {
             if (fileContent != null)
@@ -353,6 +372,7 @@ namespace TestData
             public int mediumVehicleAttack = 3;
             public int longVehicleAttack = 1;
             public string specialAbilities = "";
+            public string commanderAbility = "";
 
             public string CreateTroops(int count)
             {
@@ -390,7 +410,8 @@ namespace TestData
                                    new JProperty("SV", shortVehicleAttack),
                                    new JProperty("MV", mediumVehicleAttack),
                                    new JProperty("LV", longVehicleAttack),
-                                   new JProperty("Special", specialAbilities));
+                                   new JProperty("Special", specialAbilities),
+                                   new JProperty("Com Effect", commanderAbility));
             }
         }
     }

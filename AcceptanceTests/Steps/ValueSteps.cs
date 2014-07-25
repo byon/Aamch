@@ -98,7 +98,8 @@ namespace AcceptanceTests
                                                     { "SV", "0" },
                                                     { "MV", "0" },
                                                     { "LV", "0" },
-                                                    { "Special", "0" } };
+                                                    { "Special", "" },
+                                                    { "Com Effect", "" } };
         }
 
         private static string MapToFieldId(string name)
@@ -114,7 +115,8 @@ namespace AcceptanceTests
                                                           {"attack (vehicle/short)", "SV"},
                                                           {"attack (vehicle/medium)", "MV"},
                                                           {"attack (vehicle/long)", "LV"},
-                                                          {"special abilities", "Special"} };
+                                                          {"special abilities", "Special"},
+                                                          {"commander ability", "Com Effect"} };
             return mapping[name];
         }
 

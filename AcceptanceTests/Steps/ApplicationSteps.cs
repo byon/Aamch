@@ -14,6 +14,13 @@ namespace AcceptanceTests
             Context.EnsureTroopFileExists();
             Context.GetApplication();
         }
+
+        [Given(@"the application is just started")]
+        public void GivenTheApplicationJustStarted()
+        {
+            ApplicationLifetime.Stop();
+            Context.GetApplication();
+        }
         
         [When(@"I close the application")]
         public void WhenICloseTheApplication()

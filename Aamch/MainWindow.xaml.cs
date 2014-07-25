@@ -10,6 +10,8 @@ namespace Aamch
         private Repository repository = new Repository();
         private ObservableCollection<Repository.Troop> troopCollection =
             new ObservableCollection<Repository.Troop>();
+        private ObservableCollection<Repository.Troop> troopGroup =
+            new ObservableCollection<Repository.Troop>();
 
         public MainWindow()
         {
@@ -20,6 +22,11 @@ namespace Aamch
         public ObservableCollection<Repository.Troop> TroopCollection
         {
             get { return troopCollection; }
+        }
+
+        public ObservableCollection<Repository.Troop> TroopGroup
+        {
+            get { return troopGroup; }
         }
 
         private void ShowTroops()

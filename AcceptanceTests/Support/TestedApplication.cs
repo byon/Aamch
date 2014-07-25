@@ -44,9 +44,12 @@ namespace AcceptanceTests
 
         public List<Dictionary<string, string>> GetTroops()
         {
-            var item = GetMainWindow().Get<ListView>("troopList");
-            var headers = item.Header.Columns.Select(c => c.Text).ToList();
-            return item.Rows.Select(r => RowToDictionary(r, headers)).ToList();
+            return GetListViewItems("troopList");
+        }
+
+        public object GetTroopGroup()
+        {
+            return GetListViewItems("troopGroupList");
         }
 
         public string GetStatusMessage()
@@ -58,6 +61,14 @@ namespace AcceptanceTests
         {
             var window = GetMainWindow();
             window.Keyboard.PressSpecialKey(KeyboardInput.SpecialKeys.F5);
+        }
+
+        private List<Dictionary<string, string>>
+            GetListViewItems(string listName)
+        {
+            var item = GetMainWindow().Get<ListView>(listName);
+            var headers = item.Header.Columns.Select(c => c.Text).ToList();
+            return item.Rows.Select(r => RowToDictionary(r, headers)).ToList();
         }
 
         private Dictionary<string, string> RowToDictionary(ListViewRow row,

@@ -24,6 +24,13 @@
         <TextBlock Name="statusMessage"/>
       </StatusBarItem>
     </StatusBar>
+    <ListView Name="troopGroupList" ItemsSource="{Binding TroopGroup}"
+              DockPanel.Dock="Top">
+      <ListView.View>
+        <GridView>
+        </GridView>
+      </ListView.View>
+    </ListView>
     <ListView Name="troopList" ItemsSource="{Binding TroopCollection}">
       <ListView.View>
         <GridView ColumnHeaderTemplate="{StaticResource MultiLineHeader}">

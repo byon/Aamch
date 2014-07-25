@@ -80,7 +80,8 @@ namespace AcceptanceTests
 
         private Window GetMainWindow()
         {
-            return GetWindow("MainWindow");
+            return GetWindow("Axis and Allies Miniatures Troop Selection " +
+                             "Utility");
         }
 
         private Window GetWindow(string name)

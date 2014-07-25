@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:src="clr-namespace:Aamch"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
-        Title="MainWindow" Height="650" SizeToContent="Width"
-        KeyDown="KeyPressed">
+        Title="Axis and Allies Miniatures Troop Selection Utility"
+        Height="650" SizeToContent="Width" KeyDown="KeyPressed">
   <Window.Resources>
     <DataTemplate x:Key="MultiLineHeader">
       <DockPanel>

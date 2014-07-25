@@ -27,6 +27,12 @@
           <GridViewColumn Header="Rear defense"
                           DisplayMemberBinding="{Binding Defense.Rear,
                                                  FallbackValue=N/A}"/>
+          <GridViewColumn Header="Attack (soldier/short)"
+                          DisplayMemberBinding="{Binding SoldierAttack.Short}"/>
+          <GridViewColumn Header="Attack (soldier/medium)"
+                          DisplayMemberBinding="{Binding SoldierAttack.Medium}"/>
+          <GridViewColumn Header="Attack (soldier/long)"
+                          DisplayMemberBinding="{Binding SoldierAttack.Long}"/>
         </GridView>
       </ListView.View>
     </ListView>

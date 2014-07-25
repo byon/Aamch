@@ -136,6 +136,26 @@ namespace TestData
             var troop = reader.WithRearDefense(null).FirstReadTroop();
             Assert.IsNull(troop.Defense);
         }
+
+        [TestMethod]
+        public void ReadingShortSoldierAttack()
+        {
+            Assert.AreEqual(2345, reader.FirstReadTroop().SoldierAttack.Short);
+        }
+
+        [TestMethod]
+        public void ReadingMediumSoldierAttack()
+        {
+            var troop = reader.FirstReadTroop();
+            Assert.AreEqual(5432, troop.SoldierAttack.Medium);
+        }
+
+        [TestMethod]
+        public void ReadingLongSoldierAttack()
+        {
+            var troop = reader.FirstReadTroop();
+            Assert.AreEqual(9999999, troop.SoldierAttack.Long);
+        }
     }
 
     public class TroopReader
@@ -205,6 +225,24 @@ namespace TestData
             return this;
         }
 
+        public TroopReader WithShortSoldierAttack(int attack)
+        {
+            jsonBuilder.shortSoldierAttack = attack;
+            return this;
+        }
+
+        public TroopReader WithMediumSoldierAttack(int attack)
+        {
+            jsonBuilder.mediumSoldierAttack = attack;
+            return this;
+        }
+
+        public TroopReader WithLongSoldierAttack(int attack)
+        {
+            jsonBuilder.longSoldierAttack = attack;
+            return this;
+        }
+
         private string SelectContent()
         {
             if (fileContent != null)
@@ -226,6 +264,9 @@ namespace TestData
             public string subtype = "Subtype";
             public int? frontDefense = 1234;
             public int? rearDefense = 5678;
+            public int shortSoldierAttack = 2345;
+            public int mediumSoldierAttack = 5432;
+            public int longSoldierAttack = 9999999;
 
             public string CreateTroops(int count)
             {
@@ -256,7 +297,10 @@ namespace TestData
                                    new JProperty("Type", type),
                                    new JProperty("Subtype", subtype),
                                    new JProperty("Fdef", frontDefense),
-                                   new JProperty("Rdef", rearDefense));
+                                   new JProperty("Rdef", rearDefense),
+                                   new JProperty("SS", shortSoldierAttack),
+                                   new JProperty("MS", mediumSoldierAttack),
+                                   new JProperty("LS", longSoldierAttack));
             }
         }
     }

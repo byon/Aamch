@@ -82,7 +82,10 @@ namespace AcceptanceTests
                                                     { "Type", "" },
                                                     { "Subtype", "" },
                                                     { "Fdef", "0" },
-                                                    { "Rdef", "0" } };
+                                                    { "Rdef", "0" },
+                                                    { "SS", "0" },
+                                                    { "MS", "0" },
+                                                    { "LS", "0" } };
         }
 
         private static string MapToFieldId(string name)
@@ -91,7 +94,10 @@ namespace AcceptanceTests
                                                           {"type", "Type"},
                                                           {"subtype", "Subtype"},
                                                           {"front defense", "Fdef"},
-                                                          {"rear defense", "Rdef"} };
+                                                          {"rear defense", "Rdef"},
+                                                          {"attack (soldier/short)", "SS"},
+                                                          {"attack (soldier/medium)", "MS"},
+                                                          {"attack (soldier/long)", "LS"} };
             return mapping[name];
         }
 

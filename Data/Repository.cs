@@ -15,6 +15,7 @@ namespace Data
             {
                 Name = name;
                 Defense = new DefenseValues();
+                SoldierAttack = new AttackValues();
             }
 
             public class DefenseValues
@@ -23,11 +24,19 @@ namespace Data
                 public int Rear { get; set; }
             }
 
+            public class AttackValues
+            {
+                public int Short { get; set; }
+                public int Medium { get; set; }
+                public int Long { get; set; }
+            }
+
             public string Name { get; set; }
             public int Cost { get; set; }
             public string Type { get; set; }
             public string Subtype { get; set; }
             public DefenseValues Defense { get; set; }
+            public AttackValues SoldierAttack { get; set; }
         }
 
         public class IoFailure : Exception
@@ -102,6 +111,7 @@ namespace Data
             result.Type = (string)json["Type"];
             result.Subtype = (string)json["Subtype"];
             ReadDefenseToTroop(json, result);
+            ReadAttackToTroop(json, result);
             return result;
         }
 
@@ -118,6 +128,13 @@ namespace Data
 
             result.Defense.Front = (int)front;
             result.Defense.Rear = (int)rear;
+        }
+
+        private void ReadAttackToTroop(JToken json, Troop result)
+        {
+            result.SoldierAttack.Short = (int)json["SS"];
+            result.SoldierAttack.Medium = (int)json["MS"];
+            result.SoldierAttack.Long = (int)json["LS"];
         }
     }
 }

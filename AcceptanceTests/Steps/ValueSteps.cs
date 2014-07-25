@@ -57,7 +57,7 @@ namespace AcceptanceTests
         [Then(@"the single troop listed has (.*) of (.*)")]
         public void ThenTheSingleTroopListedHasFieldOf(string id, string value)
         {
-            Assert.AreEqual(value, GetSingleTroop()[MapToHeader(id)]);
+            Assert.AreEqual(value, GetTroopValue(id, GetSingleTroop()));
         }
 
         private static void AddSingleTroop(ModifyTroop modifier)
@@ -66,6 +66,15 @@ namespace AcceptanceTests
             var troop = CreateTroop("Troop name");
             modifier(troop);
             Context.AddTroop(troop);
+        }
+
+        private static string GetTroopValue(string id,
+                                            Dictionary<string, string> troop)
+        {
+            var headerName = MapToHeader(id);
+            var error = "Column '" + headerName + "' does not exist";
+            CollectionAssert.Contains(troop.Keys, headerName, error);
+            return troop[headerName];
         }
 
         private Dictionary<string, string> GetSingleTroop()

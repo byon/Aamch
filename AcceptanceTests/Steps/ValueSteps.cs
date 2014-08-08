@@ -13,13 +13,13 @@ namespace AcceptanceTests
         [Given(@"that troops include ""(.*)""")]
         public void GivenThatTroopsInclude(string name)
         {
-            Context.AddTroop(CreateTroop(name));
+            Context.AddTroop(Repository.CreateTroop(name));
         }
 
         [Given(@"that viewed troops include ""(.*)""")]
         public void GivenThatViewedTroopsInclude(string name)
         {
-            Context.AddTroop(CreateTroop(name));
+            Context.AddTroop(Repository.CreateTroop(name));
             Context.GetApplication().Refresh();
             Context.ViewTroops();
         }
@@ -71,7 +71,7 @@ namespace AcceptanceTests
         private static void AddSingleTroop(ModifyTroop modifier)
         {
             Context.ResetTroops();
-            var troop = CreateTroop("Troop name");
+            var troop = Repository.CreateTroop("Troop name");
             modifier(troop);
             Context.AddTroop(troop);
         }
@@ -90,24 +90,6 @@ namespace AcceptanceTests
             var troops = Context.GetTroops();
             Assert.AreEqual(1, troops.Count());
             return troops.First();
-        }
-
-        private static Dictionary<string, string> CreateTroop(string name)
-        {
-            return new Dictionary<string, string> { { "Name", name },
-                                                    { "Cost", "0" },
-                                                    { "Type", "" },
-                                                    { "Subtype", "" },
-                                                    { "Fdef", "0" },
-                                                    { "Rdef", "0" },
-                                                    { "SS", "0" },
-                                                    { "MS", "0" },
-                                                    { "LS", "0" },
-                                                    { "SV", "0" },
-                                                    { "MV", "0" },
-                                                    { "LV", "0" },
-                                                    { "Special", "" },
-                                                    { "Com Effect", "" } };
         }
 
         private static string MapToFieldId(string name)

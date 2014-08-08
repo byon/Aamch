@@ -2,6 +2,8 @@
 using System.Windows;
 using Data;
 using System.Windows.Input;
+using System.Windows.Controls;
+using System.Diagnostics;
 
 namespace Aamch
 {
@@ -74,10 +76,16 @@ namespace Aamch
             ResetView();
         }
 
-        private void ListViewMouseDoubleClick(object sender,
-                                              MouseButtonEventArgs e)
+        private void TroopListMouseDoubleClick(object sender,
+                                               MouseButtonEventArgs e)
         {
             troopGroup.Add(troopList.SelectedItem as Repository.Troop);
+        }
+
+        private void TroopGroupMouseDoubleClick(object sender,
+                                                MouseButtonEventArgs e)
+        {
+            troopGroup.Remove(troopList.SelectedItem as Repository.Troop);
         }
     }
 }

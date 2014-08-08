@@ -55,11 +55,12 @@ namespace AcceptanceTests
 
         public void SelectTroop(string selected)
         {
-            var listView = GetListView("troopList");
-            Assert.IsTrue(GetTroops().Any(t => t["Name"] == selected),
-                          "Troop list does not contain troop " + selected);
-            listView.Select("Name", selected);
-            listView.SelectedRows.First().DoubleClick();
+            DoubleClickListViewItem(selected, "troopList");
+        }
+
+        public void RemoveTroop(string name)
+        {
+            DoubleClickListViewItem(name, "troopGroupList");
         }
 
         public string GetStatusMessage()
@@ -79,6 +80,15 @@ namespace AcceptanceTests
             var item = GetListView(listName);
             var headers = item.Header.Columns.Select(c => c.Text).ToList();
             return item.Rows.Select(r => RowToDictionary(r, headers)).ToList();
+        }
+
+        private void DoubleClickListViewItem(string selected, string listViewName)
+        {
+            var listView = GetListView(listViewName);
+            Assert.IsTrue(GetTroops().Any(t => t["Name"] == selected),
+                          "Troop list does not contain troop " + selected);
+            listView.Select("Name", selected);
+            listView.SelectedRows.First().DoubleClick();
         }
 
         private ListView GetListView(string listName)

@@ -17,9 +17,6 @@
       </DockPanel>
     </DataTemplate>
     <src:StringArrayConverter x:Key="stringArrayConverter"/>
-    <Style TargetType="ListViewItem">
-      <EventSetter Event="MouseDoubleClick" Handler="ListViewMouseDoubleClick"/>
-    </Style>
   </Window.Resources>
   <DockPanel>
     <StatusBar DockPanel.Dock="Bottom">
@@ -29,6 +26,11 @@
     </StatusBar>
     <ListView Name="troopGroupList" ItemsSource="{Binding TroopGroup}"
               DockPanel.Dock="Right">
+      <ListView.Resources>
+        <Style TargetType="ListViewItem">
+          <EventSetter Event="MouseDoubleClick" Handler="TroopGroupMouseDoubleClick"/>
+        </Style>
+      </ListView.Resources>
       <ListView.View>
         <GridView>
           <GridViewColumn Header="Name"
@@ -37,6 +39,11 @@
       </ListView.View>
     </ListView>
     <ListView Name="troopList" ItemsSource="{Binding TroopCollection}">
+      <ListView.Resources>
+        <Style TargetType="ListViewItem">
+          <EventSetter Event="MouseDoubleClick" Handler="TroopListMouseDoubleClick"/>
+        </Style>
+      </ListView.Resources>
       <ListView.View>
         <GridView ColumnHeaderTemplate="{StaticResource MultiLineHeader}">
           <GridViewColumn Header="Name"

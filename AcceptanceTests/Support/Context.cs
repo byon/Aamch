@@ -83,6 +83,11 @@ namespace AcceptanceTests
             GetApplication().SelectTroop(selected);
         }
 
+        public static void RemoveTroop(string name)
+        {
+            GetApplication().RemoveTroop(name);
+        }
+
         public static string GetStatusMessage()
         {
             return GetApplication().GetStatusMessage();

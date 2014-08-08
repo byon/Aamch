@@ -32,6 +32,24 @@ namespace AcceptanceTests
             File.WriteAllText(path, json);
         }
 
+        public static Dictionary<string, string> CreateTroop(string name)
+        {
+            return new Dictionary<string, string> { { "Name", name },
+                                                    { "Cost", "0" },
+                                                    { "Type", "" },
+                                                    { "Subtype", "" },
+                                                    { "Fdef", "0" },
+                                                    { "Rdef", "0" },
+                                                    { "SS", "0" },
+                                                    { "MS", "0" },
+                                                    { "LS", "0" },
+                                                    { "SV", "0" },
+                                                    { "MV", "0" },
+                                                    { "LV", "0" },
+                                                    { "Special", "" },
+                                                    { "Com Effect", "" } };
+        }
+
         private void EnsureDirectoryExistsForFile(string path)
         {
             Directory.CreateDirectory(Path.GetDirectoryName(path));

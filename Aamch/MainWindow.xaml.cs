@@ -29,6 +29,12 @@ namespace Aamch
             get { return troopGroup; }
         }
 
+        private void ResetView()
+        {
+            troopGroup.Clear();
+            ShowTroops();
+        }
+
         private void ShowTroops()
         {
             ReadTroopList();
@@ -65,7 +71,7 @@ namespace Aamch
                 return;
             }
 
-            ShowTroops();
+            ResetView();
         }
 
         private void ListViewMouseDoubleClick(object sender,

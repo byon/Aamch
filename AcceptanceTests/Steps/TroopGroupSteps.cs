@@ -41,11 +41,20 @@ namespace AcceptanceTests.Steps
         }
 
         [Then(@"the group list contains ""(.*)""")]
-        public void ThenTheGroupListContains(string name)
+        public void ThenTheGroupListContainsTroop(string name)
         {
             Context.ViewTroopGroup();
             Assert.IsTrue(IsTroopInAGroup(name),
                           "Troop " + name + " is not in a group");
+        }
+
+        [Then(@"the group list contains ""(.*)"" (\d+) times")]
+        public void ThenTheGroupListContainsTroopNTimes(string name, int count)
+        {
+            Context.ViewTroopGroup();
+            var troops = Context.GetTroopGroup();
+            var matching = troops.Select(t => t["Name"] == name);
+            Assert.AreEqual(count, matching.Count());
         }
 
         [Then(@"the group list does not contain ""(.*)""")]

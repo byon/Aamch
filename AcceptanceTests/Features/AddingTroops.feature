@@ -20,3 +20,9 @@ Scenario: Adding several troops to group
     And troop named "Blackshirts" is added to a group
     Then the group list contains "Nebelwerfer 42"
     And the group list contains "Blackshirts"
+
+Scenario: Adding same group twice to group
+    Given that viewed troops include "Nebelwerfer 42"
+    When troop named "Nebelwerfer 42" is added to a group
+    And troop named "Nebelwerfer 42" is added to a group
+    Then the group list contains "Nebelwerfer 42" 2 times

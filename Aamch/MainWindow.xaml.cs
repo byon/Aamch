@@ -79,13 +79,14 @@ namespace Aamch
         private void TroopListMouseDoubleClick(object sender,
                                                MouseButtonEventArgs e)
         {
-            troopGroup.Add(troopList.SelectedItem as Repository.Troop);
+            var selected = troopList.SelectedItem as Repository.Troop;
+            troopGroup.Add(selected.Clone());
         }
 
         private void TroopGroupMouseDoubleClick(object sender,
                                                 MouseButtonEventArgs e)
         {
-            troopGroup.Remove(troopList.SelectedItem as Repository.Troop);
+            troopGroup.Remove(troopGroupList.SelectedItem as Repository.Troop);
         }
     }
 }

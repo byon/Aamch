@@ -21,6 +21,11 @@ namespace Data
                 CommanderAbility = "";
             }
 
+            public Troop Clone()
+            {
+                return MemberwiseClone() as Troop;
+            }
+
             public class DefenseValues
             {
                 public int Front { get; set; }

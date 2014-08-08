@@ -17,6 +17,9 @@
       </DockPanel>
     </DataTemplate>
     <src:StringArrayConverter x:Key="stringArrayConverter"/>
+    <Style TargetType="ListViewItem">
+      <EventSetter Event="MouseDoubleClick" Handler="ListViewMouseDoubleClick"/>
+    </Style>
   </Window.Resources>
   <DockPanel>
     <StatusBar DockPanel.Dock="Bottom">
@@ -28,6 +31,8 @@
               DockPanel.Dock="Top">
       <ListView.View>
         <GridView>
+          <GridViewColumn Header="Name"
+                          DisplayMemberBinding="{Binding Name}"/>
         </GridView>
       </ListView.View>
     </ListView>

@@ -5,6 +5,7 @@ using TestStack.White.UIItems;
 using TestStack.White.UIItems.WindowItems;
 using TestStack.White.WindowsAPI;
 using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AcceptanceTests
 {
@@ -52,6 +53,15 @@ namespace AcceptanceTests
             return GetListViewItems("troopGroupList");
         }
 
+        public void SelectTroop(string selected)
+        {
+            var listView = GetListView("troopList");
+            Assert.IsTrue(GetTroops().Any(t => t["Name"] == selected),
+                          "Troop list does not contain troop " + selected);
+            listView.Select("Name", selected);
+            listView.SelectedRows.First().DoubleClick();
+        }
+
         public string GetStatusMessage()
         {
             return GetMainWindow().Get<Label>("statusMessage").Text;
@@ -66,9 +76,14 @@ namespace AcceptanceTests
         private List<Dictionary<string, string>>
             GetListViewItems(string listName)
         {
-            var item = GetMainWindow().Get<ListView>(listName);
+            var item = GetListView(listName);
             var headers = item.Header.Columns.Select(c => c.Text).ToList();
             return item.Rows.Select(r => RowToDictionary(r, headers)).ToList();
+        }
+
+        private ListView GetListView(string listName)
+        {
+            return GetMainWindow().Get<ListView>(listName);
         }
 
         private Dictionary<string, string> RowToDictionary(ListViewRow row,

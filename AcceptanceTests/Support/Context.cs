@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using System.IO;
 using TechTalk.SpecFlow;
 
@@ -77,6 +78,11 @@ namespace AcceptanceTests
             return CachedObject<List<Dictionary<string, string>>>(name);
         }
 
+        public static void SelectTroop(string selected)
+        {
+            GetApplication().SelectTroop(selected);
+        }
+
         public static string GetStatusMessage()
         {
             return GetApplication().GetStatusMessage();
@@ -98,6 +104,8 @@ namespace AcceptanceTests
 
         private static T CachedObject<T>(string id)
         {
+            Assert.IsTrue(ScenarioContext.Current.ContainsKey(id),
+                         "'" + id + "' not stored in scenario context");
             return (T)ScenarioContext.Current[id];
         }
 

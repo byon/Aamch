@@ -67,5 +67,11 @@ namespace Aamch
 
             ShowTroops();
         }
+
+        private void ListViewMouseDoubleClick(object sender,
+                                              MouseButtonEventArgs e)
+        {
+            troopGroup.Add(troopList.SelectedItem as Repository.Troop);
+        }
     }
 }

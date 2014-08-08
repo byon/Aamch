@@ -18,5 +18,20 @@ namespace AcceptanceTests.Steps
         {
             Assert.AreEqual(0, Context.GetTroopGroup().Count());
         }
+
+        [When(@"troop named ""(.*)"" is selected for a group")]
+        public void WhenTroopNamedIsSelectedForAGroup(string name)
+        {
+            /// @todo What would be a logical place for this?
+            Context.GetApplication().Refresh();
+            Context.SelectTroop(name);
+        }
+
+        [Then(@"the group list contains ""(.*)""")]
+        public void ThenTheGroupListContains(string name)
+        {
+            Context.ViewTroopGroup();
+            Assert.IsTrue(Context.GetTroopGroup().Any(t => t["Name"] == name));
+        }
     }
 }

@@ -8,7 +8,6 @@ Scenario: At start-up there are no troops in a group
     When I view the troop group
     Then the troop group is empty
 
-@Ignore
 Scenario: Selecting a troop to group
     Given that troops include "Nebelwerfer 42"
     When troop named "Nebelwerfer 42" is selected for a group

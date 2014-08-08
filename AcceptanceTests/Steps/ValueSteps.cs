@@ -15,6 +15,14 @@ namespace AcceptanceTests
         {
             Context.AddTroop(CreateTroop(name));
         }
+
+        [Given(@"that viewed troops include ""(.*)""")]
+        public void GivenThatViewedTroopsInclude(string name)
+        {
+            Context.AddTroop(CreateTroop(name));
+            Context.GetApplication().Refresh();
+            Context.ViewTroops();
+        }
         
         [When(@"troops are viewed")]
         public void WhenTroopsAreViewed()

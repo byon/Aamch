@@ -22,8 +22,6 @@ namespace AcceptanceTests.Steps
         [When(@"troop named ""(.*)"" is selected for a group")]
         public void WhenTroopNamedIsSelectedForAGroup(string name)
         {
-            /// @todo What would be a logical place for this?
-            Context.GetApplication().Refresh();
             Context.SelectTroop(name);
         }
 

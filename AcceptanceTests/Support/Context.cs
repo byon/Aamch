@@ -58,12 +58,14 @@ namespace AcceptanceTests
 
         public static void ViewTroops()
         {
-            CacheObject("viewedTroops", GetApplication().GetTroops());
+            CachedObject<List<Dictionary<string, string>>>(
+                "viewedTroops", () => GetApplication().GetTroops());
         }
 
         public static void ViewTroopGroup()
         {
-            CacheObject("viewedTroopGroup", GetApplication().GetTroopGroup());
+            CachedObject<List<Dictionary<string, string>>>(
+                "viewedTroopGroup", () => GetApplication().GetTroopGroup());
         }
 
         public static List<Dictionary<string, string>> GetTroops()

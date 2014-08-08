@@ -44,7 +44,8 @@ namespace AcceptanceTests.Steps
         public void ThenTheGroupListContains(string name)
         {
             Context.ViewTroopGroup();
-            Assert.IsTrue(IsTroopInAGroup(name));
+            Assert.IsTrue(IsTroopInAGroup(name),
+                          "Troop " + name + " is not in a group");
         }
 
         [Then(@"the group list does not contain ""(.*)""")]

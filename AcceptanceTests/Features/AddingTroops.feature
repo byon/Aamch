@@ -12,3 +12,11 @@ Scenario: Adding a troop to group
     Given that viewed troops include "Nebelwerfer 42"
     When troop named "Nebelwerfer 42" is added to a group
     Then the group list contains "Nebelwerfer 42"
+
+Scenario: Adding several troops to group
+    Given that viewed troops include "Nebelwerfer 42"
+    And that viewed troops include "Blackshirts"
+    When troop named "Nebelwerfer 42" is added to a group
+    And troop named "Blackshirts" is added to a group
+    Then the group list contains "Nebelwerfer 42"
+    And the group list contains "Blackshirts"

@@ -28,7 +28,7 @@
       </StatusBarItem>
     </StatusBar>
     <ListView Name="troopGroupList" ItemsSource="{Binding TroopGroup}"
-              DockPanel.Dock="Top">
+              DockPanel.Dock="Right">
       <ListView.View>
         <GridView>
           <GridViewColumn Header="Name"

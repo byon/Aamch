@@ -83,10 +83,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RemovingTroops.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\SelectingTroops.feature.cs">
+    <Compile Include="Features\AddingTroops.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SelectingTroops.feature</DependentUpon>
+      <DependentUpon>AddingTroops.feature</DependentUpon>
     </Compile>
     <Compile Include="Steps\CleanTroopData.cs" />
     <Compile Include="Steps\EnsureApplicationLifetime.cs" />
@@ -117,9 +117,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RemovingTroops.feature.cs</LastGenOutput>
     </None>
-    <None Include="Features\SelectingTroops.feature">
+    <None Include="Features\AddingTroops.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SelectingTroops.feature.cs</LastGenOutput>
+      <LastGenOutput>AddingTroops.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

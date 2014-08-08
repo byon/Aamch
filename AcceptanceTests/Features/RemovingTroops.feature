@@ -4,6 +4,6 @@ Feature: Removing troops from a group
     So I can try different options for a group 
 
 Scenario: Removing a troop from group
-    Given that "Nebelwerfer 42" is selected into a troop group
+    Given that "Nebelwerfer 42" is in a troop group
     When troop named "Nebelwerfer 42" is removed from a group
     Then the group list does not contain "Nebelwerfer 42"

@@ -7,12 +7,12 @@ namespace AcceptanceTests.Steps
     [Binding]
     class TroopGroupSteps
     {
-        [Given(@"that ""(.*)"" is selected into a troop group")]
-        public void GivenThatIsSelectedIntoATroopGroup(string name)
+        [Given(@"that ""(.*)"" is in a troop group")]
+        public void GivenThatIsInATroopGroup(string name)
         {
             Context.AddTroop(Repository.CreateTroop(name));
             Context.GetApplication().Refresh();
-            Context.SelectTroop(name);
+            Context.AddTroopToGroup(name);
         }
 
         [When(@"I view the troop group")]
@@ -21,17 +21,17 @@ namespace AcceptanceTests.Steps
             Context.ViewTroopGroup();
         }
 
-        [When(@"troop named ""(.*)"" is selected for a group")]
+        [When(@"troop named ""(.*)"" is added to a group")]
         public void WhenTroopNamedIsSelectedForAGroup(string name)
         {
             Context.AddTroop(Repository.CreateTroop(name));
-            Context.SelectTroop(name);
+            Context.AddTroopToGroup(name);
         }
 
         [When(@"troop named ""(.*)"" is removed from a group")]
         public void WhenTroopNamedIsRemovedFromAGroup(string name)
         {
-            Context.RemoveTroop(name);
+            Context.RemoveTroopFromGroup(name);
         }
 
         [Then(@"the troop group is empty")]
@@ -44,17 +44,17 @@ namespace AcceptanceTests.Steps
         public void ThenTheGroupListContains(string name)
         {
             Context.ViewTroopGroup();
-            Assert.IsTrue(IsTroopSelected(name));
+            Assert.IsTrue(IsTroopInAGroup(name));
         }
 
         [Then(@"the group list does not contain ""(.*)""")]
         public void ThenTheGroupListDoesNotContain(string name)
         {
             Context.ViewTroopGroup();
-            Assert.IsFalse(IsTroopSelected(name));
+            Assert.IsFalse(IsTroopInAGroup(name));
         }
 
-        private static bool IsTroopSelected(string name)
+        private static bool IsTroopInAGroup(string name)
         {
             return Context.GetTroopGroup().Any(t => t["Name"] == name);
         }

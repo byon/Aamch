@@ -78,12 +78,12 @@ namespace AcceptanceTests
             return CachedObject<List<Dictionary<string, string>>>(name);
         }
 
-        public static void SelectTroop(string selected)
+        public static void AddTroopToGroup(string name)
         {
-            GetApplication().SelectTroop(selected);
+            GetApplication().AddTroop(name);
         }
 
-        public static void RemoveTroop(string name)
+        public static void RemoveTroopFromGroup(string name)
         {
             GetApplication().RemoveTroop(name);
         }

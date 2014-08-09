@@ -12,7 +12,7 @@ namespace AcceptanceTests
 
         public static TestedApplication GetApplication()
         {
-            return ApplicationLifetime.GetApplication();
+            return ApplicationLifetime.GetStartedApplication();
         }
 
         public static Repository GetRepository()

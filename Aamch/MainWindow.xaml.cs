@@ -18,7 +18,7 @@ namespace Aamch
         public MainWindow()
         {
             InitializeComponent();
-            ShowTroops();
+            UpdateTroopsAndShow();
         }
 
         public ObservableCollection<Repository.Troop> TroopCollection
@@ -31,13 +31,14 @@ namespace Aamch
             get { return troopGroup; }
         }
 
-        private void ResetView()
+        private void ResetApplication()
         {
             troopGroup.Clear();
-            ShowTroops();
+            UpdateTroopsAndShow();
+            statusMessage.Text = "Application was reset";
         }
 
-        private void ShowTroops()
+        private void UpdateTroopsAndShow()
         {
             ReadTroopList();
             var troops = repository.GetTroops();
@@ -68,12 +69,36 @@ namespace Aamch
 
         private void KeyPressed(object sender, KeyEventArgs e)
         {
-            if (e.Key != Key.F5)
+            if (e.Key == Key.F5)
             {
+                HandleExplicitRefresh();
+            }
+        }
+
+        private void HandleExplicitRefresh()
+        {
+            if (IsFullResetRequested())
+            {
+                ResetApplication();
                 return;
             }
 
-            ResetView();
+            if (IsTroopUpdateRequested())
+            {
+                UpdateTroopsAndShow();
+            }
+        }
+
+        private bool IsFullResetRequested()
+        {
+            return Keyboard.Modifiers.HasFlag(ModifierKeys.Control) &&
+                   Keyboard.Modifiers.HasFlag(ModifierKeys.Shift);
+        }
+
+        private bool IsTroopUpdateRequested()
+        {
+            return !Keyboard.Modifiers.HasFlag(ModifierKeys.Control) &&
+                   !Keyboard.Modifiers.HasFlag(ModifierKeys.Shift);
         }
 
         private void TroopListMouseDoubleClick(object sender,

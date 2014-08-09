@@ -74,6 +74,19 @@ namespace AcceptanceTests
             window.Keyboard.PressSpecialKey(KeyboardInput.SpecialKeys.F5);
         }
 
+        public void Reset()
+        {
+            var window = GetMainWindow();
+
+            window.Keyboard.HoldKey(KeyboardInput.SpecialKeys.CONTROL);
+            window.Keyboard.HoldKey(KeyboardInput.SpecialKeys.SHIFT);
+
+            window.Keyboard.PressSpecialKey(KeyboardInput.SpecialKeys.F5);
+
+            window.Keyboard.LeaveKey(KeyboardInput.SpecialKeys.CONTROL);
+            window.Keyboard.LeaveKey(KeyboardInput.SpecialKeys.SHIFT);
+        }
+
         private List<Dictionary<string, string>>
             GetListViewItems(string listName)
         {

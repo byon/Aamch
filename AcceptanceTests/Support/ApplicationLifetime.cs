@@ -23,9 +23,14 @@ namespace AcceptanceTests
             }
         }
 
-        public static TestedApplication GetApplication()
+        public static TestedApplication GetStartedApplication()
         {
             Start();
+            return application;
+        }
+
+        public static TestedApplication GetApplication()
+        {
             return application;
         }
 

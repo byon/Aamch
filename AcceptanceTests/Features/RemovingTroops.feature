@@ -13,3 +13,10 @@ Scenario: Removing a troop leaves others intact
     And that "Bazooka" is in a troop group
     When troop named "Nebelwerfer 42" is removed from a group
     Then the group list contains "Bazooka"
+
+Scenario: Removing same troop twice
+    Given that "Nebelwerfer 42" is in a troop group
+    And that "Nebelwerfer 42" is in a troop group
+    When troop named "Nebelwerfer 42" is removed from a group
+    And troop named "Nebelwerfer 42" is removed from a group
+    Then the group list does not contain "Nebelwerfer 42"

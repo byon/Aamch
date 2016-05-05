@@ -92,16 +92,14 @@
       <DependentUpon>AddingTroops.feature</DependentUpon>
     </Compile>
     <Compile Include="Steps\CleanTroopData.cs" />
-    <Compile Include="Steps\EnsureApplicationLifetime.cs" />
     <Compile Include="Steps\TroopGroupSteps.cs" />
     <Compile Include="Support\ApplicationLifetime.cs" />
-    <Compile Include="Steps\EnsureApplicationReset.cs" />
     <Compile Include="Support\Repository.cs" />
     <Compile Include="Support\TestedApplication.cs" />
     <Compile Include="Steps\ApplicationSteps.cs" />
-    <Compile Include="Support\Context.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\ValueSteps.cs" />
+    <Compile Include="Support\TroopFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

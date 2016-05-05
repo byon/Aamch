@@ -6,6 +6,7 @@ using TestStack.White.UIItems.WindowItems;
 using TestStack.White.WindowsAPI;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace AcceptanceTests
 {
@@ -20,37 +21,52 @@ namespace AcceptanceTests
         private const string APPLICATION_DIRECTORY = APPLICATION_BASE +
                                                      CONFIGURATION;
         private const string APPLICATION_NAME = "Aamch.exe";
+
         private const string APPLICATION = APPLICATION_DIRECTORY +
                                            APPLICATION_NAME;
 
         private Application application;
+        List<Dictionary<string, string>> troops;
+        List<Dictionary<string, string>> troopGroup;
 
-        public TestedApplication()
+        public void Start()
         {
+            if (IsApplicationRunning()) return;
             application = Application.Launch(APPLICATION);
         }
 
         public void Exit()
         {
-            if (IsApplicationRunning())
-            {
-                GetMainWindow().Close();
-            }
+            if (!IsApplicationRunning()) return;
+            GetMainWindow().Close();
         }
 
         public bool IsApplicationRunning()
         {
+            if (application == null) return false;
             return !application.HasExited;
+        }
+
+        public void ViewTroops()
+        {
+            troops = GetListViewItems("troopList");
         }
 
         public List<Dictionary<string, string>> GetTroops()
         {
-            return GetListViewItems("troopList");
+            if (troops == null) ViewTroops();
+            return troops;
         }
 
-        public object GetTroopGroup()
+        public void ViewTroopGroup()
         {
-            return GetListViewItems("troopGroupList");
+            troopGroup = GetListViewItems("troopGroupList");
+        }
+
+        public List<Dictionary<string, string>> GetTroopGroup()
+        {
+            if (troopGroup == null) ViewTroopGroup();
+            return troopGroup;
         }
 
         public void AddTroop(string name)
@@ -72,6 +88,8 @@ namespace AcceptanceTests
         {
             var window = GetMainWindow();
             window.Keyboard.PressSpecialKey(KeyboardInput.SpecialKeys.F5);
+            troops = null;
+            troopGroup = null;
         }
 
         public void Reset()
@@ -85,6 +103,8 @@ namespace AcceptanceTests
 
             window.Keyboard.LeaveKey(KeyboardInput.SpecialKeys.CONTROL);
             window.Keyboard.LeaveKey(KeyboardInput.SpecialKeys.SHIFT);
+            troops = null;
+            troopGroup = null;
         }
 
         private List<Dictionary<string, string>>

@@ -1,49 +1,62 @@
 ﻿using System.Linq;
 using TechTalk.SpecFlow;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using AcceptanceTests.Support;
 
 namespace AcceptanceTests.Steps
 {
     [Binding]
     class TroopGroupSteps
     {
+        private TroopFile troopFile;
+        private Repository repository;
+        private TestedApplication application;
+
+        public TroopGroupSteps(Repository repository, TroopFile troopFile,
+            TestedApplication application)
+        {
+            this.repository = repository;
+            this.troopFile = troopFile;
+            this.application = application;
+        }
+
         [Given(@"that ""(.*)"" is in a troop group")]
         public void GivenThatIsInATroopGroup(string name)
         {
-            Context.AddTroop(Repository.CreateTroop(name));
-            Context.GetApplication().Refresh();
-            Context.AddTroopToGroup(name);
+            troopFile.AddTroop(repository, Repository.CreateTroop(name));
+            application.Refresh();
+            application.AddTroop(name);
         }
 
         [When(@"I view the troop group")]
         public void WhenIViewTheTroopGroup()
         {
-            Context.ViewTroopGroup();
+            application.ViewTroopGroup();
         }
 
         [When(@"troop named ""(.*)"" is added to a group")]
         public void WhenTroopNamedIsSelectedForAGroup(string name)
         {
-            Context.AddTroop(Repository.CreateTroop(name));
-            Context.AddTroopToGroup(name);
+            troopFile.AddTroop(repository, Repository.CreateTroop(name));
+            application.AddTroop(name);
         }
 
         [When(@"troop named ""(.*)"" is removed from a group")]
         public void WhenTroopNamedIsRemovedFromAGroup(string name)
         {
-            Context.RemoveTroopFromGroup(name);
+            application.RemoveTroop(name);
         }
 
         [Then(@"the troop group is empty")]
         public void ThenTheTroopGroupIsEmpty()
         {
-            Assert.AreEqual(0, Context.GetTroopGroup().Count());
+            Assert.AreEqual(0, application.GetTroopGroup().Count());
         }
 
         [Then(@"the group list contains ""(.*)""")]
         public void ThenTheGroupListContainsTroop(string name)
         {
-            Context.ViewTroopGroup();
+            application.ViewTroopGroup();
             Assert.IsTrue(IsTroopInAGroup(name),
                           "Troop " + name + " is not in a group");
         }
@@ -51,8 +64,7 @@ namespace AcceptanceTests.Steps
         [Then(@"the group list contains ""(.*)"" (\d+) times")]
         public void ThenTheGroupListContainsTroopNTimes(string name, int count)
         {
-            Context.ViewTroopGroup();
-            var troops = Context.GetTroopGroup();
+            var troops = application.GetTroopGroup();
             var matching = troops.Select(t => t["Name"] == name);
             Assert.AreEqual(count, matching.Count());
         }
@@ -60,13 +72,13 @@ namespace AcceptanceTests.Steps
         [Then(@"the group list does not contain ""(.*)""")]
         public void ThenTheGroupListDoesNotContain(string name)
         {
-            Context.ViewTroopGroup();
+            application.ViewTroopGroup();
             Assert.IsFalse(IsTroopInAGroup(name));
         }
 
-        private static bool IsTroopInAGroup(string name)
+        private bool IsTroopInAGroup(string name)
         {
-            return Context.GetTroopGroup().Any(t => t["Name"] == name);
+            return application.GetTroopGroup().Any(t => t["Name"] == name);
         }
     }
 }

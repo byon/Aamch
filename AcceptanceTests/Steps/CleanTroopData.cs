@@ -6,8 +6,8 @@ namespace AcceptanceTests.Steps
     [Binding]
     public class CleanTroopData
     {
-        [BeforeScenario]
-        [AfterScenario]
+        [BeforeScenario(Order = 0)]
+        [AfterScenario(Order = 0)]
         public void RemoveTroopDirectory()
         {
             const string TROOP_DIRECTORY = "Troops";

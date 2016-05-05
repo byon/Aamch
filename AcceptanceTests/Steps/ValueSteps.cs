@@ -2,52 +2,65 @@
 using TechTalk.SpecFlow;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using AcceptanceTests.Support;
 
 namespace AcceptanceTests
 {
     [Binding]
-    public class StepDefinitions
+    class StepDefinitions
     {
+        private TroopFile troopFile;
+        private Repository repository;
+        private TestedApplication application;
+
+        public StepDefinitions(Repository repository, TroopFile troopFile,
+            TestedApplication application)
+        {
+            this.repository = repository;
+            this.troopFile = troopFile;
+            this.application = application;
+        }
+
         private delegate void ModifyTroop(Dictionary<string, string> troop);
 
         [Given(@"that troops include ""(.*)""")]
         public void GivenThatTroopsInclude(string name)
         {
-            Context.AddTroop(Repository.CreateTroop(name));
+            troopFile.AddTroop(repository, Repository.CreateTroop(name));
         }
 
         [Given(@"that viewed troops include ""(.*)""")]
         public void GivenThatViewedTroopsInclude(string name)
         {
-            Context.AddTroop(Repository.CreateTroop(name));
-            Context.GetApplication().Refresh();
-            Context.ViewTroops();
+            troopFile.AddTroop(repository, Repository.CreateTroop(name));
+            application.Refresh();
+            application.ViewTroops();
         }
         
         [When(@"troops are viewed")]
         public void WhenTroopsAreViewed()
         {
-            Context.GetApplication().Refresh();
-            Context.ViewTroops();
+            application.Refresh();
+            application.ViewTroops();
         }
         
         [Then(@"""(.*)"" should be included in list of troops")]
         public void ThenShouldBeIncludedInListOfTroops(string name)
         {
-            var troops = Context.GetTroops();
+            var troops = application.GetTroops();
             Assert.IsTrue(troops.Any(t => t["Name"] == name));
         }
 
         [Given(@"that there are no troops")]
         public void GivenThatThereAreNoTroops()
         {
-            Context.ResetTroops();
+            TroopFile.ResetTroops();
         }
 
         [Then(@"no troops are included in list of troops")]
         public void ThenNoTroopsAreIncludedInListOfTroops()
         {
-            Assert.AreEqual(0, Context.GetTroops().Count());
+            Assert.AreEqual(0, application.GetTroops().Count());
         }
 
         [Given(@"a single troop with (.*) set to (.*)")]
@@ -68,12 +81,12 @@ namespace AcceptanceTests
             Assert.AreEqual(value, GetTroopValue(id, GetSingleTroop()));
         }
 
-        private static void AddSingleTroop(ModifyTroop modifier)
+        private void AddSingleTroop(ModifyTroop modifier)
         {
-            Context.ResetTroops();
+            TroopFile.ResetTroops();
             var troop = Repository.CreateTroop("Troop name");
             modifier(troop);
-            Context.AddTroop(troop);
+            troopFile.AddTroop(repository, troop);
         }
 
         private static string GetTroopValue(string id,
@@ -87,7 +100,7 @@ namespace AcceptanceTests
 
         private Dictionary<string, string> GetSingleTroop()
         {
-            var troops = Context.GetTroops();
+            var troops = application.GetTroops();
             Assert.AreEqual(1, troops.Count());
             return troops.First();
         }
